@@ -38,7 +38,11 @@ namespace Bing.Core.Dependency
             get { return _scope.Invoke(_container); }
         }
 
-        public Container(ITypeFinder typeFinder)
+        /// <summary>
+        /// 设置类型查找器
+        /// </summary>
+        /// <param name="typeFinder">类型查找器</param>
+        public void SetTypeFinder(ITypeFinder typeFinder)
         {
             _typeFinder = typeFinder;
         }
@@ -49,6 +53,10 @@ namespace Bing.Core.Dependency
         protected void Register()
         {
             var builder=new ContainerBuilder();
+            if (_typeFinder == null)
+            {
+                _typeFinder=new AppDomainTypeFinder();
+            }
             builder.AddSingleton(_typeFinder);
             var drTypes = _typeFinder.Find<IDependencyRegistrar>();
             var drInstances = new List<IDependencyRegistrar>();
@@ -80,8 +88,8 @@ namespace Bing.Core.Dependency
         /// <summary>
         /// 设置作用域
         /// </summary>
-        /// <param name="type"></param>
-        protected void SetScope(ScopeType type)
+        /// <param name="type">作用域类型</param>
+        internal void SetScope(ScopeType type)
         {
             switch (type)
             {
@@ -123,6 +131,106 @@ namespace Bing.Core.Dependency
         {
             SetScope(type);
             _container = container;
+        }
+
+        /// <summary>
+        /// 创建对象
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="name">服务名称</param>
+        /// <returns></returns>
+        public T Create<T>(string name = null)
+        {
+            return (T) Create(typeof(T), name);
+        }
+
+        /// <summary>
+        /// 创建对象
+        /// </summary>
+        /// <param name="type">对象类型</param>
+        /// <param name="name">服务名称</param>
+        /// <returns></returns>
+        public object Create(Type type, string name = null)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return Scope.Resolve(type);
+            }
+            return Scope.ResolveNamed(name, type);
+        }
+           
+        /// <summary>
+        /// 创建集合
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="name">服务名称</param>
+        /// <returns></returns>
+        public List<T> CreateList<T>(string name = null)
+        {
+            var result = CreateList(typeof(T), name);
+            if (result == null)
+            {
+                return new List<T>();
+            }
+            return ((IEnumerable<T>) result).ToList();
+        }
+
+        /// <summary>
+        /// 创建集合
+        /// </summary>
+        /// <param name="type">对象类型</param>
+        /// <param name="name">服务名称</param>
+        /// <returns></returns>
+        public object CreateList(Type type, string name = null)
+        {
+            Type serviceType = typeof(IEnumerable<>).MakeGenericType(type);
+            return Create(serviceType, name);
+        }
+
+        /// <summary>
+        /// 作用域开始
+        /// </summary>
+        /// <returns></returns>
+        public IScope BeginScope()
+        {
+            return new Scope(_container.BeginLifetimeScope());
+        }
+
+        /// <summary>
+        /// 注册依赖
+        /// </summary>
+        /// <param name="configs">依赖配置</param>
+        public void Register(params IConfig[] configs)
+        {
+            Register(null,configs);
+        }
+
+        /// <summary>
+        /// 注册依赖
+        /// </summary>
+        /// <param name="actionBefore">注册前执行的操作</param>
+        /// <param name="configs">依赖配置</param>
+        public void Register(Action<ContainerBuilder> actionBefore, params IConfig[] configs)
+        {
+            var builder = CreateBuilder(actionBefore, configs);
+            _container = builder.Build();
+        }
+
+        /// <summary>
+        /// 创建容器生成器
+        /// </summary>
+        /// <param name="actionBefore">注册前执行的操作</param>
+        /// <param name="configs">依赖配置</param>
+        /// <returns></returns>
+        public ContainerBuilder CreateBuilder(Action<ContainerBuilder> actionBefore, params IConfig[] configs)
+        {
+            var builder=new ContainerBuilder();
+            actionBefore?.Invoke(builder);
+            foreach (var config in configs)
+            {
+                builder.RegisterModule(config);
+            }
+            return builder;
         }
 
         /// <summary>

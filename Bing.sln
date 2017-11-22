@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Core", "src\Bing.Core\Bing.Core.csproj", "{39F3E099-6B64-4AD5-884E-2A0628D9D74C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils", "src\Bing.Utils\Bing.Utils.csproj", "{5C376212-12A7-4F32-BF86-D410AAC38B63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Samples.Consoles", "sample\Bing.Samples.Consoles\Bing.Samples.Consoles.csproj", "{0EB3D454-E719-4973-B411-CCA42AA9A72A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{39F3E099-6B64-4AD5-884E-2A0628D9D74C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39F3E099-6B64-4AD5-884E-2A0628D9D74C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39F3E099-6B64-4AD5-884E-2A0628D9D74C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C376212-12A7-4F32-BF86-D410AAC38B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C376212-12A7-4F32-BF86-D410AAC38B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C376212-12A7-4F32-BF86-D410AAC38B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C376212-12A7-4F32-BF86-D410AAC38B63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EB3D454-E719-4973-B411-CCA42AA9A72A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EB3D454-E719-4973-B411-CCA42AA9A72A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EB3D454-E719-4973-B411-CCA42AA9A72A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EB3D454-E719-4973-B411-CCA42AA9A72A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

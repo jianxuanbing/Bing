@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{0EB3D454-E719-4973-B411-CCA42AA9A72A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bing.Core</RootNamespace>
-    <AssemblyName>Bing.Core</AssemblyName>
+    <RootNamespace>Bing.Samples.Consoles</RootNamespace>
+    <AssemblyName>Bing.Samples.Consoles</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -48,35 +50,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dependency\ConfigBase.cs" />
-    <Compile Include="Dependency\Container.cs" />
-    <Compile Include="Dependency\ContainerBuilderExtensions.cs" />
-    <Compile Include="Dependency\DependencyConfiguration.cs" />
-    <Compile Include="Dependency\IConfig.cs" />
-    <Compile Include="Dependency\IContainer.cs" />
-    <Compile Include="Dependency\IDependency.cs" />
-    <Compile Include="Dependency\IDependencyRegistrar.cs" />
-    <Compile Include="Dependency\IScopeDependency.cs" />
-    <Compile Include="Dependency\ISingletonDependency.cs" />
-    <Compile Include="Dependency\ITransientDependency.cs" />
-    <Compile Include="Dependency\LifetimeStyle.cs" />
-    <Compile Include="Dependency\Scope.cs" />
-    <Compile Include="Dependency\ScopeType.cs" />
-    <Compile Include="Dependency\IScope.cs" />
-    <Compile Include="Helpers\Ioc.cs" />
-    <Compile Include="IocConfigInitialize.cs" />
+    <Compile Include="Configs\ServiceRegister.cs" />
+    <Compile Include="ITestService.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflections\AppDomainTypeFinder.cs" />
-    <Compile Include="Reflections\ITypeFinder.cs" />
-    <Compile Include="Reflections\WebAppTypeFinder.cs" />
+    <Compile Include="TestColorService.cs" />
+    <Compile Include="TestService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bing.Utils\Bing.Utils.csproj">
-      <Project>{5C376212-12A7-4F32-BF86-D410AAC38B63}</Project>
-      <Name>Bing.Utils</Name>
+    <ProjectReference Include="..\..\src\Bing.Core\Bing.Core.csproj">
+      <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>
+      <Name>Bing.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,6 +21,12 @@ namespace Bing.Core.Dependency
         void Register(ContainerBuilder builder, ITypeFinder typeFinder);
 
         /// <summary>
+        /// 注册
+        /// </summary>
+        /// <param name="builder">容器生成器</param>
+        void Register(ContainerBuilder builder);
+
+        /// <summary>
         /// 排序
         /// </summary>
         int Order { get; }
