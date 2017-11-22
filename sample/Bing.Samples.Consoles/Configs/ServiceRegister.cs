@@ -12,19 +12,19 @@ namespace Bing.Samples.Consoles.Configs
     /// <summary>
     /// 服务注册
     /// </summary>
-    public class ServiceRegister: IDependencyRegistrar
-    {
-        public void Register(ContainerBuilder builder, ITypeFinder typeFinder)
-        {
-            throw new NotImplementedException();
-        }
+    //public class ServiceRegister: IDependencyRegistrar
+    //{
+    //    public void Register(ContainerBuilder builder, ITypeFinder typeFinder)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        public void Register(ContainerBuilder builder)
-        {
-            builder.AddSingleton<ITestService, TestService>("main");
-            builder.AddSingleton<ITestService, TestColorService>("color");
-        }
+    //    public void Register(ContainerBuilder builder)
+    //    {
+    //        builder.AddSingleton<ITestService, TestService>("main");
+    //        builder.AddSingleton<ITestService, TestColorService>("color");
+    //    }
 
-        public int Order { get; }
-    }
+    //    public int Order { get; }
+    //}
 }

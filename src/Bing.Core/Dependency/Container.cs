@@ -39,6 +39,14 @@ namespace Bing.Core.Dependency
         }
 
         /// <summary>
+        /// 内部容器
+        /// </summary>
+        public Autofac.IContainer InternalContainer
+        {
+            get { return _container; }
+        }
+
+        /// <summary>
         /// 设置类型查找器
         /// </summary>
         /// <param name="typeFinder">类型查找器</param>
@@ -210,10 +218,11 @@ namespace Bing.Core.Dependency
         /// </summary>
         /// <param name="actionBefore">注册前执行的操作</param>
         /// <param name="configs">依赖配置</param>
-        public void Register(Action<ContainerBuilder> actionBefore, params IConfig[] configs)
+        public Autofac.IContainer Register(Action<ContainerBuilder> actionBefore, params IConfig[] configs)
         {
             var builder = CreateBuilder(actionBefore, configs);
             _container = builder.Build();
+            return _container;
         }
 
         /// <summary>

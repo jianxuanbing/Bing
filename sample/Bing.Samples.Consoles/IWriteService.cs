@@ -7,10 +7,7 @@ using Bing.Core.Dependency;
 
 namespace Bing.Samples.Consoles
 {
-    /// <summary>
-    /// 测试服务
-    /// </summary>
-    public interface ITestService:IScopeDependency
+    public interface IWriteService:IScopeDependency
     {
         void WriteContent(string content);
     }

@@ -99,6 +99,15 @@ namespace Bing.Core.Helpers
         }
 
         /// <summary>
+        /// 获取Autofac容器
+        /// </summary>
+        /// <returns></returns>
+        public static Autofac.IContainer GetContainer()
+        {
+            return DefaultContainer.InternalContainer;
+        }
+
+        /// <summary>
         /// 释放容器
         /// </summary>
         public static void Dispose()

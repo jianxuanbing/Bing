@@ -11,9 +11,14 @@ namespace Bing.Samples.Consoles
     /// </summary>
     public class TestService:ITestService
     {
+        private IWriteService _writeService;
+        public TestService(IWriteService writeService)
+        {
+            _writeService = writeService;
+        }
         public void WriteContent(string content)
         {
-            Console.WriteLine(content);
+            _writeService.WriteContent(content);
         }
     }
 }
