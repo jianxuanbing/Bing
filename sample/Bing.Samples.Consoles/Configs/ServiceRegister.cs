@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
-using Bing.Core.Dependency;
-using Bing.Core.Reflections;
+using Bing.Dependency;
+using Bing.Reflections;
 
 namespace Bing.Samples.Consoles.Configs
 {

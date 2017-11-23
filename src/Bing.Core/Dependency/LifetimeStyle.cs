@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bing.Core.Dependency
+namespace Bing.Dependency
 {
     /// <summary>
     /// 表示依赖注入的对象声明周期

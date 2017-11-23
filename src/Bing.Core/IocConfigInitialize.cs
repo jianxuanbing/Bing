@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bing.Core.Dependency;
+using Bing.Dependency;
 
-namespace Bing.Core
+namespace Bing
 {
     /// <summary>
     /// IOC配置初始化

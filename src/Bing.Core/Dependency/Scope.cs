@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 
-namespace Bing.Core.Dependency
+namespace Bing.Dependency
 {
     /// <summary>
     /// 作用域

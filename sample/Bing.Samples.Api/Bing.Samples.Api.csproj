@@ -44,6 +44,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AspectCore.Abstractions, Version=0.2.3.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Abstractions.0.2.3\lib\net45\AspectCore.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AspectCore.Core, Version=0.2.3.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Core.0.2.3\lib\net45\AspectCore.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AspectCore.Extensions.Autofac, Version=0.2.3.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Extensions.Autofac.0.2.3\lib\net45\AspectCore.Extensions.Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AspectCore.Extensions.Reflection, Version=0.2.3.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Extensions.Reflection.0.2.3\lib\net45\AspectCore.Extensions.Reflection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
@@ -52,13 +68,22 @@
       <HintPath>..\..\packages\Autofac.WebApi2.4.1.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Exceptionless, Version=4.1.1972.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Exceptionless.4.1.1972\lib\net45\Exceptionless.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
@@ -71,8 +96,13 @@
     </Reference>
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -95,9 +125,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -120,10 +147,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReqInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="BingConfig.json" />
+    <Content Include="nlog.config" />
+    <Content Include="log4net.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -133,12 +164,31 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bing.Core\Bing.Core.csproj">
+    <ProjectReference Include="..\..\src\Bing.Core\Bing.csproj">
       <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>
-      <Name>Bing.Core</Name>
+      <Name>Bing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Logs.Exceptionless\Bing.Logs.Exceptionless.csproj">
+      <Project>{569CA993-406C-4939-BF3C-6461B7A52E3C}</Project>
+      <Name>Bing.Logs.Exceptionless</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Logs.Log4Net\Bing.Logs.Log4Net.csproj">
+      <Project>{A9CC27AA-8EF2-4792-A874-76D1D255B238}</Project>
+      <Name>Bing.Logs.Log4Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Logs.NLog\Bing.Logs.NLog.csproj">
+      <Project>{A5461664-CF03-4444-AF7F-010C06353640}</Project>
+      <Name>Bing.Logs.NLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Logs\Bing.Logs.csproj">
+      <Project>{A2E6647C-8867-4059-860A-114CC4A2F388}</Project>
+      <Name>Bing.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Utils\Bing.Utils.csproj">
+      <Project>{5C376212-12A7-4F32-BF86-D410AAC38B63}</Project>
+      <Name>Bing.Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bing.Samples.Services\Bing.Samples.Services.csproj">
       <Project>{9C2B2D2F-B662-4E11-A0E8-7ECA6710E403}</Project>

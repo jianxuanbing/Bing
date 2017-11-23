@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bing.Core.Reflections
+namespace Bing.Reflections
 {
     /// <summary>
     /// 类型查找器

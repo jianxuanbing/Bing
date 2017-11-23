@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bing.Core.Dependency
+namespace Bing.Dependency
 {
     /// <summary>
     /// 依赖注入接口，表示该接口的实现类将自动注册到Ioc容器中

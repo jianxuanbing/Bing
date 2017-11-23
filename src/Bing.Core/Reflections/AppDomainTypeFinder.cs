@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Bing.Core.Reflections
+namespace Bing.Reflections
 {
     /// <summary>
     /// 应用程序类型查找器

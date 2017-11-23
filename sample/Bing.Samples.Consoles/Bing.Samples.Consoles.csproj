@@ -64,9 +64,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Bing.Core\Bing.Core.csproj">
+    <ProjectReference Include="..\..\src\Bing.Core\Bing.csproj">
       <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>
-      <Name>Bing.Core</Name>
+      <Name>Bing</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

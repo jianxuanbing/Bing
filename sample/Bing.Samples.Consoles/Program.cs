@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bing.Core;
-using Bing.Core.Dependency;
-using Bing.Core.Helpers;
+using Bing;
+using Bing.Dependency;
+using Bing.Helpers;
 
 namespace Bing.Samples.Consoles
 {

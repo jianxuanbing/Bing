@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Builder;
 
-namespace Bing.Core.Dependency
+namespace Bing.Dependency
 {
     /// <summary>
     /// Autofac 容器生成器 扩展

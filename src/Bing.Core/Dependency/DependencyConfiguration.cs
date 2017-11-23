@@ -5,11 +5,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
-using Bing.Core.Helpers;
-using Bing.Core.Reflections;
+using Bing.Contexts;
+using Bing.Helpers;
+using Bing.Reflections;
 using Bing.Utils.Helpers;
 
-namespace Bing.Core.Dependency
+namespace Bing.Dependency
 {
     /// <summary>
     /// 依赖配置
@@ -110,8 +111,8 @@ namespace Bing.Core.Dependency
         /// </summary>
         private void RegistContext()
         {
-            //_builder.AddSingleton<IContext, WebContext>();
-            //_builder.AddScoped<IUserContext, NullUserContext>();
+            _builder.AddScoped<IContext, WebContext>();// nfx使用每次请求新实例，netcore则使用单例
+            _builder.AddScoped<IUserContext, NullUserContext>();
         }
 
         #endregion

@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
 using Autofac.Integration.WebApi;
-using Bing.Core;
-using Bing.Core.Dependency;
-using Bing.Core.Helpers;
+using Bing;
+using Bing.Dependency;
+using Bing.Helpers;
 using Bing.Samples.Api.Configs;
 
 namespace Bing.Samples.Api

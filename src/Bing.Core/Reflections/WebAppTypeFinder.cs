@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bing.Core.Reflections
+namespace Bing.Reflections
 {
     /// <summary>
     /// Web应用类型查找器

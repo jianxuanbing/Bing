@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bing.Core.Dependency;
+using Bing.Aspects;
+using Bing.Dependency;
 
 namespace Bing.Samples.Services
 {
     public interface ITestService: IScopeDependency
     {
-        string GetContent(string content);
+        string GetContent([NotEmpty]string content);
+
+        void WriteOtherLog(string content);
     }
 }

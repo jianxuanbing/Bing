@@ -1,0 +1,12 @@
+﻿{
+  "Logger": {
+    "Type": "File",
+    "Level": "DEBUG",
+    "ProjectName": "JCE",
+    "EnabledDebug": true,
+    "EnabledTrace": true
+  },
+  "UserContext": {
+    "EnabledUserName": false
+  }
+}

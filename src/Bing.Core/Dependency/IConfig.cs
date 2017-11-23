@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac.Core;
 
-namespace Bing.Core.Dependency
+namespace Bing.Dependency
 {
     /// <summary>
     /// 依赖配置
