@@ -14,7 +14,6 @@ namespace Bing.Logs
     /// <summary>
     /// 日志操作
     /// </summary>
-    [Ignore]
     public class Log : LogBase<LogContent>
     {
         /// <summary>

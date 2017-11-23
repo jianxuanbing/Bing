@@ -22,6 +22,7 @@ namespace Bing.Samples.Api.Configs
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            builder.AddLog4Net();
 
             builder.RegisterDynamicProxy(config =>
             {
@@ -29,7 +30,7 @@ namespace Bing.Samples.Api.Configs
                 //config.Interceptors.AddTyped<DebugLogAttribute>(Predicates.ForService("*Service"));
                 //config.Interceptors.AddTyped<DebugLogAttribute>();
             });
-            builder.AddLog4Net();
+            
             //builder.AddNLog();
 
             //builder.AddExceptionless(config =>
