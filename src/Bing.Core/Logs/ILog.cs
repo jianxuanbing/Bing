@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Aspects;
 using Bing.Logs.Abstractions;
 
 namespace Bing.Logs
 {
     /// <summary>
     /// 日志操作
-    /// </summary>
+    /// </summary>    
     public interface ILog
     {
         /// <summary>

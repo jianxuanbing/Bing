@@ -10,6 +10,7 @@ using Autofac;
 using Autofac.Integration.WebApi;
 using Bing.Aspects;
 using Bing.Dependency;
+using Bing.Logs.Aspects;
 using Bing.Logs.Exceptionless;
 using Bing.Logs.Log4Net;
 using Bing.Logs.NLog;
@@ -25,6 +26,8 @@ namespace Bing.Samples.Api.Configs
             builder.RegisterDynamicProxy(config =>
             {
                 config.EnableParameterAspect();
+                //config.Interceptors.AddTyped<DebugLogAttribute>(Predicates.ForService("*Service"));
+                //config.Interceptors.AddTyped<DebugLogAttribute>();
             });
             builder.AddLog4Net();
             //builder.AddNLog();

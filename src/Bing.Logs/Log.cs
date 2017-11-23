@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Bing.Aspects;
 using Bing.Contexts;
 using Bing.Helpers;
 using Bing.Logs.Abstractions;
@@ -13,6 +14,7 @@ namespace Bing.Logs
     /// <summary>
     /// 日志操作
     /// </summary>
+    [Ignore]
     public class Log : LogBase<LogContent>
     {
         /// <summary>

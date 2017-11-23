@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bing.Aspects;
 using Bing.Dependency;
+using Bing.Logs.Aspects;
 
 namespace Bing.Samples.Services
 {
@@ -12,6 +13,7 @@ namespace Bing.Samples.Services
     {
         string GetContent([NotEmpty]string content);
 
+        [DebugLog]
         void WriteOtherLog(string content);
     }
 }
