@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Bing;
 using Bing.Dependency;
 using Bing.Helpers;
+using Bing.Samples.Consoles.Configs;
 
 namespace Bing.Samples.Consoles
 {
@@ -27,7 +28,7 @@ namespace Bing.Samples.Consoles
 
         static void Init()
         {
-            IocConfigInitialize.Init(ScopeType.None);
+            IocConfigInitialize.Init(ScopeType.None,new IConfig[] {new IocConfig(), });
         }
     }
 }

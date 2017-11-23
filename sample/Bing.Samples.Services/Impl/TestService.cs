@@ -15,11 +15,10 @@ namespace Bing.Samples.Services.Impl
         {
             return content;
         }
-
         
         public void WriteOtherLog(string content)
         {
-            
+            Console.WriteLine(content);
         }
     }
 }
