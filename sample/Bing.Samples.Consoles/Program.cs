@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using AspectCore.DynamicProxy;
 using Bing;
+using Bing.Aspects.Base;
 using Bing.Dependency;
 using Bing.Helpers;
 using Bing.Samples.Consoles.Configs;
@@ -18,6 +21,9 @@ namespace Bing.Samples.Consoles
 
             var service = Ioc.Create<ITestService>();
             service.WriteContent("试试自动注入");
+
+            Console.WriteLine(typeof(NonAspectAttribute).Assembly);
+            Console.WriteLine(typeof(InterceptorBase).MetadataToken);
 
             //var  mainService = Ioc.Create<ITestService>("main");
             //mainService.WriteContent("测试一下装逼技能先");
