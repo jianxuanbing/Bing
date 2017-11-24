@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bing.Dependency;
+using Bing.Logs.Aspects;
 
 namespace Bing.Samples.Consoles
 {
@@ -12,6 +13,7 @@ namespace Bing.Samples.Consoles
     /// </summary>
     public interface ITestService:IScopeDependency
     {
+        [DebugLog]
         void WriteContent(string content);
     }
 }

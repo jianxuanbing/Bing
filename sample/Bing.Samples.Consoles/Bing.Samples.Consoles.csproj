@@ -32,6 +32,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AspectCore.Abstractions, Version=0.2.3.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Abstractions.0.2.3\lib\net45\AspectCore.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AspectCore.Core, Version=0.2.3.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Core.0.2.3\lib\net45\AspectCore.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AspectCore.Extensions.Autofac, Version=0.2.3.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Extensions.Autofac.0.2.3\lib\net45\AspectCore.Extensions.Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AspectCore.Extensions.Reflection, Version=0.2.3.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Extensions.Reflection.0.2.3\lib\net45\AspectCore.Extensions.Reflection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
@@ -42,6 +58,10 @@
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configs\IocConfig.cs" />
     <Compile Include="Configs\ServiceRegister.cs" />
     <Compile Include="ITestService.cs" />
     <Compile Include="IWriteService.cs" />
@@ -61,12 +82,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="BingConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Bing.Core\Bing.csproj">
       <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>
       <Name>Bing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Logs.Log4Net\Bing.Logs.Log4Net.csproj">
+      <Project>{A9CC27AA-8EF2-4792-A874-76D1D255B238}</Project>
+      <Name>Bing.Logs.Log4Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Logs\Bing.Logs.csproj">
+      <Project>{A2E6647C-8867-4059-860A-114CC4A2F388}</Project>
+      <Name>Bing.Logs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -22,15 +22,17 @@ namespace Bing.Samples.Api.Configs
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.AddLog4Net();
+            
 
             builder.RegisterDynamicProxy(config =>
             {
                 config.EnableParameterAspect();
-                //config.Interceptors.AddTyped<DebugLogAttribute>(Predicates.ForService("*Service"));
                 //config.Interceptors.AddTyped<DebugLogAttribute>();
+                config.Interceptors.AddTyped<DebugLogAttribute>(Predicates.ForService("*Service"));
             });
-            
+
+            builder.AddLog4Net();
+
             //builder.AddNLog();
 
             //builder.AddExceptionless(config =>

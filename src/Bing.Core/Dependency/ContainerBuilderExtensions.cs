@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AspectCore.DynamicProxy;
+using AspectCore.DynamicProxy.Parameters;
+using AspectCore.Extensions.Autofac;
 using Autofac;
 using Autofac.Builder;
 
@@ -104,6 +107,34 @@ namespace Bing.Dependency
             where TService : class
         {
             return builder.RegisterInstance(instance).As<TService>().SingleInstance();
+        }
+
+        #endregion
+
+        #region EnableAop(启用Aop)
+        /// <summary>
+        /// 启用Aop
+        /// </summary>
+        /// <param name="builder">容器生成器</param>
+        public static void EnableAop(this ContainerBuilder builder)
+        {
+            //builder.RegisterDynamicProxy(config => config.EnableParameterAspect());
+            //builder.EnableAspectScoped();
+        }
+
+        #endregion
+
+        #region EnableAspectScoped(启用Aop作用域)
+
+        /// <summary>
+        /// 启用Aop作用域
+        /// </summary>
+        /// <param name="builder">容器生成器</param>
+        public static void EnableAspectScoped(this ContainerBuilder builder)
+        {
+            //builder.AddSingleton<IAspectScheduler, ScopeAspectScheduler>();
+            //builder.AddSingleton<IAspectBuilderFactory, ScopeAspectBuilderFactory>();
+            //builder.AddScoped<IAspectContextFactory, ScopeAspectContextFactory>();
         }
 
         #endregion
