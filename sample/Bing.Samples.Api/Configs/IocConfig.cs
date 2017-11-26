@@ -9,11 +9,14 @@ using AspectCore.Extensions.Autofac;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Bing.Aspects;
+using Bing.Datas.EntityFramework;
+using Bing.Datas.UnitOfWorks;
 using Bing.Dependency;
 using Bing.Logs.Aspects;
 using Bing.Logs.Exceptionless;
 using Bing.Logs.Log4Net;
 using Bing.Logs.NLog;
+using Bing.Samples.Datas;
 
 namespace Bing.Samples.Api.Configs
 {
@@ -22,16 +25,13 @@ namespace Bing.Samples.Api.Configs
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            
+            builder.AddLog4Net();
+            builder.AddBingUnitOfWork("WeiHai");
 
             builder.RegisterDynamicProxy(config =>
             {
                 config.EnableParameterAspect();
-                //config.Interceptors.AddTyped<DebugLogAttribute>();
-                config.Interceptors.AddTyped<DebugLogAttribute>(Predicates.ForService("*Service"));
             });
-
-            builder.AddLog4Net();
 
             //builder.AddNLog();
 

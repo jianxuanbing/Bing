@@ -68,6 +68,14 @@
       <HintPath>..\..\packages\Autofac.WebApi2.4.1.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Exceptionless, Version=4.1.1972.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Exceptionless.4.1.1972\lib\net45\Exceptionless.dll</HintPath>
       <Private>True</Private>
@@ -137,7 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
@@ -170,6 +180,14 @@
       <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>
       <Name>Bing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Datas.EntityFramework.SqlServer\Bing.Datas.EntityFramework.SqlServer.csproj">
+      <Project>{7959BEFC-AE4E-407C-B008-6AD0A8146D3D}</Project>
+      <Name>Bing.Datas.EntityFramework.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Datas.EntityFramework\Bing.Datas.EntityFramework.csproj">
+      <Project>{9094029B-31BE-4CA3-81A5-9337DDA519A0}</Project>
+      <Name>Bing.Datas.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bing.Logs.Exceptionless\Bing.Logs.Exceptionless.csproj">
       <Project>{569CA993-406C-4939-BF3C-6461B7A52E3C}</Project>
       <Name>Bing.Logs.Exceptionless</Name>
@@ -189,6 +207,14 @@
     <ProjectReference Include="..\..\src\Bing.Utils\Bing.Utils.csproj">
       <Project>{5C376212-12A7-4F32-BF86-D410AAC38B63}</Project>
       <Name>Bing.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bing.Samples.Datas\Bing.Samples.Datas.csproj">
+      <Project>{86D581E8-824E-4741-8FF2-11A03095A3FE}</Project>
+      <Name>Bing.Samples.Datas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bing.Samples.Domains\Bing.Samples.Domains.csproj">
+      <Project>{1C5A2143-7E3C-488C-ABB2-C44D78391EFA}</Project>
+      <Name>Bing.Samples.Domains</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bing.Samples.Services\Bing.Samples.Services.csproj">
       <Project>{9C2B2D2F-B662-4E11-A0E8-7ECA6710E403}</Project>

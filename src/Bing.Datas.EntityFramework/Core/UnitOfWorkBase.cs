@@ -55,7 +55,7 @@ namespace Bing.Datas.EntityFramework.Core
             TraceId = Guid.NewGuid().ToString();
             UserContext = Bing.Contexts.UserContext.Null;
             EnableLog();
-        }
+        }        
 
         #endregion
 
@@ -232,7 +232,7 @@ namespace Bing.Datas.EntityFramework.Core
         /// <param name="entry">输入实体</param>
         private void InitCreationAudited(DbEntityEntry entry)
         {
-            CreationAuditedInitializer.Init(entry, GetUserContext());
+            CreationAuditedInitializer.Init(entry.Entity, GetUserContext());
         }
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace Bing.Datas.EntityFramework.Core
         /// <param name="entry">输入实体</param>
         private void InitModificationAudited(DbEntityEntry entry)
         {
-            ModificationAuditedInitializer.Init(entry, GetUserContext());
+            ModificationAuditedInitializer.Init(entry.Entity, GetUserContext());
         }
 
         /// <summary>
@@ -294,7 +294,7 @@ namespace Bing.Datas.EntityFramework.Core
         /// <param name="entry">输入实体</param>
         protected void InitVersion(DbEntityEntry entry)
         {
-            var entity = entry as IAggregateRoot;
+            var entity = entry.Entity as IAggregateRoot;
             if (entity==null)
             {
                 return;

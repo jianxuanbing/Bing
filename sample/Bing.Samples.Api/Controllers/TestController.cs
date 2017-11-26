@@ -6,6 +6,8 @@ using System.Web.Http;
 using Bing.Logs;
 using Bing.Logs.Extensions;
 using Bing.Samples.Api.Models;
+using Bing.Samples.Domains.Models;
+using Bing.Samples.Domains.Request.Act;
 using Bing.Samples.Services;
 using Bing.Utils.Helpers;
 
@@ -19,10 +21,12 @@ namespace Bing.Samples.Api.Controllers
         public ILog Log { get; set; }
 
         private ITestService _testService;
-        public TestController(ILog log,ITestService testService)
+        private ILoginService _loginService;
+        public TestController(ILog log,ITestService testService,ILoginService loginService)
         {
             Log = log;
             _testService = testService;
+            _loginService = loginService;
         }
 
         /// <summary>
@@ -92,6 +96,26 @@ namespace Bing.Samples.Api.Controllers
         public void WriteInfo(string content)
         {
             _testService.WriteOtherLog(content);
+        }
+
+        /// <summary>
+        /// 注册用户
+        /// </summary>
+        /// <param name="act"></param>
+        [HttpPost]
+        public void Register(RegisterAct act)
+        {
+            _loginService.Register(act);
+        }
+
+        /// <summary>
+        /// 获取所有登录信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public List<Login> GetAllLogin()
+        {
+            return _loginService.GetAllLogin();
         }
     }
 }

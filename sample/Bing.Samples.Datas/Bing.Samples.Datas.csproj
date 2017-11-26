@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9094029B-31BE-4CA3-81A5-9337DDA519A0}</ProjectGuid>
+    <ProjectGuid>{86D581E8-824E-4741-8FF2-11A03095A3FE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bing.Datas.EntityFramework</RootNamespace>
-    <AssemblyName>Bing.Datas.EntityFramework</AssemblyName>
+    <RootNamespace>Bing.Samples.Datas</RootNamespace>
+    <AssemblyName>Bing.Samples.Datas</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,10 +47,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Linq.Dynamic.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=0f07ec44de6ac832, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Linq.Dynamic.Core.1.0.7.12\lib\net45\System.Linq.Dynamic.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
@@ -61,37 +57,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configs\EfConfig.cs" />
-    <Compile Include="Configs\EfLogLevel.cs" />
-    <Compile Include="Core\IMap.cs" />
-    <Compile Include="Core\MapBase.cs" />
-    <Compile Include="Core\RepositoryBase.cs" />
-    <Compile Include="Core\UnitOfWorkBase.cs" />
-    <Compile Include="Internal\DbContextWrapper.cs" />
-    <Compile Include="Logs\EfLog.cs" />
+    <Compile Include="BingSampleUnitOfWork.cs" />
+    <Compile Include="IBingSampleUnitOfWork.cs" />
+    <Compile Include="Mappings\LoginMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryableExtensions.cs" />
+    <Compile Include="Repositories\LoginRepository.cs" />
     <Compile Include="ServiceExtensions.cs" />
-    <Compile Include="UnitOfWorkExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Bing.Core\Bing.csproj">
+      <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>
+      <Name>Bing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Datas.EntityFramework.SqlServer\Bing.Datas.EntityFramework.SqlServer.csproj">
+      <Project>{7959befc-ae4e-407c-b008-6ad0a8146d3d}</Project>
+      <Name>Bing.Datas.EntityFramework.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Datas.EntityFramework\Bing.Datas.EntityFramework.csproj">
+      <Project>{9094029b-31be-4ca3-81a5-9337dda519a0}</Project>
+      <Name>Bing.Datas.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bing.Samples.Domains\Bing.Samples.Domains.csproj">
+      <Project>{1C5A2143-7E3C-488C-ABB2-C44D78391EFA}</Project>
+      <Name>Bing.Samples.Domains</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bing.Core\Bing.csproj">
-      <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>
-      <Name>Bing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bing.Logs\Bing.Logs.csproj">
-      <Project>{A2E6647C-8867-4059-860A-114CC4A2F388}</Project>
-      <Name>Bing.Logs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bing.Utils\Bing.Utils.csproj">
-      <Project>{5C376212-12A7-4F32-BF86-D410AAC38B63}</Project>
-      <Name>Bing.Utils</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
