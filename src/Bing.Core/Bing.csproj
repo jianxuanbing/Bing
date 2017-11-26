@@ -199,7 +199,9 @@
       <Name>Bing.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Caching\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\LibraryResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
