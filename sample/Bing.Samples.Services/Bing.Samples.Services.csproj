@@ -55,6 +55,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Bing.Aspects\Bing.Aspects.csproj">
+      <Project>{01992500-94B3-49F7-A619-6E9855E19CC6}</Project>
+      <Name>Bing.Aspects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bing.Core\Bing.csproj">
       <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>
       <Name>Bing</Name>

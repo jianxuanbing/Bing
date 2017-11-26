@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Aspects;
 using Bing.Datas.UnitOfWorks;
 using Bing.Samples.Datas;
 using Bing.Samples.Domains.Models;
@@ -26,6 +27,7 @@ namespace Bing.Samples.Services.Impl
         /// 注册
         /// </summary>
         /// <param name="act">注册操作</param>
+        [TransactionCallHandler]
         public void Register(RegisterAct act)
         {
             Login entity=new Login(Guid.NewGuid());
