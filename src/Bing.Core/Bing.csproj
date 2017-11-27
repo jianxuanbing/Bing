@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Bing.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -75,6 +76,9 @@
     <Compile Include="Aspects\IgnoreAttribute.cs" />
     <Compile Include="Aspects\NotEmptyAttribute.cs" />
     <Compile Include="Aspects\NotNullAttribute.cs" />
+    <Compile Include="Caching\ExpressionCacheKeyGenerator.cs" />
+    <Compile Include="Caching\ICacheKeyGenerator.cs" />
+    <Compile Include="Caching\StringCacheKeyGenerator.cs" />
     <Compile Include="Contexts\IContext.cs" />
     <Compile Include="Contexts\IUserContext.cs" />
     <Compile Include="Contexts\NullUserContext.cs" />
@@ -101,6 +105,7 @@
     <Compile Include="Datas\Queries\Query.cs" />
     <Compile Include="Datas\Queries\QueryableExtensions.cs" />
     <Compile Include="Datas\Queries\QueryParameter.cs" />
+    <Compile Include="Datas\TransactionalBehavior.cs" />
     <Compile Include="Datas\UnitOfWorks\IUnitOfWork.cs" />
     <Compile Include="Datas\UnitOfWorks\IUnitOfWorkManager.cs" />
     <Compile Include="Datas\UnitOfWorks\UnitOfWorkManager.cs" />
@@ -199,9 +204,7 @@
       <Name>Bing.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Caching\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\LibraryResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
