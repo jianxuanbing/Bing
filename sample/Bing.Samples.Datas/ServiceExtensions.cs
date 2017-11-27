@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Bing.Datas.EntityFramework;
+using Bing.Datas.EntityFramework.Configs;
+using Bing.Datas.EntityFramework.Extensions;
 using Bing.Datas.UnitOfWorks;
 using Bing.Dependency;
 
@@ -19,6 +21,7 @@ namespace Bing.Samples.Datas
         {
             services.AddScoped<IUnitOfWorkManager, UnitOfWorkManager>();
             services.AddUnitOfWork<IUnitOfWork,BingSampleUnitOfWork>(connectionName);
+            EfConfig.AutoCommit = true;
         }
     }
 }

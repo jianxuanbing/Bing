@@ -9,7 +9,7 @@ using Bing.Datas.EntityFramework.Core;
 using Bing.Datas.UnitOfWorks;
 using Bing.Dependency;
 
-namespace Bing.Datas.EntityFramework
+namespace Bing.Datas.EntityFramework.Extensions
 {
     public static partial class ServiceExtensions
     {

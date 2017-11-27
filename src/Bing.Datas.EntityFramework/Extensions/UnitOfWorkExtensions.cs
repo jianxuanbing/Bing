@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bing.Datas.UnitOfWorks;
 
-namespace Bing.Datas.EntityFramework
+namespace Bing.Datas.EntityFramework.Extensions
 {
     /// <summary>
     /// EF工作单元 扩展

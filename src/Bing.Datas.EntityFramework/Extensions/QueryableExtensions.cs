@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bing.Domains.Repositories;
 
-namespace Bing.Datas.EntityFramework
+namespace Bing.Datas.EntityFramework.Extensions
 {
     /// <summary>
     /// <see cref="IQueryable{T}"/> 扩展

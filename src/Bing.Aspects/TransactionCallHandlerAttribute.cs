@@ -4,7 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using AspectCore.DynamicProxy;
+using AspectCore.DynamicProxy.Parameters;
 using Bing.Aspects.Base;
+using Bing.Aspects.Configs;
+using Bing.Datas.UnitOfWorks;
+using Bing.Logs;
+using Bing.Logs.Extensions;
 
 namespace Bing.Aspects
 {
@@ -27,7 +33,7 @@ namespace Bing.Aspects
         /// 事务隔离级别
         /// </summary>
         public IsolationLevel IsolationLevel { get; set; }
-
+       
         /// <summary>
         /// 初始化一个<see cref="TransactionCallHandlerAttribute"/>类型的实例
         /// </summary>
@@ -35,7 +41,7 @@ namespace Bing.Aspects
         {
             Timeout = 60;
             ScopeOption = TransactionScopeOption.Required;
-            IsolationLevel = IsolationLevel.ReadCommitted;
+            IsolationLevel = AspectConfig.IsolationLevel;            
         }
 
         public override async Task Invoke(AspectCore.DynamicProxy.AspectContext context, AspectCore.DynamicProxy.AspectDelegate next)
@@ -50,7 +56,7 @@ namespace Bing.Aspects
                 try
                 {
                     // 实现事务性工作
-                    await next(context);
+                    await next(context);                    
                     scope.Complete();
                 }
                 catch (Exception e)
@@ -58,6 +64,6 @@ namespace Bing.Aspects
                     throw e;
                 }
             }
-        }
+        }        
     }
 }

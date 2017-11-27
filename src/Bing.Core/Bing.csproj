@@ -78,6 +78,7 @@
     <Compile Include="Aspects\NotNullAttribute.cs" />
     <Compile Include="Caching\ExpressionCacheKeyGenerator.cs" />
     <Compile Include="Caching\ICacheKeyGenerator.cs" />
+    <Compile Include="Caching\ILocalCache.cs" />
     <Compile Include="Caching\StringCacheKeyGenerator.cs" />
     <Compile Include="Contexts\IContext.cs" />
     <Compile Include="Contexts\IUserContext.cs" />

@@ -5,7 +5,9 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Bing.Datas.EntityFramework.Configs;
 using Bing.Datas.EntityFramework.Core;
+using Bing.Datas.EntityFramework.Extensions;
 using Bing.Datas.Queries;
 using Bing.Datas.UnitOfWorks;
 using Bing.Domains.Entities;
@@ -312,6 +314,7 @@ namespace Bing.Datas.EntityFramework.Internal
                 throw new ArgumentNullException(nameof(entity));
             }
             Set.Add(entity);
+            AutoCommit();
         }
 
         /// <summary>
@@ -325,6 +328,7 @@ namespace Bing.Datas.EntityFramework.Internal
                 throw new ArgumentNullException(nameof(entities));
             }
             Set.AddRange(entities);
+            AutoCommit();
         }
 
         /// <summary>
@@ -337,7 +341,7 @@ namespace Bing.Datas.EntityFramework.Internal
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-            Add(entity);
+            Add(entity);            
         }
 
         /// <summary>
@@ -368,6 +372,7 @@ namespace Bing.Datas.EntityFramework.Internal
                 throw new ArgumentNullException(nameof(entity));
             }
             UnitOfWork.Entry(entity).State = EntityState.Modified;
+            AutoCommit();
         }
 
         /// <summary>
@@ -387,6 +392,7 @@ namespace Bing.Datas.EntityFramework.Internal
             }
             ValidateVersion(newEntity, oldEntity);
             UnitOfWork.Entry(oldEntity).CurrentValues.SetValues(newEntity);
+            AutoCommit();
         }
 
         /// <summary>
@@ -437,9 +443,11 @@ namespace Bing.Datas.EntityFramework.Internal
             if (model!=null)
             {
                 model.IsDeleted = true;
+                AutoCommit();
                 return;
             }
             Set.Remove(entity);
+            AutoCommit();
         }
 
         /// <summary>
@@ -513,9 +521,11 @@ namespace Bing.Datas.EntityFramework.Internal
                 {
                     entity.IsDeleted = true;
                 }
+                AutoCommit();
                 return;
             }
             Set.RemoveRange(list);
+            AutoCommit();
         }
 
         /// <summary>
@@ -559,5 +569,13 @@ namespace Bing.Datas.EntityFramework.Internal
         }
 
         #endregion
+
+        private void AutoCommit()
+        {
+            if (EfConfig.AutoCommit)
+            {
+                UnitOfWork.Commit();
+            }
+        }
     }
 }

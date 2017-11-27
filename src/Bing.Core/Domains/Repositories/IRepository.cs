@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Datas.UnitOfWorks;
 using Bing.Domains.Entities;
 using Bing.Validations.Aspects;
 
@@ -24,6 +25,16 @@ namespace Bing.Domains.Repositories
     /// <typeparam name="TKey">实体标识类型</typeparam>
     public interface IRepository<TEntity, in TKey> : IReadableRepository<TEntity, TKey> where TEntity : class, IAggregateRoot
     {
+        #region GetUnitOfWork(获取工作单元)
+
+        /// <summary>
+        /// 获取工作单元
+        /// </summary>
+        /// <returns></returns>
+        IUnitOfWork GetUnitOfWork();
+
+        #endregion
+
         #region Add(添加实体)
 
         /// <summary>
@@ -125,6 +136,5 @@ namespace Bing.Domains.Repositories
         Task RemoveAsync(IEnumerable<TEntity> entities);
 
         #endregion
-
     }
 }

@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configs\AspectConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransactionCallHandlerAttribute.cs" />
   </ItemGroup>

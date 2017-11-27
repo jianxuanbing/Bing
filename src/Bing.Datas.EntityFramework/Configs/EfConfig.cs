@@ -15,5 +15,10 @@ namespace Bing.Datas.EntityFramework.Configs
         /// EF日志级别
         /// </summary>
         public static EfLogLevel LogLevel = EfLogLevel.Sql;
+
+        /// <summary>
+        /// 自动提交
+        /// </summary>
+        public static bool AutoCommit = false;
     }
 }

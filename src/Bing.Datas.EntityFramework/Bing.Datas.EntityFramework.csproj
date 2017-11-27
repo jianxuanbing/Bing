@@ -71,9 +71,9 @@
     <Compile Include="Internal\DbContextWrapper.cs" />
     <Compile Include="Logs\EfLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryableExtensions.cs" />
-    <Compile Include="ServiceExtensions.cs" />
-    <Compile Include="UnitOfWorkExtensions.cs" />
+    <Compile Include="Extensions\QueryableExtensions.cs" />
+    <Compile Include="Extensions\ServiceExtensions.cs" />
+    <Compile Include="Extensions\UnitOfWorkExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -93,6 +93,7 @@
       <Name>Bing.Utils</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

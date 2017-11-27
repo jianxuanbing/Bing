@@ -40,7 +40,7 @@ namespace Bing.Samples.Services.Impl
 
             this._loginRepository.Add(entity);
 
-            this._unitOfWork.Commit();
+            //this._unitOfWork.Commit();
         }
 
         /// <summary>

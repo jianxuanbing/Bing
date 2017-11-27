@@ -58,11 +58,11 @@ namespace Bing.Domains.Repositories
 
         #endregion
 
-            #region 构造函数
+        #region 构造函数
 
-            /// <summary>
-            /// 初始化一个<see cref="PagerList{T}"/>类型的实例
-            /// </summary>
+        /// <summary>
+        /// 初始化一个<see cref="PagerList{T}"/>类型的实例
+        /// </summary>
         public PagerList() : this(0)
         {
         }

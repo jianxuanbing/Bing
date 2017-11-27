@@ -399,7 +399,7 @@ namespace Bing.Datas.EntityFramework.Core
         #endregion
 
         #region Add(添加实体)
-
+        
         /// <summary>
         /// 添加实体
         /// </summary>
@@ -552,5 +552,17 @@ namespace Bing.Datas.EntityFramework.Core
 
         #endregion
 
+        #region GetUnitOfWork(获取工作单元)
+
+        /// <summary>
+        /// 获取工作单元
+        /// </summary>
+        /// <returns></returns>
+        public IUnitOfWork GetUnitOfWork()
+        {
+            return UnitOfWork;
+        }
+
+        #endregion
     }
 }
