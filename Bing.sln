@@ -16,6 +16,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Samples.Api", "sample\Bing.Samples.Api\Bing.Samples.Api.csproj", "{FC7C5639-86FB-41EC-B2F9-DFDCAC86E3EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Samples.Services", "sample\Bing.Samples.Services\Bing.Samples.Services.csproj", "{9C2B2D2F-B662-4E11-A0E8-7ECA6710E403}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1C5A2143-7E3C-488C-ABB2-C44D78391EFA} = {1C5A2143-7E3C-488C-ABB2-C44D78391EFA}
+		{86D581E8-824E-4741-8FF2-11A03095A3FE} = {86D581E8-824E-4741-8FF2-11A03095A3FE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Logs", "src\Bing.Logs\Bing.Logs.csproj", "{A2E6647C-8867-4059-860A-114CC4A2F388}"
 EndProject
@@ -46,8 +50,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Datas.EntityFramework.SqlServer", "src\Bing.Datas.EntityFramework.SqlServer\Bing.Datas.EntityFramework.SqlServer.csproj", "{7959BEFC-AE4E-407C-B008-6AD0A8146D3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Samples.Datas", "sample\Bing.Samples.Datas\Bing.Samples.Datas.csproj", "{86D581E8-824E-4741-8FF2-11A03095A3FE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1C5A2143-7E3C-488C-ABB2-C44D78391EFA} = {1C5A2143-7E3C-488C-ABB2-C44D78391EFA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Samples.Domains", "sample\Bing.Samples.Domains\Bing.Samples.Domains.csproj", "{1C5A2143-7E3C-488C-ABB2-C44D78391EFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils.AutoMapper", "src\Bing.Utils.AutoMapper\Bing.Utils.AutoMapper.csproj", "{BA98013E-5EF7-40C1-984F-2B49E9F7FDC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils.Encrypts", "src\Bing.Utils.Encrypts\Bing.Utils.Encrypts.csproj", "{A3AACC4E-314C-4C5C-A378-1489CB48E024}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +130,14 @@ Global
 		{1C5A2143-7E3C-488C-ABB2-C44D78391EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C5A2143-7E3C-488C-ABB2-C44D78391EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C5A2143-7E3C-488C-ABB2-C44D78391EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA98013E-5EF7-40C1-984F-2B49E9F7FDC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA98013E-5EF7-40C1-984F-2B49E9F7FDC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA98013E-5EF7-40C1-984F-2B49E9F7FDC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA98013E-5EF7-40C1-984F-2B49E9F7FDC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3AACC4E-314C-4C5C-A378-1489CB48E024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3AACC4E-314C-4C5C-A378-1489CB48E024}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3AACC4E-314C-4C5C-A378-1489CB48E024}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3AACC4E-314C-4C5C-A378-1489CB48E024}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,5 +164,7 @@ Global
 		{7959BEFC-AE4E-407C-B008-6AD0A8146D3D} = {F2F07158-DFC9-4A39-8740-611605A6A504}
 		{86D581E8-824E-4741-8FF2-11A03095A3FE} = {E493FC78-16DB-40DA-8463-B2CA97DF3B2B}
 		{1C5A2143-7E3C-488C-ABB2-C44D78391EFA} = {E493FC78-16DB-40DA-8463-B2CA97DF3B2B}
+		{BA98013E-5EF7-40C1-984F-2B49E9F7FDC9} = {7E8EB0B0-2E8C-49BD-A44A-D4E6F21BDAE5}
+		{A3AACC4E-314C-4C5C-A378-1489CB48E024} = {7E8EB0B0-2E8C-49BD-A44A-D4E6F21BDAE5}
 	EndGlobalSection
 EndGlobal
