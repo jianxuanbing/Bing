@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,26 @@ namespace Bing.Utils.Helpers
     /// </summary>
     public static class Const
     {
+        #region Default(默认)
+        /// <summary>
+        /// 默认编码，值为UTF-8
+        /// </summary>
+        public static Encoding DefaultEncoding => Encoding.UTF8;
+
+        /// <summary>
+        /// 默认区域设置，值为<see cref="CultureInfo.CurrentCulture"/>
+        /// </summary>
+        public static CultureInfo DefaultCultureInfo => CultureInfo.CurrentCulture;
+
+        /// <summary>
+        /// 空字符串
+        /// </summary>
+        public static string Empty
+        {
+            get { return string.Empty; }
+        }
+        #endregion
+
         #region FileExtensionDict(文件扩展类型字典)
 
         /// <summary>
