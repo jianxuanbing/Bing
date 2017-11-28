@@ -13,9 +13,9 @@ namespace Bing.DbGenerater.Realization.SqlServer.DbMaintenance
     public class SqlServerDbMaintenance:DbMaintenanceProvider
     {
         /// <summary>
-        /// 获取视图信息列表 Sql语句
+        /// 根据数据表名获取列信息 Sql语句
         /// </summary>
-        protected override string GetViewInfoListSql
+        protected override string GetColumnInfosByTableNameSql
         {
             get
             {
@@ -77,9 +77,9 @@ namespace Bing.DbGenerater.Realization.SqlServer.DbMaintenance
         }
 
         /// <summary>
-        /// 根据数据表名获取列信息 Sql语句
+        /// 获取视图信息列表 Sql语句
         /// </summary>
-        protected override string GetColumnInfosByTableNameSql
+        protected override string GetViewInfoListSql
         {
             get
             {
