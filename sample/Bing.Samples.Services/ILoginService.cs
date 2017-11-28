@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Aspects;
 using Bing.Dependency;
 using Bing.Samples.Domains.Models;
 using Bing.Samples.Domains.Request.Act;
@@ -18,7 +19,8 @@ namespace Bing.Samples.Services
         /// 注册
         /// </summary>
         /// <param name="act">注册操作</param>
-        void Register(RegisterAct act);
+        
+        Guid Register(RegisterAct act);
 
         /// <summary>
         /// 获取所有登录信息

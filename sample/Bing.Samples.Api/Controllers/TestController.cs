@@ -103,9 +103,10 @@ namespace Bing.Samples.Api.Controllers
         /// </summary>
         /// <param name="act"></param>
         [HttpPost]
-        public void Register(RegisterAct act)
+        public string Register(RegisterAct act)
         {
-            _loginService.Register(act);
+            var result=_loginService.Register(act);
+            return result.ToString();
         }
 
         /// <summary>

@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="Configs\AspectConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransactionCallHandlerAttribute.cs" />
+    <Compile Include="UnitOfWorkAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bing.Core\Bing.csproj">

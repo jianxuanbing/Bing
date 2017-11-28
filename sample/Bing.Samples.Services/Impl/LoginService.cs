@@ -17,18 +17,18 @@ namespace Bing.Samples.Services.Impl
         private ILoginRepository _loginRepository;
         private IUnitOfWork _unitOfWork;
 
-        public LoginService(ILoginRepository loginRepository,IUnitOfWork unitOfWork)
+        public LoginService(ILoginRepository loginRepository)
         {
             _loginRepository = loginRepository;
-            _unitOfWork = unitOfWork;
+            //_unitOfWork = unitOfWork;
         }
 
         /// <summary>
         /// 注册
         /// </summary>
         /// <param name="act">注册操作</param>
-        [TransactionCallHandler]
-        public void Register(RegisterAct act)
+        [UnitOfWork]
+        public Guid Register(RegisterAct act)
         {
             Login entity=new Login(Guid.NewGuid());
             entity.LoginName = act.LoginName;
@@ -39,8 +39,25 @@ namespace Bing.Samples.Services.Impl
             entity.Status = 0;
 
             this._loginRepository.Add(entity);
+            TestException(act);
 
+            return entity.Id;
             //this._unitOfWork.Commit();
+        }
+
+        [UnitOfWork]
+        public void TestException(RegisterAct act)
+        {
+            Login entity = new Login(Guid.NewGuid());
+            entity.LoginName = act.LoginName;
+            entity.Name = act.UserName;
+            entity.Mobile = act.Mobile;
+            entity.PassWord = act.Password;
+            entity.Note = "测试";
+            entity.Status = 0;
+
+            this._loginRepository.Add(entity);
+            //throw new NotImplementedException();
         }
 
         /// <summary>
