@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Bing.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AspectCore.Abstractions, Version=0.2.4.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
