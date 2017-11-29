@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bing.Datas.UnitOfWorks;
+using Bing.Samples.Domains.Models;
 
 namespace Bing.Samples.Datas
 {
@@ -19,5 +21,7 @@ namespace Bing.Samples.Datas
         public BingSampleUnitOfWork(string connection, IUnitOfWorkManager manager) : base(connection, manager)
         {
         }
+
+        public DbSet<Login> LoginDs{ get; set; }
     }
 }

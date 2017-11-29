@@ -13,6 +13,6 @@ namespace Bing.Samples.Domains.Repositories
     /// </summary>
     public interface ILoginRepository:IRepository<Login>
     {
-
+        List<Login> GetListByName(string name);
     }
 }

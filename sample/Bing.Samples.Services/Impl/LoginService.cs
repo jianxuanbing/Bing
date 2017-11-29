@@ -68,5 +68,10 @@ namespace Bing.Samples.Services.Impl
         {
             return this._loginRepository.FindAll();
         }
+
+        public List<Login> GetListByName(string name)
+        {
+            return this._loginRepository.GetListByName(name);
+        }
     }
 }

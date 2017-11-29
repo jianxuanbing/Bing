@@ -118,5 +118,11 @@ namespace Bing.Samples.Api.Controllers
         {
             return _loginService.GetAllLogin();
         }
+
+        [HttpGet]
+        public List<Login> GetListByName(string name)
+        {
+            return _loginService.GetListByName(name);
+        }
     }
 }

@@ -27,5 +27,7 @@ namespace Bing.Samples.Services
         /// </summary>
         /// <returns></returns>
         List<Login> GetAllLogin();
+
+        List<Login> GetListByName(string name);
     }
 }

@@ -10,10 +10,15 @@ using Bing.Samples.Domains.Repositories;
 
 namespace Bing.Samples.Datas.Repositories
 {
-    public class LoginRepository:RepositoryBase<Login>,ILoginRepository
+    public class LoginRepository: ApplicationRepositoryBase<Login>,ILoginRepository
     {
-        public LoginRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public LoginRepository(IBingSampleUnitOfWork unitOfWork) : base(unitOfWork)
         {
+        }
+
+        public List<Login> GetListByName(string name)
+        {
+            return Context.LoginDs.Where(x => x.Name.Contains(name)).ToList();
         }
     }
 }

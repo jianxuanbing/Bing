@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationRepositoryBase.cs" />
     <Compile Include="BingSampleUnitOfWork.cs" />
     <Compile Include="IBingSampleUnitOfWork.cs" />
     <Compile Include="Mappings\LoginMap.cs" />

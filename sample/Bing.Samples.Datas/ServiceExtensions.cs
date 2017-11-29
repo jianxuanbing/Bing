@@ -20,7 +20,7 @@ namespace Bing.Samples.Datas
         public static void AddBingUnitOfWork(this ContainerBuilder services, string connectionName)
         {
             services.AddScoped<IUnitOfWorkManager, UnitOfWorkManager>();
-            services.AddUnitOfWork<IUnitOfWork,BingSampleUnitOfWork>(connectionName);
+            services.AddUnitOfWork<IBingSampleUnitOfWork, BingSampleUnitOfWork>(connectionName);
             EfConfig.AutoCommit = false;
         }
     }
