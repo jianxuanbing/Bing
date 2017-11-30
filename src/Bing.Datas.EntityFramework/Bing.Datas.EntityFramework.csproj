@@ -69,6 +69,7 @@
     <Compile Include="Core\MapBase.cs" />
     <Compile Include="Core\RepositoryBase.cs" />
     <Compile Include="Core\UnitOfWorkBase.cs" />
+    <Compile Include="Extensions\RepositoryExtensions.cs" />
     <Compile Include="Internal\DbContextWrapper.cs" />
     <Compile Include="Logs\EfLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

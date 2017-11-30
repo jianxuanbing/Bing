@@ -341,7 +341,7 @@ namespace Bing.Datas.EntityFramework.Internal
             {
                 throw new ArgumentNullException(nameof(entity));
             }
-            Add(entity);            
+            Add(entity);
         }
 
         /// <summary>
