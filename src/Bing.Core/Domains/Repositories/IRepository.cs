@@ -12,18 +12,7 @@ namespace Bing.Domains.Repositories
     /// <summary>
     /// 仓储
     /// </summary>
-    /// <typeparam name="TEntity">实体类型</typeparam>
-    public interface IRepository<TEntity> : IRepository<TEntity, Guid>, IReadableRepository<TEntity>
-        where TEntity : class, IAggregateRoot
-    {
-    }
-
-    /// <summary>
-    /// 仓储
-    /// </summary>
-    /// <typeparam name="TEntity">实体类型</typeparam>
-    /// <typeparam name="TKey">实体标识类型</typeparam>
-    public interface IRepository<TEntity, in TKey> : IReadableRepository<TEntity, TKey> where TEntity : class, IAggregateRoot
+    public interface IRepository
     {
         #region GetUnitOfWork(获取工作单元)
 
@@ -34,6 +23,24 @@ namespace Bing.Domains.Repositories
         IUnitOfWork GetUnitOfWork();
 
         #endregion
+    }
+
+    /// <summary>
+    /// 仓储
+    /// </summary>
+    /// <typeparam name="TEntity">实体类型</typeparam>
+    public interface IRepository<TEntity> : IRepository,IRepository<TEntity, Guid>, IReadableRepository<TEntity>
+        where TEntity : class, IAggregateRoot
+    {
+    }
+
+    /// <summary>
+    /// 仓储
+    /// </summary>
+    /// <typeparam name="TEntity">实体类型</typeparam>
+    /// <typeparam name="TKey">实体标识类型</typeparam>
+    public interface IRepository<TEntity, in TKey> : IRepository,IReadableRepository<TEntity, TKey> where TEntity : class, IAggregateRoot
+    {        
 
         #region Add(添加实体)
 
