@@ -29,7 +29,7 @@ namespace Bing.Security
         /// <returns></returns>
         public static string GetTenant(this IUserContext context)
         {
-            return "";
+            return context.TenantId;
         }
 
         /// <summary>

@@ -43,7 +43,20 @@ namespace Bing.Utils.Helpers
         /// <summary>
         /// 请求地址
         /// </summary>
-        public static string Url => HttpContext.Current.Request.Url.ToString();
+        public static string Url
+        {
+            get
+            {
+                try
+                {
+                    return HttpContext.Current.Request.Url.ToString();
+                }
+                catch (Exception e)
+                {
+                    return string.Empty;
+                }
+            } 
+        } 
 
         #endregion
 
@@ -92,8 +105,15 @@ namespace Bing.Utils.Helpers
         /// <returns></returns>
         private static string GetWebRemoteIp()
         {
-            return HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ??
-                   HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+            try
+            {
+                return HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ??
+                       HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"] ?? "";
+            }
+            catch (Exception e)
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -155,8 +175,16 @@ namespace Bing.Utils.Helpers
                 {
                     return string.Empty;
                 }
-                var browser = HttpContext.Current.Request.Browser;
-                return string.Format("{0} {1}", browser.Browser, browser.Version);
+                try
+                {
+                    var browser = HttpContext.Current.Request.Browser;
+                    return string.Format("{0} {1}", browser.Browser, browser.Version);
+                }
+                catch (Exception e)
+                {
+                    return string.Empty;
+                }
+                
             }
         }
 

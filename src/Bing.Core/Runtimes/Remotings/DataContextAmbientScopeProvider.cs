@@ -34,13 +34,13 @@ namespace Bing.Runtimes.Remotings
         /// <summary>
         /// 数据上下文
         /// </summary>
-        private readonly IAmbientDataContext _dataContext;
+        private IAmbientDataContext _dataContext;
 
         /// <summary>
         /// 初始化一个<see cref="DataContextAmbientScopeProvider{T}"/>类型的实例
         /// </summary>
         /// <param name="dataContext">数据上下文</param>
-        public DataContextAmbientScopeProvider([NotNull]IAmbientDataContext dataContext)
+        public DataContextAmbientScopeProvider(IAmbientDataContext dataContext)
         {
             Check.CheckNotNull(dataContext, nameof(dataContext));
             _dataContext = dataContext;

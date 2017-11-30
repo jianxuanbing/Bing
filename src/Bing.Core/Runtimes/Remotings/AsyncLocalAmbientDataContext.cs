@@ -9,7 +9,7 @@ namespace Bing.Runtimes.Remotings
     /// <summary>
     /// 异步本地环境数据上下文
     /// </summary>
-    public class AsyncLocalAmbientDataContext:IAmbientDataContext,ISingletonDependency
+    public class AsyncLocalAmbientDataContext:IAmbientDataContext
     {
         /// <summary>
         /// 异步本地字典

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Dependency;
 
 namespace Bing.Runtimes
 {
     /// <summary>
     /// 环境 数据上下文
     /// </summary>
-    public interface IAmbientDataContext
+    public interface IAmbientDataContext:ISingletonDependency
     {
         /// <summary>
         /// 设置数据

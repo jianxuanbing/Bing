@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
@@ -10,6 +11,7 @@ using Bing.Helpers;
 using Bing.Reflections;
 using Bing.Runtimes;
 using Bing.Runtimes.Remotings;
+using Bing.Runtimes.Sessions;
 using Bing.Utils.Helpers;
 
 namespace Bing.Dependency
@@ -77,7 +79,7 @@ namespace Bing.Dependency
             _assemblies = _finder.GetAssemblies();
             RegistInfrastracture();
             RegistEventHandlers();
-            RegistDependency();
+            RegistDependency();            
         }
 
         #region 基础设施注册
@@ -88,9 +90,9 @@ namespace Bing.Dependency
         private void RegistInfrastracture()
         {
             EnableAop();
-            RegistFinder();
-            RegistAmbientProvider();
+            RegistFinder();            
             RegistContext();
+            RegistAmbientProvider();
         }
 
         /// <summary>
@@ -115,7 +117,8 @@ namespace Bing.Dependency
         private void RegistContext()
         {
             _builder.AddScoped<IContext, WebContext>();// nfx使用每次请求新实例，netcore则使用单例
-            _builder.AddScoped<IUserContext, NullUserContext>();
+            _builder.AddTransient<IPrincipalAccessor, DefaultPrincipalAccessor>();
+            _builder.AddScoped<IUserContext, UserContext>();
         }
 
         /// <summary>
@@ -123,8 +126,8 @@ namespace Bing.Dependency
         /// </summary>
         private void RegistAmbientProvider()
         {
-            _builder.RegisterType(typeof(DataContextAmbientScopeProvider<>)).As(typeof(IAmbientScopeProvider<>))
-                .InstancePerDependency();
+            _builder.RegisterGeneric(typeof(DataContextAmbientScopeProvider<>)).As(typeof(IAmbientScopeProvider<>))
+                .InstancePerDependency();            
         }
 
         #endregion
