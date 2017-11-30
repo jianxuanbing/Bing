@@ -19,6 +19,11 @@ namespace Bing.Contexts
         /// <summary>
         /// 用户名
         /// </summary>
-        string UserName { get; }
+        string UserName { get;}
+
+        /// <summary>
+        /// 租户ID
+        /// </summary>
+        string TenantId { get; }
     }
 }

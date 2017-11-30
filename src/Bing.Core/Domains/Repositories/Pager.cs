@@ -129,6 +129,10 @@ namespace Bing.Domains.Repositories
             return Page * PageSize;
         }
 
+        /// <summary>
+        /// 重写 生成字符串
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             _description = new StringBuilder();

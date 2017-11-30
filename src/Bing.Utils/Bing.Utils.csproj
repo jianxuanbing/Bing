@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DisposeAction.cs" />
     <Compile Include="Exceptions\Warning.cs" />
     <Compile Include="Expressions\ParameterRebinder.cs" />
     <Compile Include="Expressions\PredicateExpressionBuilder.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Extensions\Common\Extensions.Lambda.cs" />
     <Compile Include="Extensions\Common\Extensions.String.cs" />
     <Compile Include="Extensions\Common\Extensions.Validate.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Helpers\Check.cs" />
     <Compile Include="Helpers\Common.cs" />
     <Compile Include="Helpers\Const.cs" />

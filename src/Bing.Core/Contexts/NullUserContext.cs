@@ -19,6 +19,11 @@ namespace Bing.Contexts
         /// <summary>
         /// 用户名
         /// </summary>
-        public string UserName => string.Empty;
+        public string UserName =>string.Empty;
+
+        /// <summary>
+        /// 租户ID
+        /// </summary>
+        public string TenantId => string.Empty;
     }
 }

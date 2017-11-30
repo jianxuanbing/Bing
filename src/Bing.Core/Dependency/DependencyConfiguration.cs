@@ -8,6 +8,8 @@ using Autofac;
 using Bing.Contexts;
 using Bing.Helpers;
 using Bing.Reflections;
+using Bing.Runtimes;
+using Bing.Runtimes.Remotings;
 using Bing.Utils.Helpers;
 
 namespace Bing.Dependency
@@ -87,6 +89,7 @@ namespace Bing.Dependency
         {
             EnableAop();
             RegistFinder();
+            RegistAmbientProvider();
             RegistContext();
         }
 
@@ -113,6 +116,15 @@ namespace Bing.Dependency
         {
             _builder.AddScoped<IContext, WebContext>();// nfx使用每次请求新实例，netcore则使用单例
             _builder.AddScoped<IUserContext, NullUserContext>();
+        }
+
+        /// <summary>
+        /// 注册环境驱动
+        /// </summary>
+        private void RegistAmbientProvider()
+        {
+            _builder.RegisterType(typeof(DataContextAmbientScopeProvider<>)).As(typeof(IAmbientScopeProvider<>))
+                .InstancePerDependency();
         }
 
         #endregion

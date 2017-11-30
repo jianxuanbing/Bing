@@ -1,25 +1,82 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Runtimes;
+using Bing.Runtimes.Security;
+using Bing.Runtimes.Sessions;
 
 namespace Bing.Contexts
 {
     /// <summary>
     /// 用户上下文
     /// </summary>
-    public class UserContext : IUserContext
+    public class UserContext : UserContextBase,IUserContext
     {
         /// <summary>
         /// 用户编号
         /// </summary>
-        public string UserId { get; }
+        public override string UserId
+        {
+            get
+            {
+                if (OverridedValue != null)
+                {
+                    return OverridedValue.UserId;
+                }
+                var userIdClaim =
+                    PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == BingClaimTypes.UserId);
+                if (string.IsNullOrWhiteSpace(userIdClaim?.Value))
+                {
+                    return null;
+                }
+                return userIdClaim.Value;
+            } 
+        }
 
         /// <summary>
         /// 用户名
         /// </summary>
-        public string UserName { get; }
+        public override string UserName
+        {
+            get
+            {
+                if (OverridedValue != null)
+                {
+                    return OverridedValue.UserName;
+                }
+                var userNameClaim =
+                    PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == BingClaimTypes.UserName);
+                if (string.IsNullOrWhiteSpace(userNameClaim?.Value))
+                {
+                    return null;
+                }
+                return userNameClaim.Value;
+            } 
+        }
+
+        /// <summary>
+        /// 租户ID
+        /// </summary>
+        public override string TenantId
+        {
+            get
+            {
+                if (OverridedValue != null)
+                {
+                    return OverridedValue.TenantId;
+                }
+                var tenantIdClaim =
+                    PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == BingClaimTypes.TenantId);
+                if (string.IsNullOrWhiteSpace(tenantIdClaim?.Value))
+                {
+                    return null;
+                }
+                return tenantIdClaim.Value;
+            } 
+        }
 
         /// <summary>
         /// 空用户上下文
@@ -27,14 +84,19 @@ namespace Bing.Contexts
         public static readonly IUserContext Null = new NullUserContext();
 
         /// <summary>
+        /// 标识访问器
+        /// </summary>
+        protected IPrincipalAccessor PrincipalAccessor { get; }
+
+        /// <summary>
         /// 初始化一个<see cref="UserContext"/>类型的实例
         /// </summary>
-        /// <param name="userId">用户ID</param>
-        /// <param name="userName">用户名</param>
-        public UserContext(string userId, string userName)
+        /// <param name="principalAccessor">标识访问器</param>
+        /// <param name="sessionOverrideScopeProvider">Session 重写作用域提供程序</param>
+        public UserContext(IPrincipalAccessor principalAccessor,
+            IAmbientScopeProvider<SessionOverride> sessionOverrideScopeProvider):base(sessionOverrideScopeProvider)
         {
-            UserId = userId;
-            UserName = userName;
-        }
+            PrincipalAccessor = principalAccessor;
+        }        
     }
 }

@@ -85,6 +85,7 @@
     <Compile Include="Contexts\IUserContext.cs" />
     <Compile Include="Contexts\NullUserContext.cs" />
     <Compile Include="Contexts\UserContext.cs" />
+    <Compile Include="Contexts\UserContextBase.cs" />
     <Compile Include="Contexts\WebContext.cs" />
     <Compile Include="Datas\Persistence\IPersistentObject.cs" />
     <Compile Include="Datas\Persistence\IPersistentStore.cs" />
@@ -186,6 +187,14 @@
     <Compile Include="Reflections\AppDomainTypeFinder.cs" />
     <Compile Include="Reflections\ITypeFinder.cs" />
     <Compile Include="Reflections\WebAppTypeFinder.cs" />
+    <Compile Include="Runtimes\IAmbientDataContext.cs" />
+    <Compile Include="Runtimes\IAmbientScopeProvider.cs" />
+    <Compile Include="Runtimes\Remotings\AsyncLocalAmbientDataContext.cs" />
+    <Compile Include="Runtimes\Remotings\DataContextAmbientScopeProvider.cs" />
+    <Compile Include="Runtimes\Security\BingClaimTypes.cs" />
+    <Compile Include="Runtimes\Sessions\DefaultPrincipalAccessor.cs" />
+    <Compile Include="Runtimes\Sessions\IPrincipalAccessor.cs" />
+    <Compile Include="Runtimes\Sessions\SessionOverride.cs" />
     <Compile Include="Validations\Aspects\ValidAttribute.cs" />
     <Compile Include="Validations\DataAnnotationValidation.cs" />
     <Compile Include="Validations\Handlers\DefaultValidationHandler.cs" />

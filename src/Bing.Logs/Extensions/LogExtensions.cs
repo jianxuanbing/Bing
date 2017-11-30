@@ -100,7 +100,6 @@ namespace Bing.Logs.Extensions
         /// </summary>
         /// <param name="log">日志操作</param>
         /// <param name="value">值</param>
-        /// <param name="args">变量值</param>
         /// <returns></returns>
         public static ILog SqlParams(this ILog log, string value)
         {

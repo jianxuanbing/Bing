@@ -35,8 +35,7 @@ namespace Bing.Dependency
                 return builder.RegisterType<TImplementation>().As<TService>().InstancePerDependency();
             }
             return builder.RegisterType<TImplementation>().Named<TService>(name).InstancePerDependency();
-        }
-
+        }        
         #endregion
 
         #region AddScoped(注册服务，生命周期为 InstancePerLifetimeScope - 每个请求一个实例)
