@@ -140,5 +140,31 @@ namespace Bing.Logs.Extensions
                 content.Exception = exception;
             });
         }
+
+        /// <summary>
+        /// 获取Sql语句
+        /// </summary>
+        /// <param name="log">日志操作</param>
+        /// <returns></returns>
+        public static string GetSql(this ILog log)
+        {
+            var content=log.Get<LogContent>();
+            return content.Sql.ToString();
+        }
+
+        /// <summary>
+        /// 替换Sql语句
+        /// </summary>
+        /// <param name="log">日志操作</param>
+        /// <param name="value">值</param>
+        /// <returns></returns>
+        public static ILog ReplaceSql(this ILog log, string value)
+        {
+            return log.Set<LogContent>(content =>
+            {
+                content.Sql.Clear();
+                content.Sql.Append(value);
+            });
+        }
     }
 }

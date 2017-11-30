@@ -92,6 +92,17 @@ namespace Bing.Logs.Core
         }
 
         /// <summary>
+        /// 获取内容
+        /// </summary>
+        /// <typeparam name="T">日志内容类型</typeparam>
+        /// <returns></returns>
+        public T Get<T>() where T : ILogContent
+        {
+            ILogContent content = LogContent;
+            return (T)content;
+        }
+
+        /// <summary>
         /// 跟踪
         /// </summary>
         public void Trace()

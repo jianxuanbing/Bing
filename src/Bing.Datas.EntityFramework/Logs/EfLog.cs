@@ -159,8 +159,8 @@ namespace Bing.Datas.EntityFramework.Logs
         {
             var param = ResolveParam(value);
             var paramName = string.Format(@"(@|:|\?)?{0}(?=[^\d])", param.Item1);
-            //var sql = Regex.Replace(Logger., paramName, param.Item2);
-            //Logger.ReplaceSql(sql);
+            var sql = Regex.Replace(Logger.GetSql(), paramName, param.Item2);
+            Logger.ReplaceSql(sql);
         }
 
         /// <summary>

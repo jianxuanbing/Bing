@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Bing.Runtimes;
 using Bing.Runtimes.Security;
 using Bing.Runtimes.Sessions;
+using Bing.Utils.Helpers;
+using Bing.Utils.Json;
 
 namespace Bing.Contexts
 {
@@ -97,6 +99,26 @@ namespace Bing.Contexts
             IAmbientScopeProvider<SessionOverride> sessionOverrideScopeProvider):base(sessionOverrideScopeProvider)
         {
             PrincipalAccessor = principalAccessor;
-        }        
+        }
+
+        /// <summary>
+        /// 获取上下文信息
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public T GetContextInfo<T>(string key)
+        {
+            var claim = PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == key);
+            if (claim == null)
+            {
+                return default(T);
+            }
+            if (typeof(T).IsClass)
+            {
+                return claim.Value.ToObject<T>();
+            }
+            return Conv.To<T>(claim.Value);
+        }
     }
 }

@@ -25,5 +25,6 @@ namespace Bing.Contexts
         /// 租户ID
         /// </summary>
         string TenantId { get; }
+
     }
 }
