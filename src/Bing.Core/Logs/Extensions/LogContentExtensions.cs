@@ -24,7 +24,7 @@ namespace Bing.Logs.Extensions
                 return;
             }
             result.Append("   ");
-            result.AppendFormat(value);
+            result.Append(value);
         }
 
         /// <summary>
