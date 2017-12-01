@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Http;
+using Bing.Contexts;
+using Bing.Helpers;
 using Bing.Logs;
 using Bing.Logs.Extensions;
 using Bing.Samples.Api.Models;
@@ -105,6 +108,11 @@ namespace Bing.Samples.Api.Controllers
         [HttpPost]
         public string Register(RegisterAct act)
         {
+            var identity = new ClaimsIdentity("JWT");
+            identity.AddClaim(new Claim(Bing.Runtimes.Security.BingClaimTypes.UserId, Id.ObjectId()));
+            identity.AddClaim(new Claim(Bing.Runtimes.Security.BingClaimTypes.UserName, "123456"));
+
+            Bing.Runtimes.Sessions.DefaultPrincipalAccessor.Instance.Principal.AddIdentity(identity);
             var result=_loginService.Register(act);
             return result.ToString();
         }

@@ -85,6 +85,22 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Jwt.3.1.0\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -94,12 +110,21 @@
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SwashbuckleEx.Core.1.0.8.0\lib\net45\Swashbuckle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Swashbuckle.WebHost, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SwashbuckleEx.1.0.9.0\lib\net45\Swashbuckle.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IdentityModel.Tokens.Jwt.4.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -127,6 +152,14 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Thinktecture.IdentityModel.Client.Net45, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Thinktecture.IdentityModel.Client.4.0.1\lib\net45\Thinktecture.IdentityModel.Client.Net45.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Thinktecture.IdentityModel.Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Thinktecture.IdentityModel.Core.1.4.0\lib\net45\Thinktecture.IdentityModel.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
@@ -174,10 +207,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="OAuth\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Bing.Core\Bing.csproj">
-      <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>
+      <Project>{39f3e099-6b64-4ad5-884e-2a0628d9d74c}</Project>
       <Name>Bing</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bing.Datas.EntityFramework.SqlServer\Bing.Datas.EntityFramework.SqlServer.csproj">
@@ -205,7 +239,7 @@
       <Name>Bing.Logs</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bing.Utils\Bing.Utils.csproj">
-      <Project>{5C376212-12A7-4F32-BF86-D410AAC38B63}</Project>
+      <Project>{5c376212-12a7-4f32-bf86-d410aac38b63}</Project>
       <Name>Bing.Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bing.Samples.Datas\Bing.Samples.Datas.csproj">

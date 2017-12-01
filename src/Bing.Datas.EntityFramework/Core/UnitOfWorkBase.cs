@@ -14,6 +14,7 @@ using Bing.Datas.UnitOfWorks;
 using Bing.Domains.Entities;
 using Bing.Domains.Entities.Auditing;
 using Bing.Exceptions;
+using Bing.Helpers;
 using Bing.Logs;
 
 namespace Bing.Datas.EntityFramework.Core
@@ -53,7 +54,7 @@ namespace Bing.Datas.EntityFramework.Core
         {
             manager?.Register(this);
             TraceId = Guid.NewGuid().ToString();
-            UserContext = Bing.Contexts.UserContext.Null;
+            UserContext = Ioc.Create<IUserContext>();
             EnableLog();
         }        
 

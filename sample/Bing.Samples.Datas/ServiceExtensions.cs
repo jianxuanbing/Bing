@@ -22,6 +22,7 @@ namespace Bing.Samples.Datas
             services.AddScoped<IUnitOfWorkManager, UnitOfWorkManager>();
             services.AddUnitOfWork<IBingSampleUnitOfWork, BingSampleUnitOfWork>(connectionName);
             EfConfig.AutoCommit = false;
+            EfConfig.LogLevel = EfLogLevel.All;
         }
     }
 }
