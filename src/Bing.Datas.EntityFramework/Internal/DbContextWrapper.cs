@@ -390,7 +390,10 @@ namespace Bing.Datas.EntityFramework.Internal
             {
                 throw new ArgumentNullException(nameof(oldEntity));
             }
-            ValidateVersion(newEntity, oldEntity);
+            if (EfConfig.EnabledValidateVersion)
+            {
+                ValidateVersion(newEntity, oldEntity);
+            }            
             UnitOfWork.Entry(oldEntity).CurrentValues.SetValues(newEntity);
             AutoCommit();
         }
