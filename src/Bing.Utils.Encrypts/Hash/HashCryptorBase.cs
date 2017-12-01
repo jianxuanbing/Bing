@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Utils.Encrypts.Symmetric;
 using Bing.Utils.Extensions;
 
 namespace Bing.Utils.Encrypts.Hash
@@ -19,8 +20,9 @@ namespace Bing.Utils.Encrypts.Hash
         /// <typeparam name="T">哈希算法</typeparam>
         /// <param name="value">待加密的值</param>
         /// <param name="encoding">编码</param>
+        /// <param name="outType">输出类型</param>
         /// <returns></returns>
-        internal static string Encrypt<T>(string value, Encoding encoding) where T : HashAlgorithm, new()
+        internal static string Encrypt<T>(string value, Encoding encoding,OutType outType) where T : HashAlgorithm, new()
         {
             value.CheckNotNullOrEmpty(nameof(value));
             if (encoding == null)
@@ -38,6 +40,11 @@ namespace Bing.Utils.Encrypts.Hash
             {
                 hash.Clear();
             }
+
+            if (outType == OutType.Base64)
+            {
+                return Convert.ToBase64String(bytes);
+            }
             StringBuilder sb = new StringBuilder();
             foreach (var item in bytes)
             {
@@ -45,7 +52,7 @@ namespace Bing.Utils.Encrypts.Hash
             }
             return sb.ToString();
         }
-
+       
         /// <summary>
         /// Hmac 加密
         /// </summary>
