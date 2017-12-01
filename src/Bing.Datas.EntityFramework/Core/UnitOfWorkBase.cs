@@ -54,7 +54,7 @@ namespace Bing.Datas.EntityFramework.Core
         {
             manager?.Register(this);
             TraceId = Guid.NewGuid().ToString();
-            UserContext = Ioc.Create<IUserContext>();
+            UserContext = Contexts.UserContext.Null;
             EnableLog();
         }        
 

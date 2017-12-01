@@ -32,6 +32,7 @@
     <DocumentationFile>bin\Release\Bing.Datas.EntityFramework.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AspectCore.Abstractions, Version=0.2.4.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f" />
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
