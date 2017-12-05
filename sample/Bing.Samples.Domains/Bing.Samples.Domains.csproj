@@ -45,7 +45,9 @@
     <Compile Include="Repositories\ILoginRepository.cs" />
     <Compile Include="Request\Act\RegisterAct.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Bing.Core\Bing.csproj">
       <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>

@@ -12,32 +12,8 @@ namespace Bing.Utils.Helpers
     /// <summary>
     /// Web操作
     /// </summary>
-    public static class Web
+    public static partial class Web
     {
-
-
-        #region Client(客户端)
-        ///// <summary>
-        ///// Web客户端，用于发送Http请求
-        ///// </summary>
-        ///// <returns></returns>
-        //public static JCE.Utils.Webs.Clients.WebClient Client()
-        //{
-        //    return new JCE.Utils.Webs.Clients.WebClient();
-        //}
-
-        ///// <summary>
-        ///// Web客户端，用于发送Http请求
-        ///// </summary>
-        ///// <typeparam name="TResult">返回的结果类型</typeparam>
-        ///// <returns></returns>
-        //public static JCE.Utils.Webs.Clients.WebClient<TResult> Client<TResult>() where TResult : class
-        //{
-        //    return new JCE.Utils.Webs.Clients.WebClient<TResult>();
-        //}
-
-        #endregion
-
         #region Url(请求地址)
 
         /// <summary>
