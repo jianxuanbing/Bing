@@ -141,5 +141,31 @@ namespace Bing.Utils.Json
         }
 
         #endregion
+
+        #region ToJsonByForm(将Form表单转换成Json字符串)
+
+        /// <summary>
+        /// 将Form表单转换成Json字符串
+        /// </summary>
+        /// <param name="formStr">Form表单字符串</param>
+        /// <returns></returns>
+        public static string ToJsonByForm(string formStr)
+        {
+            Dictionary<string,string> dicData=new Dictionary<string, string>();
+            var data = formStr.Split('&');
+            for (int i = 0; i < data.Length; i++)
+            {
+                var dk = data[i].Split('=');
+                StringBuilder sb=new StringBuilder(dk[1]);
+                for (int j = 2; j <= dk.Length - 1; j++)
+                {
+                    sb.Append(dk[j]);
+                }
+                dicData.Add(dk[0],sb.ToString());
+            }
+            return dicData.ToJson();
+        }
+
+        #endregion
     }
 }
