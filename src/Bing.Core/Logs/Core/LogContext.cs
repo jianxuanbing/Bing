@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using System.Text;
 using Bing.Contexts;
 using Bing.Logs.Abstractions;
@@ -100,7 +101,7 @@ namespace Bing.Logs.Core
                 TraceId = GetTraceId(),
                 Stopwatch = GetStopwatch(),
                 Ip = Web.Ip,
-                Host = Web.Host,
+                Host = Dns.GetHostName(),
                 Browser = Web.Browser,
                 Url = Web.Url
             };

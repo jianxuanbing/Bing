@@ -122,18 +122,26 @@ namespace Bing.Utils.Helpers
         /// </summary>
         /// <returns></returns>
         private static string GetClientHostName()
-        {
+        {            
             var address = GetWebRemoteIp();
             if (string.IsNullOrWhiteSpace(address))
             {
                 return Dns.GetHostName();
             }
-            var result = Dns.GetHostEntry(IPAddress.Parse(address)).HostName;
-            if (result == "localhost.localdomain")
+            try
             {
-                result = Dns.GetHostName();
+                var result = Dns.GetHostEntry(IPAddress.Parse(address)).HostName;
+                if (result == "localhost.localdomain")
+                {
+                    result = Dns.GetHostName();
+                }
+                return result;
             }
-            return result;
+            catch (Exception e)
+            {
+                throw new Exception(address,e);
+            }
+            
         }
 
         #endregion

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using Bing.DbGenerater;
 using Bing.DbGenerater.Interface;
 using Bing.DbGenerater.Realization.SqlServer.DbMaintenance;
@@ -36,6 +37,22 @@ namespace Bing.Generate.UnitTest
             {
                 Console.WriteLine($"表名：{info.Name}，备注：{info.Description}");
             }
+        }
+
+        [TestMethod]
+        public void Test_DnsHostName()
+        {
+            var ip = "120.239.67.239";            
+            var result = Dns.GetHostEntry(IPAddress.Parse(ip));
+            var hostName = result.HostName;
+            Console.WriteLine(hostName);
+        }
+
+        [TestMethod]
+        public void Test_DnsLocalHostName()
+        {
+            var hostname = Dns.GetHostName();
+            Console.WriteLine(hostname);
         }
     }
 }
