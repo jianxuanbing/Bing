@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Bing.Domains.Repositories;
@@ -34,6 +35,20 @@ namespace Bing.Datas.EntityFramework.Extensions
             var result = new PagerList<TEntity>(pager);
             result.AddRange(await source.ToListAsync());
             return result;
+        }
+
+        /// <summary>
+        /// Where If 条件语句，如果判断条件为True，则通过条件表达式进行过滤
+        /// </summary>
+        /// <typeparam name="TEntity">实体类型</typeparam>
+        /// <param name="query">数据源</param>
+        /// <param name="predicate">条件表达式</param>
+        /// <param name="condition">判断条件</param>
+        /// <returns></returns>
+        public static IQueryable<TEntity> WhereIf<TEntity>(this IQueryable<TEntity> query,
+            Expression<Func<TEntity, bool>> predicate, bool condition)
+        {
+            return condition ? query.Where(predicate) : query;
         }
     }
 }
