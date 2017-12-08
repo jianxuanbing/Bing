@@ -25,5 +25,16 @@ namespace Bing.Contexts
         /// 租户ID
         /// </summary>
         public string TenantId => string.Empty;
+
+        /// <summary>
+        /// 获取上下文信息
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="key">键</param>
+        /// <returns></returns>
+        public T GetContextInfo<T>(string key)
+        {
+            return default(T);
+        }
     }
 }

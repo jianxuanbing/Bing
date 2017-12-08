@@ -107,7 +107,7 @@ namespace Bing.Contexts
         /// <typeparam name="T">实体类型</typeparam>
         /// <param name="key">键</param>
         /// <returns></returns>
-        public T GetContextInfo<T>(string key)
+        public override T GetContextInfo<T>(string key)
         {
             var claim = PrincipalAccessor.Principal?.Claims.FirstOrDefault(c => c.Type == key);
             if (claim == null)

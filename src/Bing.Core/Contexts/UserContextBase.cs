@@ -34,6 +34,14 @@ namespace Bing.Contexts
         public abstract string TenantId { get; }
 
         /// <summary>
+        /// 获取上下文信息
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="key">键</param>
+        /// <returns></returns>
+        public abstract T GetContextInfo<T>(string key);
+
+        /// <summary>
         /// Session 重写值
         /// </summary>
         protected SessionOverride OverridedValue => SessionOverrideScopeProvider.GetValue(SessionOverrideContextKey);
