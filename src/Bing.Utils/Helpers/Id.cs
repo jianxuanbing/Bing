@@ -60,5 +60,14 @@ namespace Bing.Utils.Helpers
         {
             return SequentialGuidGenerator.Instance.Create();
         }
+
+        /// <summary>
+        /// 获取唯一时间戳ID
+        /// </summary>
+        /// <returns></returns>
+        public static string TimestampId()
+        {
+            return Utils.Helpers.TimestampId.GetInstance().GetId();
+        }
     }
 }
