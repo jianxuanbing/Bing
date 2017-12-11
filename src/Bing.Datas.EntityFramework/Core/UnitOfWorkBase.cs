@@ -16,6 +16,7 @@ using Bing.Domains.Entities.Auditing;
 using Bing.Exceptions;
 using Bing.Helpers;
 using Bing.Logs;
+using EntityFramework.DynamicFilters;
 
 namespace Bing.Datas.EntityFramework.Core
 {
@@ -146,6 +147,7 @@ namespace Bing.Datas.EntityFramework.Core
             {
                 mapper.Map(modelBuilder);
             }
+            modelBuilder.Filter(DataFilters.SoftDelete, (ISoftDelete d) => d.IsDeleted, false);
         }
 
         /// <summary>

@@ -109,6 +109,7 @@
     <Compile Include="Datas\Queries\QueryableExtensions.cs" />
     <Compile Include="Datas\Queries\QueryParameter.cs" />
     <Compile Include="Datas\TransactionalBehavior.cs" />
+    <Compile Include="Datas\UnitOfWorks\DataFilters.cs" />
     <Compile Include="Datas\UnitOfWorks\IUnitOfWork.cs" />
     <Compile Include="Datas\UnitOfWorks\IUnitOfWorkManager.cs" />
     <Compile Include="Datas\UnitOfWorks\UnitOfWorkManager.cs" />
