@@ -50,28 +50,28 @@ namespace Bing.Aspects
         /// </summary>
         public override async Task Invoke(AspectCore.DynamicProxy.AspectContext context, AspectCore.DynamicProxy.AspectDelegate next)
         {
-            //TransactionOptions transactionOptions=new TransactionOptions();
-            //// 设置事务隔离级别
-            //transactionOptions.IsolationLevel = IsolationLevel;
-            //// 设置事务超时时间为60秒
-            //transactionOptions.Timeout = new TimeSpan(0, 0, Timeout);
-            //using (TransactionScope scope=new TransactionScope(ScopeOption,transactionOptions))
-            //{
-            //    try
-            //    {
-            //        // 实现事务性工作
-            //        await next(context);                    
-            //        scope.Complete();
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        throw e;
-            //    }
-            //}
+            TransactionOptions transactionOptions = new TransactionOptions();
+            // 设置事务隔离级别
+            transactionOptions.IsolationLevel = IsolationLevel;
+            // 设置事务超时时间为60秒
+            transactionOptions.Timeout = new TimeSpan(0, 0, Timeout);
+            using (TransactionScope scope = new TransactionScope(ScopeOption, transactionOptions))
+            {
+                try
+                {
+                    // 实现事务性工作
+                    await next(context);
+                    var manager = context.ServiceProvider.GetService(typeof(IUnitOfWorkManager)) as IUnitOfWorkManager;
+                    manager?.Commit();
+                    scope.Complete();
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
 
-            await next(context);
-            var manager = context.ServiceProvider.GetService(typeof(IUnitOfWorkManager)) as IUnitOfWorkManager;
-            manager?.Commit();
+            //await next(context);
         }
     }
 }
