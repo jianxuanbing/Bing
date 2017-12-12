@@ -196,6 +196,13 @@
     <Compile Include="Runtimes\Sessions\DefaultPrincipalAccessor.cs" />
     <Compile Include="Runtimes\Sessions\IPrincipalAccessor.cs" />
     <Compile Include="Runtimes\Sessions\SessionOverride.cs" />
+    <Compile Include="SqlBuilder\Conditions\ConditionBuilder.cs" />
+    <Compile Include="SqlBuilder\Conditions\ConditionBuilderBase.cs" />
+    <Compile Include="SqlBuilder\Conditions\ConditionBuilderExtensions.cs" />
+    <Compile Include="SqlBuilder\Conditions\IConditionBuilder.cs" />
+    <Compile Include="SqlBuilder\Conditions\RelationType.cs" />
+    <Compile Include="SqlBuilder\Conditions\SqlOperator.cs" />
+    <Compile Include="SqlBuilder\SqlBuilderException.cs" />
     <Compile Include="Validations\Aspects\ValidAttribute.cs" />
     <Compile Include="Validations\DataAnnotationValidation.cs" />
     <Compile Include="Validations\Handlers\DefaultValidationHandler.cs" />
