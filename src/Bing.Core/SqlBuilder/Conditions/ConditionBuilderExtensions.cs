@@ -1440,5 +1440,44 @@ namespace Bing.SqlBuilder.Conditions
 
         #endregion
 
+        #region AppendRaw(添加Sql语句条件)
+
+        /// <summary>
+        /// 添加Sql语句条件，允许你写任何不支持上面的方法，所有它会给你最大的灵活性
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder AppendRaw(this IConditionBuilder builder,string sql, bool appendCondition)
+        {
+            if (appendCondition)
+            {
+                builder.AppendRaw(sql);
+            }
+            return builder;
+        }
+
+        #endregion
+
+        #region OrAppendRaw(添加Sql语句条件)
+
+        /// <summary>
+        /// 添加Sql语句条件，默认Or连接，允许你写任何不支持上面的方法，所有它会给你最大的灵活性
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrAppendRaw(this IConditionBuilder builder, string sql, bool appendCondition)
+        {
+            if (appendCondition)
+            {
+                builder.AppendRaw(RelationType.Or, sql);
+            }
+            return builder;
+        }
+
+        #endregion
     }
 }

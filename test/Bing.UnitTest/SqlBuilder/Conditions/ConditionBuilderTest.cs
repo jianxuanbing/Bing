@@ -38,6 +38,7 @@ namespace Bing.UnitTest.SqlBuilder.Conditions
             });
             builder.Append(RelationType.And, "F.CreateTime", SqlOperator.Equal, DateTime.Now);
             builder.Append(RelationType.And, "A.ID", SqlOperator.In, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+            
             builder.Append(RelationType.And, "B.ID", SqlOperator.In, 1,2,3,4,5,6,7,8,9,10);            
             builder.AppendRaw("E.CreateTime like '%123456%'");
             builder.Between("H.CreateTime", DateTime.Now, DateTime.Now.AddDays(5));
@@ -96,6 +97,23 @@ namespace Bing.UnitTest.SqlBuilder.Conditions
                         .Contains("C.Name", "007");
                 });
 
+            var result = builder.ToString();
+            var param = builder.GetParamDict().ToJson();
+
+            Console.WriteLine(result);
+            Console.WriteLine(param);
+        }
+
+        [TestMethod]
+        public void Test_ChildIn()
+        {
+            ConditionBuilder builder=new ConditionBuilder();
+            builder.In("A.ID", "select Id from User");
+            builder.In("A.ID", new[] { 1, 2, 3, 4, 56, 7 });
+            builder.And(x =>
+            {
+                x.Contains("A.Name", "测试");
+            });
             var result = builder.ToString();
             var param = builder.GetParamDict().ToJson();
 
