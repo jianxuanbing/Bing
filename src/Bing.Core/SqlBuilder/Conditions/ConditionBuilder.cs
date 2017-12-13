@@ -35,7 +35,7 @@ namespace Bing.SqlBuilder.Conditions
         /// <returns></returns>
         public override IConditionBuilder Clone()
         {
-            return new ConditionBuilder()
+            return new ConditionBuilder(IsExcludeEmpty, ParameterKey, IsBuildParameterSql)
             {
                 ParamContext = this.ParamContext
             };
