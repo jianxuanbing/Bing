@@ -20,6 +20,23 @@ namespace Bing.SqlBuilder.Conditions
         /// <summary>
         /// 添加条件
         /// </summary>
+        /// <param name="operator">操作符</param>
+        /// <param name="conditionDict">条件字典，例如：A.Name 1</param>
+        /// <returns></returns>
+        IConditionBuilder Append(SqlOperator @operator, Dictionary<string, object> conditionDict);
+
+        /// <summary>
+        /// 添加条件
+        /// </summary>
+        /// <param name="relationType">关联运算符</param>
+        /// <param name="operator">操作符</param>
+        /// <param name="conditionDict">条件字典，例如：A.Name 1</param>
+        /// <returns></returns>
+        IConditionBuilder Append(RelationType relationType, SqlOperator @operator, Dictionary<string, object> conditionDict);
+
+        /// <summary>
+        /// 添加条件
+        /// </summary>
         /// <typeparam name="T">字段值类型</typeparam>
         /// <param name="relationType">关联运算符</param>
         /// <param name="fieldName">字段名</param>

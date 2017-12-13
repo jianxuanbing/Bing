@@ -97,6 +97,33 @@ namespace Bing.SqlBuilder.Conditions
         /// <summary>
         /// 添加条件
         /// </summary>
+        /// <param name="operator">操作符</param>
+        /// <param name="conditionDict">条件字典，例如：A.Name 1</param>
+        /// <returns></returns>
+        public IConditionBuilder Append(SqlOperator @operator, Dictionary<string, object> conditionDict)
+        {
+            return Append(RelationType.And, @operator, conditionDict);
+        }
+
+        /// <summary>
+        /// 添加条件
+        /// </summary>
+        /// <param name="relationType">关联运算符</param>
+        /// <param name="operator">操作符</param>
+        /// <param name="conditionDict">条件字典，例如：A.Name 1</param>
+        /// <returns></returns>
+        public IConditionBuilder Append(RelationType relationType, SqlOperator @operator, Dictionary<string, object> conditionDict)
+        {
+            foreach (var item in conditionDict)
+            {
+                Append(relationType, item.Key, @operator, item.Value);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// 添加条件
+        /// </summary>
         /// <typeparam name="T">字段值类型</typeparam>
         /// <param name="relationType">关联运算符</param>
         /// <param name="fieldName">字段名</param>
@@ -272,10 +299,12 @@ namespace Bing.SqlBuilder.Conditions
         protected bool IsContinue<T>(params T[] fieldValue)
         {
             // 如果选择IsExcludeEmpty为true，并且该字段为空值的话则跳过
+
             bool result = IsExcludeEmpty
                           && fieldValue != null
                           && fieldValue.Length > 0
-                          && string.IsNullOrWhiteSpace(fieldValue[0] + "");
+                          && (string.IsNullOrWhiteSpace(fieldValue[0] + "") || typeof(T) == typeof(Guid) &&
+                              fieldValue[0].ToString().ToGuid().IsEmpty());
             return result;
         }
 

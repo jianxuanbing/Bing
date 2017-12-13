@@ -63,6 +63,58 @@ namespace Bing.SqlBuilder.Conditions
 
         #endregion
 
+        #region OrBetween(添加范围条件过滤)
+
+        /// <summary>
+        /// 添加范围条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="beginValue">开始值</param>
+        /// <param name="endValue">结束值</param>        
+        /// <returns></returns>
+        public static IConditionBuilder OrBetween<T>(this IConditionBuilder builder, string fieldName, T beginValue, T endValue)
+        {
+            return OrBetween<T>(builder, fieldName, beginValue, endValue, true);
+        }
+
+        /// <summary>
+        /// 添加范围条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="beginValue">开始值</param>
+        /// <param name="endValue">结束值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrBetween<T>(this IConditionBuilder builder, string fieldName, T beginValue, T endValue, bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (beginValue == null && endValue == null)
+            {
+                return builder;
+            }
+            if (beginValue != null && endValue != null)
+            {
+                builder.Append(RelationType.Or, fieldName, SqlOperator.Between, beginValue, endValue);
+                return builder;
+            }
+            if (beginValue != null)
+            {
+                builder.OrGreaterEqual(fieldName, beginValue);
+                return builder;
+            }
+            builder.OrLessEqual(fieldName, endValue);
+            return builder;
+        }
+
+        #endregion
+
         #region Equal(添加相等条件过滤)
 
         /// <summary>
@@ -99,6 +151,59 @@ namespace Bing.SqlBuilder.Conditions
                 return builder;
             }
             builder.Append(RelationType.And, fieldName, SqlOperator.Equal, value);
+            return builder;
+        }
+
+        /// <summary>
+        /// 添加相等条件过滤
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="conditionDict">条件字典</param>
+        /// <returns></returns>
+        public static IConditionBuilder Equal(this IConditionBuilder builder, Dictionary<string, object> conditionDict)
+        {
+            builder.Append(SqlOperator.Equal, conditionDict);
+            return builder;
+        }
+
+        #endregion
+
+        #region OrEqual(添加相等条件过滤)
+
+        /// <summary>
+        /// 添加相等条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrEqual<T>(this IConditionBuilder builder, string fieldName, T value)
+        {
+            return OrEqual<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加相等条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrEqual<T>(this IConditionBuilder builder, string fieldName, T value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.Equal, value);
             return builder;
         }
 
@@ -145,6 +250,47 @@ namespace Bing.SqlBuilder.Conditions
 
         #endregion
 
+        #region OrNotEqual(添加不相等条件过滤)
+
+        /// <summary>
+        /// 添加不相等条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrNotEqual<T>(this IConditionBuilder builder, string fieldName, T value)
+        {
+            return OrNotEqual<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加不相等条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrNotEqual<T>(this IConditionBuilder builder, string fieldName, T value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.NotEqual, value);
+            return builder;
+        }
+
+        #endregion
+
         #region Greater(添加大于条件过滤)
 
         /// <summary>
@@ -181,6 +327,47 @@ namespace Bing.SqlBuilder.Conditions
                 return builder;
             }
             builder.Append(RelationType.And, fieldName, SqlOperator.GreaterThan, value);
+            return builder;
+        }
+
+        #endregion
+
+        #region OrGreater(添加大于条件过滤)
+
+        /// <summary>
+        /// 添加大于条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrGreater<T>(this IConditionBuilder builder, string fieldName, T value)
+        {
+            return OrGreater<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加大于条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrGreater<T>(this IConditionBuilder builder, string fieldName, T value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.GreaterThan, value);
             return builder;
         }
 
@@ -227,6 +414,47 @@ namespace Bing.SqlBuilder.Conditions
 
         #endregion
 
+        #region OrGreaterEqual(添加大于等于条件过滤)
+
+        /// <summary>
+        /// 添加大于等于条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrGreaterEqual<T>(this IConditionBuilder builder, string fieldName, T value)
+        {
+            return OrGreaterEqual<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加大于等于条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrGreaterEqual<T>(this IConditionBuilder builder, string fieldName, T value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.GreaterEqual, value);
+            return builder;
+        }
+
+        #endregion
+
         #region Less(添加小于条件过滤)
 
         /// <summary>
@@ -263,6 +491,47 @@ namespace Bing.SqlBuilder.Conditions
                 return builder;
             }
             builder.Append(RelationType.And, fieldName, SqlOperator.LessThan, value);
+            return builder;
+        }
+
+        #endregion
+
+        #region OrLess(添加小于条件过滤)
+
+        /// <summary>
+        /// 添加小于条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrLess<T>(this IConditionBuilder builder, string fieldName, T value)
+        {
+            return OrLess<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加小于条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrLess<T>(this IConditionBuilder builder, string fieldName, T value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.LessThan, value);
             return builder;
         }
 
@@ -309,6 +578,47 @@ namespace Bing.SqlBuilder.Conditions
 
         #endregion
 
+        #region OrLessEqual(添加小于等于条件过滤)
+
+        /// <summary>
+        /// 添加小于等于条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrLessEqual<T>(this IConditionBuilder builder, string fieldName, T value)
+        {
+            return OrLessEqual<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加小于等于条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrLessEqual<T>(this IConditionBuilder builder, string fieldName, T value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.LessEqual, value);
+            return builder;
+        }
+
+        #endregion
+
         #region Contains(添加头尾匹配条件过滤)
 
         /// <summary>
@@ -345,6 +655,47 @@ namespace Bing.SqlBuilder.Conditions
                 return builder;
             }
             builder.Append(RelationType.And, fieldName, SqlOperator.Contains, value);
+            return builder;
+        }
+
+        #endregion
+
+        #region OrContains(添加头尾匹配条件过滤)
+
+        /// <summary>
+        /// 添加头尾匹配条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrContains<T>(this IConditionBuilder builder, string fieldName, T value)
+        {
+            return OrContains<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加头尾匹配条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrContains<T>(this IConditionBuilder builder, string fieldName, T value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.Contains, value);
             return builder;
         }
 
@@ -391,6 +742,47 @@ namespace Bing.SqlBuilder.Conditions
 
         #endregion
 
+        #region OrNotContains(添加头尾非匹配条件过滤)
+
+        /// <summary>
+        /// 添加头尾非匹配条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrNotContains<T>(this IConditionBuilder builder, string fieldName, T value)
+        {
+            return OrNotContains<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加头尾非匹配条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrNotContains<T>(this IConditionBuilder builder, string fieldName, T value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.NotContains, value);
+            return builder;
+        }
+
+        #endregion
+
         #region Starts(添加头匹配条件过滤)
 
         /// <summary>
@@ -432,6 +824,47 @@ namespace Bing.SqlBuilder.Conditions
 
         #endregion
 
+        #region OrStarts(添加头匹配条件过滤)
+
+        /// <summary>
+        /// 添加头匹配条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrStarts<T>(this IConditionBuilder builder, string fieldName, T value)
+        {
+            return OrStarts<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加头匹配条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrStarts<T>(this IConditionBuilder builder, string fieldName, T value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.Starts, value);
+            return builder;
+        }
+
+        #endregion
+
         #region Ends(添加尾匹配条件过滤)
 
         /// <summary>
@@ -468,6 +901,47 @@ namespace Bing.SqlBuilder.Conditions
                 return builder;
             }
             builder.Append(RelationType.And, fieldName, SqlOperator.Ends, value);
+            return builder;
+        }
+
+        #endregion
+
+        #region OrEnds(添加尾匹配条件过滤)
+
+        /// <summary>
+        /// 添加尾匹配条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrEnds<T>(this IConditionBuilder builder, string fieldName, T value)
+        {
+            return OrEnds<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加尾匹配条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrEnds<T>(this IConditionBuilder builder, string fieldName, T value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.Ends, value);
             return builder;
         }
 
@@ -547,6 +1021,80 @@ namespace Bing.SqlBuilder.Conditions
         }
         #endregion
 
+        #region OrIn(添加In条件过滤)
+
+        /// <summary>
+        /// 添加In条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrIn<T>(this IConditionBuilder builder, string fieldName, T[] value)
+        {
+            return OrIn<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加In条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrIn<T>(this IConditionBuilder builder, string fieldName, T[] value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.In, value);
+            return builder;
+        }
+
+        /// <summary>
+        /// 添加In条件过滤
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="childQuery">子查询，例如：select Id from User</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrIn(this IConditionBuilder builder, string fieldName, string childQuery)
+        {
+            return OrIn(builder, fieldName, childQuery, true);
+        }
+
+        /// <summary>
+        /// 添加In条件过滤
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="childQuery">子查询，例如：select Id from User</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrIn(this IConditionBuilder builder, string fieldName, string childQuery, bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (string.IsNullOrWhiteSpace(childQuery))
+            {
+                return builder;
+            }
+            builder.AppendRaw(RelationType.Or, string.Format(" {0} IN ({1})", fieldName, childQuery));
+            return builder;
+        }
+        #endregion
+
         #region NotIn(添加NotIn条件过滤)
 
         /// <summary>
@@ -621,6 +1169,80 @@ namespace Bing.SqlBuilder.Conditions
         }
         #endregion
 
+        #region OrNotIn(添加NotIn条件过滤)
+
+        /// <summary>
+        /// 添加NotIn条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrNotIn<T>(this IConditionBuilder builder, string fieldName, T[] value)
+        {
+            return OrNotIn<T>(builder, fieldName, value, true);
+        }
+
+        /// <summary>
+        /// 添加NotIn条件过滤
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="value">字段值</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrNotIn<T>(this IConditionBuilder builder, string fieldName, T[] value,
+            bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (value == null)
+            {
+                return builder;
+            }
+            builder.Append(RelationType.Or, fieldName, SqlOperator.NotIn, value);
+            return builder;
+        }
+
+        /// <summary>
+        /// 添加NotIn条件过滤
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="childQuery">子查询，例如：select Id from User</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrNotIn(this IConditionBuilder builder, string fieldName, string childQuery)
+        {
+            return OrNotIn(builder, fieldName, childQuery, true);
+        }
+
+        /// <summary>
+        /// 添加NotIn条件过滤
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="childQuery">子查询，例如：select Id from User</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrNotIn(this IConditionBuilder builder, string fieldName, string childQuery, bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            if (string.IsNullOrWhiteSpace(childQuery))
+            {
+                return builder;
+            }
+            builder.AppendRaw(RelationType.Or,string.Format(" {0} NOT IN ({1})", fieldName, childQuery));
+            return builder;
+        }
+        #endregion
+
         #region IsNull(添加IsNull条件过滤)
 
         /// <summary>
@@ -653,6 +1275,38 @@ namespace Bing.SqlBuilder.Conditions
 
         #endregion
 
+        #region OrIsNull(添加IsNull条件过滤)
+
+        /// <summary>
+        /// 添加IsNull条件过滤
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrIsNull(this IConditionBuilder builder, string fieldName)
+        {
+            return OrIsNull(builder, fieldName, true);
+        }
+
+        /// <summary>
+        /// 添加IsNull条件过滤
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrIsNull(this IConditionBuilder builder, string fieldName, bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            builder.Append<string>(RelationType.Or, fieldName, SqlOperator.IsNull);
+            return builder;
+        }
+
+        #endregion
+
         #region IsNotNull(添加IsNotNull条件过滤)
 
         /// <summary>
@@ -680,6 +1334,38 @@ namespace Bing.SqlBuilder.Conditions
                 return builder;
             }
             builder.Append<string>(RelationType.And, fieldName, SqlOperator.IsNotNull);
+            return builder;
+        }
+
+        #endregion
+
+        #region OrIsNotNull(添加IsNotNull条件过滤)
+
+        /// <summary>
+        /// 添加IsNotNull条件过滤
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrIsNotNull(this IConditionBuilder builder, string fieldName)
+        {
+            return OrIsNotNull(builder, fieldName, true);
+        }
+
+        /// <summary>
+        /// 添加IsNotNull条件过滤
+        /// </summary>
+        /// <param name="builder">生成器</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="appendCondition">是否拼接条件</param>
+        /// <returns></returns>
+        public static IConditionBuilder OrIsNotNull(this IConditionBuilder builder, string fieldName, bool appendCondition)
+        {
+            if (!appendCondition)
+            {
+                return builder;
+            }
+            builder.Append<string>(RelationType.Or, fieldName, SqlOperator.IsNotNull);
             return builder;
         }
 
