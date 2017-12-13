@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Utils.Extensions;
 
 namespace Bing.SqlBuilder.Conditions
 {
@@ -44,16 +45,38 @@ namespace Bing.SqlBuilder.Conditions
         public int Length { get; protected set; }
 
         /// <summary>
-        /// 参数索引
-        /// </summary>
-        protected int Index = 0;
-
-        /// <summary>
         /// 参数字典，记录参数信息（参数名-参数值）
         /// </summary>
         protected Dictionary<string,object> ParamDictionary=new Dictionary<string, object>();
 
+        /// <summary>
+        /// 参数上下文
+        /// </summary>
+        internal ParamContext ParamContext { get; set; }
+
         #endregion
+
+        #region 构造函数
+
+        /// <summary>
+        /// 初始化一个<see cref="ConditionBuilderBase"/>类型的实例
+        /// </summary>
+        /// <param name="isExcludeEmpty">是否排除空或null值</param>
+        /// <param name="parameterKey">参数键</param>
+        /// <param name="isBuildParameterSql">否生成参数化Sql语句</param>
+        protected ConditionBuilderBase(bool isExcludeEmpty = true, string parameterKey = "P", bool isBuildParameterSql = true)
+        {
+            this.IsExcludeEmpty = isExcludeEmpty;
+            this.ParameterKey = parameterKey;
+            this.IsBuildParameterSql = isBuildParameterSql;
+            this.Length = 0;
+            this.ConditionAppendBuilder.Append(" WHERE ");
+            this.ParamContext = new ParamContext();
+        }
+
+        #endregion
+
+        #region Clear(清空条件)
 
         /// <summary>
         /// 清空条件
@@ -63,7 +86,80 @@ namespace Bing.SqlBuilder.Conditions
         {
             this.Length = 0;
             ParamDictionary.Clear();
-            ConditionAppendBuilder.Clear().Append(" Where ");            
+            ConditionAppendBuilder.Clear().Append(" Where ");
+            return this;
+        }
+
+        #endregion
+
+        #region Append(添加条件)
+
+        /// <summary>
+        /// 添加条件
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="relationType">关联运算符</param>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="operator">操作符</param>
+        /// <param name="fieldValue">字段值，注：1、不可谓数组;2、Between时，此字段必须填两个值</param>
+        /// <returns></returns>
+        public virtual IConditionBuilder Append<T>(RelationType relationType, string fieldName, SqlOperator @operator,
+            params T[] fieldValue)
+        {
+            if (IsContinue(fieldValue))
+            {
+                return this;
+            }
+            if (!this.ConditionAppendBuilder.ToString().Trim()
+                .EndsWith("WHERE", StringComparison.InvariantCultureIgnoreCase))
+            {
+                this.ConditionAppendBuilder.Append(GetRelation(relationType));
+            }
+            if (IsContinue(fieldValue))
+            {
+                return this;
+            }
+            switch (@operator)
+            {
+                case SqlOperator.Equal:
+                case SqlOperator.NotEqual:
+                case SqlOperator.GreaterThan:
+                case SqlOperator.GreaterEqual:
+                case SqlOperator.LessThan:
+                case SqlOperator.LessEqual:
+                    this.ConditionAppendBuilder.AppendFormat("{0}{1}{2}", GetFieldName(fieldName),
+                        GetOperator(@operator), GetFieldValue(fieldValue[0]));
+                    break;
+                case SqlOperator.IsNull:
+                case SqlOperator.IsNotNull:
+                    this.ConditionAppendBuilder.AppendFormat("{0}{1}", GetFieldName(fieldName), GetOperator(@operator));
+                    break;
+                case SqlOperator.Contains:
+                case SqlOperator.NotContains:
+                    this.ConditionAppendBuilder.AppendFormat("{0}{1}{2}", GetFieldName(fieldName),
+                        GetOperator(@operator), GetFieldValue(string.Format("%{0}%", fieldValue[0])));
+                    break;
+                case SqlOperator.In:
+                case SqlOperator.NotIn:
+                    this.ConditionAppendBuilder.AppendFormat("{0}{1}({2})", GetFieldName(fieldName),
+                        GetOperator(@operator), GetArrayFieldValue(fieldValue));
+                    break;
+                case SqlOperator.Starts:
+                    this.ConditionAppendBuilder.AppendFormat("{0}{1}{2}", GetFieldName(fieldName),
+                        GetOperator(@operator), GetFieldValue(string.Format("{0}%", fieldValue[0])));
+                    break;
+                case SqlOperator.Ends:
+                    this.ConditionAppendBuilder.AppendFormat("{0}{1}{2}", GetFieldName(fieldName),
+                        GetOperator(@operator), GetFieldValue(string.Format("%{0}", fieldValue[0])));
+                    break;
+                case SqlOperator.Between:
+                    this.ConditionAppendBuilder.AppendFormat("{0}{1}{2} AND {3}", GetFieldName(fieldName),
+                        GetOperator(@operator), GetFieldValue(fieldValue[0]), GetFieldValue(fieldValue[1]));
+                    break;
+                default:
+                    throw new SqlBuilderException("条件未定义!");
+            }
+            this.Length++;
             return this;
         }
 
@@ -71,29 +167,61 @@ namespace Bing.SqlBuilder.Conditions
         /// 添加条件
         /// </summary>
         /// <typeparam name="T">字段值类型</typeparam>
-        /// <param name="relationType">关联运算符</param>
         /// <param name="fieldName">字段名</param>
         /// <param name="operator">操作符</param>
         /// <param name="fieldValue">字段值，注：1、不可谓数组;2、Between时，此字段必须填两个值</param>
         /// <returns></returns>
-        public abstract IConditionBuilder Append<T>(RelationType relationType, string fieldName, SqlOperator @operator, params T[] fieldValue);
+        public virtual IConditionBuilder Append<T>(string fieldName, SqlOperator @operator, params T[] fieldValue)
+        {
+            return Append<T>(RelationType.And, fieldName, @operator, fieldValue);
+        }
 
         /// <summary>
-        /// 添加条件
+        /// 添加Sql语句条件，允许你写任何不支持上面的方法，所有它会给你最大的灵活性
         /// </summary>
-        /// <typeparam name="T">字段值类型</typeparam>
-        /// <param name="fieldName">字段名</param>
-        /// <param name="operator">操作符</param>
-        /// <param name="fieldValue">字段值，注：1、不可谓数组;2、Between时，此字段必须填两个值</param>
+        /// <param name="relationType">关联运算符</param>
+        /// <param name="sql">Sql语句</param>
         /// <returns></returns>
-        public abstract IConditionBuilder Append<T>(string fieldName, SqlOperator @operator, params T[] fieldValue);
+        public IConditionBuilder AppendRaw(RelationType relationType, string sql)
+        {
+            if (string.IsNullOrWhiteSpace(sql))
+            {
+                return this;
+            }
+            if (sql.Trim().StartsWith("WHERE", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return this;
+            }
+            if (!this.ConditionAppendBuilder.ToString().Trim()
+                .EndsWith("WHERE", StringComparison.InvariantCultureIgnoreCase))
+            {
+                this.ConditionAppendBuilder.Append(GetRelation(relationType));
+            }            
+            this.ConditionAppendBuilder.AppendFormat(" ({0}) ", sql);
+            return this;
+        }
 
         /// <summary>
-        /// 添加Sql语句条件
+        /// 添加Sql语句条件，允许你写任何不支持上面的方法，所有它会给你最大的灵活性
         /// </summary>
         /// <param name="sql">Sql语句</param>
         /// <returns></returns>
-        public abstract IConditionBuilder Append(string sql);
+        public virtual IConditionBuilder AppendRaw(string sql)
+        {
+            if (string.IsNullOrWhiteSpace(sql))
+            {
+                return this;
+            }
+            if (sql.Trim().StartsWith("WHERE", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return this;
+            }
+            return AppendRaw(RelationType.And, sql);
+        }
+
+        #endregion
+
+        #region Block(添加含有括号的条件)
 
         /// <summary>
         /// 添加含有括号的条件
@@ -101,7 +229,39 @@ namespace Bing.SqlBuilder.Conditions
         /// <param name="relationType">关联运算符</param>
         /// <param name="condition">条件生成器</param>
         /// <returns></returns>
-        public abstract IConditionBuilder Block(RelationType relationType, IConditionBuilder condition);
+        public virtual IConditionBuilder Block(RelationType relationType, IConditionBuilder condition)
+        {
+            if (condition == null)
+            {
+                return this;
+            }
+            var conditionBuilder = condition as ConditionBuilder;
+            if (conditionBuilder == null || conditionBuilder.ConditionAppendBuilder.ToString().Trim().Length < 6)
+            {
+                return this;
+            }
+            if (!ConditionAppendBuilder.ToString().Trim()
+                .EndsWith("WHERE", StringComparison.InvariantCultureIgnoreCase))
+            {
+                this.ConditionAppendBuilder.Append(GetRelation(relationType));
+            }
+            this.ConditionAppendBuilder.AppendFormat(" ({0}) ",
+                conditionBuilder.ConditionAppendBuilder.ToString().Remove(0, 6));
+            if (conditionBuilder.ParamDictionary.Count > 0)
+            {
+                this.ParamDictionary.AddRange(conditionBuilder.ParamDictionary, true);
+            }
+            this.Length++;
+            return this;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 克隆对象
+        /// </summary>
+        /// <returns></returns>
+        public abstract IConditionBuilder Clone();
 
         /// <summary>
         /// 是否跳过此拼接条件
@@ -153,14 +313,25 @@ namespace Bing.SqlBuilder.Conditions
         }
 
         /// <summary>
+        /// 获取数组字段值
+        /// </summary>
+        /// <typeparam name="T">字段值类型</typeparam>
+        /// <param name="fieldValue">字段值</param>
+        /// <returns></returns>
+        protected string GetArrayFieldValue<T>(params T[] fieldValue)
+        {
+            return string.Format("'{0}'", string.Join("','", fieldValue));
+        }
+
+        /// <summary>
         /// 添加参数
         /// </summary>
         /// <param name="fieldValue">字段值</param>
         /// <returns></returns>
         protected string AddParameter(object fieldValue)
         {
-            Index++;
-            string parameterName = string.Format("{0}{1}{2}", ParameterPrefix, ParameterKey, Index);
+            ParamContext.Index++;
+            string parameterName = string.Format("{0}{1}{2}", ParameterPrefix, ParameterKey, ParamContext.Index);
             this.ParamDictionary.Add(parameterName, fieldValue);
             return parameterName;
         }

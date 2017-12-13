@@ -40,11 +40,19 @@ namespace Bing.SqlBuilder.Conditions
         IConditionBuilder Append<T>(string fieldName, SqlOperator @operator, params T[] fieldValue);
 
         /// <summary>
-        /// 添加Sql语句条件
+        /// 添加Sql语句条件，允许你写任何不支持上面的方法，所有它会给你最大的灵活性
+        /// </summary>
+        /// <param name="relationType">关联运算符</param>
+        /// <param name="sql">Sql语句</param>
+        /// <returns></returns>
+        IConditionBuilder AppendRaw(RelationType relationType, string sql);
+
+        /// <summary>
+        /// 添加Sql语句条件，默认And连接，允许你写任何不支持上面的方法，所有它会给你最大的灵活性
         /// </summary>
         /// <param name="sql">Sql语句</param>
         /// <returns></returns>
-        IConditionBuilder Append(string sql);
+        IConditionBuilder AppendRaw(string sql);
 
         /// <summary>
         /// 添加含有括号的条件
@@ -54,5 +62,10 @@ namespace Bing.SqlBuilder.Conditions
         /// <returns></returns>
         IConditionBuilder Block(RelationType relationType, IConditionBuilder condition);
 
+        /// <summary>
+        /// 克隆对象
+        /// </summary>
+        /// <returns></returns>
+        IConditionBuilder Clone();
     }
 }

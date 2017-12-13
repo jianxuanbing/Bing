@@ -70,6 +70,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Generate.UnitTest", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils.Webs", "src\Bing.Utils.Webs\Bing.Utils.Webs.csproj", "{0B39E366-1FFF-4372-8C1C-2CE2767A5909}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.UnitTest", "test\Bing.UnitTest\Bing.UnitTest.csproj", "{CD5D6A26-80AC-4CD5-8E3D-2A9937F32004}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -160,6 +162,10 @@ Global
 		{0B39E366-1FFF-4372-8C1C-2CE2767A5909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B39E366-1FFF-4372-8C1C-2CE2767A5909}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B39E366-1FFF-4372-8C1C-2CE2767A5909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD5D6A26-80AC-4CD5-8E3D-2A9937F32004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD5D6A26-80AC-4CD5-8E3D-2A9937F32004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD5D6A26-80AC-4CD5-8E3D-2A9937F32004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD5D6A26-80AC-4CD5-8E3D-2A9937F32004}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -192,5 +198,6 @@ Global
 		{AE49AE27-667C-4C23-A314-DC916401F683} = {70D48CC6-A388-44F9-89AC-54E01028B8ED}
 		{30171529-AE57-48D2-9570-37F9BCD1BD9D} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
 		{0B39E366-1FFF-4372-8C1C-2CE2767A5909} = {7E8EB0B0-2E8C-49BD-A44A-D4E6F21BDAE5}
+		{CD5D6A26-80AC-4CD5-8E3D-2A9937F32004} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
 	EndGlobalSection
 EndGlobal
