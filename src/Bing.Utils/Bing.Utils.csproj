@@ -73,6 +73,7 @@
     <Compile Include="Helpers\Internal\ObjectId.cs" />
     <Compile Include="Helpers\Lambda.cs" />
     <Compile Include="Helpers\Reflection.cs" />
+    <Compile Include="Helpers\SerialNumber.cs" />
     <Compile Include="Helpers\Str.Builder.cs" />
     <Compile Include="Helpers\Str.cs" />
     <Compile Include="Helpers\Sys.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Timing\DateTimeExtensions.cs" />
     <Compile Include="Timing\DateTimeRange.cs" />
     <Compile Include="Timing\DateTimeUtil.cs" />
+    <Compile Include="Transplants\Atomics\AtomicInteger.cs" />
     <Compile Include="Webs\UserAgentUtil.cs" />
   </ItemGroup>
   <ItemGroup>

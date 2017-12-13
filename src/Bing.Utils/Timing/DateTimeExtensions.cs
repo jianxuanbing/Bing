@@ -11,6 +11,14 @@ namespace Bing.Utils.Timing
     /// </summary>
     public static class DateTimeExtensions
     {
+        #region 字段
+
+        /// <summary>
+        /// 1970年1月1日
+        /// </summary>
+        static readonly DateTime Date1970 = new DateTime(1970, 1, 1);
+
+        #endregion
         #region ToDateTimeString(yyyy-MM-dd HH:mm:ss)
 
         /// <summary>
@@ -414,6 +422,19 @@ namespace Bing.Utils.Timing
         {
             var nextMonth = date.AddMonths(1);
             return new DateTime(nextMonth.Year, nextMonth.Month, 1).AddDays(-1).Day;
+        }
+        #endregion
+
+        #region GetMillisecondsSince1970(获取当前毫秒数)
+        /// <summary>
+        /// 获取当前毫秒数，毫秒数=1970年1月1日-当前时间，UNIX
+        /// </summary>
+        /// <param name="datetime">当前时间</param>
+        /// <returns>毫秒数</returns>
+        public static long GetMillisecondsSince1970(this DateTime datetime)
+        {
+            var ts = datetime.Subtract(Date1970);
+            return (long)ts.TotalMilliseconds;
         }
         #endregion
     }
