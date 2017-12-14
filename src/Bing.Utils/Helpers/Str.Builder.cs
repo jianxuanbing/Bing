@@ -35,6 +35,15 @@ namespace Bing.Utils.Helpers
         }
 
         /// <summary>
+        /// 初始化一个<see cref="Str"/>类型的实例
+        /// </summary>
+        /// <param name="length">起始大小</param>
+        public Str(int length)
+        {
+            Builder = new StringBuilder(length);
+        }
+
+        /// <summary>
         /// 追加内容
         /// </summary>
         /// <typeparam name="T">值的类型</typeparam>
