@@ -89,5 +89,47 @@ namespace Bing.Utils.Timing
             return years;
         }
         #endregion
+
+        #region BusinessDateFormat(业务时间格式化)
+        /// <summary>
+        /// 业务时间格式化，返回 xxx前
+        /// </summary>
+        /// <param name="dateTime">时间</param>
+        /// <returns></returns>
+        public static string BusinessDateFormat(DateTime dateTime)
+        {
+            TimeSpan span = (DateTime.Now - dateTime).Duration();
+            if (span.TotalDays > 60)
+            {
+                return dateTime.ToString("yyyy-MM-dd");
+            }
+            if (span.TotalDays > 30)
+            {
+                return "1个月前";
+            }
+            if (span.TotalDays > 14)
+            {
+                return "2周前";
+            }
+            if (span.TotalDays > 7)
+            {
+                return "1周前";
+            }
+            if (span.TotalDays > 1)
+            {
+                return $"{(int) Math.Floor(span.TotalDays)}天前";
+            }
+            if (span.TotalHours > 1)
+            {
+                return $"{(int) Math.Floor(span.TotalHours)}小时前";
+            }
+            if (span.TotalMinutes > 1)
+            {
+                return $"{(int) Math.Floor(span.TotalMinutes)}秒前";
+            }
+            return "1秒前";
+        }
+
+        #endregion
     }
 }

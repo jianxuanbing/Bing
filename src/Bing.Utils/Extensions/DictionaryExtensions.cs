@@ -53,5 +53,26 @@ namespace Bing.Utils.Extensions
             return dict;
         }
         #endregion
+
+        /// <summary>
+        /// 获取指定Key对应的Value，若未找到将使用指定的委托增加值
+        /// </summary>
+        /// <typeparam name="TKey">键</typeparam>
+        /// <typeparam name="TValue">值</typeparam>
+        /// <param name="dict">字典</param>
+        /// <param name="key">键</param>
+        /// <param name="setValue">设置值</param>
+        /// <returns></returns>
+        public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key,
+            Func<TKey, TValue> setValue)
+        {
+            TValue value = default(TValue);
+            if (!dict.TryGetValue(key, out value))
+            {
+                value = setValue(key);
+                dict.Add(key, value);
+            }
+            return value;
+        }
     }
 }
