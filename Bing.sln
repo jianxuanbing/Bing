@@ -80,6 +80,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Samples.RabbitMQ.Host"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Samples.RabbitMQ.Client", "sample\Bing.Samples.RabbitMQ.Client\Bing.Samples.RabbitMQ.Client.csproj", "{B64E8DEF-139B-4CA6-9BA7-3DD5C610C174}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils.Npoi", "src\Bing.Utils.Npoi\Bing.Utils.Npoi.csproj", "{A09F038A-7438-41C2-BB2B-EC1BBDF32C10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -190,6 +192,10 @@ Global
 		{B64E8DEF-139B-4CA6-9BA7-3DD5C610C174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B64E8DEF-139B-4CA6-9BA7-3DD5C610C174}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B64E8DEF-139B-4CA6-9BA7-3DD5C610C174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A09F038A-7438-41C2-BB2B-EC1BBDF32C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A09F038A-7438-41C2-BB2B-EC1BBDF32C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A09F038A-7438-41C2-BB2B-EC1BBDF32C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A09F038A-7438-41C2-BB2B-EC1BBDF32C10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -227,5 +233,6 @@ Global
 		{9386E9EC-C11B-49CE-9155-ABD17627B8F6} = {41A99352-5E70-4215-918C-8EDF76196E60}
 		{E8736725-0E7D-4427-833D-78D77FE14523} = {E493FC78-16DB-40DA-8463-B2CA97DF3B2B}
 		{B64E8DEF-139B-4CA6-9BA7-3DD5C610C174} = {E493FC78-16DB-40DA-8463-B2CA97DF3B2B}
+		{A09F038A-7438-41C2-BB2B-EC1BBDF32C10} = {7E8EB0B0-2E8C-49BD-A44A-D4E6F21BDAE5}
 	EndGlobalSection
 EndGlobal
