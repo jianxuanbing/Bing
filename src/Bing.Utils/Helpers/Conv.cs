@@ -20,7 +20,18 @@ namespace Bing.Utils.Helpers
         /// <returns></returns>
         public static int ToInt(object input)
         {
-            return ToIntOrNull(input) ?? 0;
+            return ToInt(input, default(int));
+        }
+
+        /// <summary>
+        /// 转换为32位整型
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static int ToInt(object input, int defaultValue)
+        {
+            return ToIntOrNull(input) ?? defaultValue;
         }
 
         /// <summary>
@@ -60,12 +71,24 @@ namespace Bing.Utils.Helpers
         /// <returns></returns>
         public static long ToLong(object input)
         {
-            return ToLongOrNull(input) ?? 0;
+            return ToLong(input, default(long));
         }
+
+        /// <summary>
+        /// 转换为64位整型
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static long ToLong(object input, long defaultValue)
+        {
+            return ToLongOrNull(input) ?? defaultValue;
+        }
+
         /// <summary>
         /// 转换为64位可空整型
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input">输入值</param>
         /// <returns></returns>
         public static long? ToLongOrNull(object input)
         {
@@ -100,7 +123,19 @@ namespace Bing.Utils.Helpers
         /// <returns></returns>
         public static float ToFloat(object input, int? digits = null)
         {
-            return ToFloatOrNull(input, digits) ?? 0;
+            return ToFloat(input, default(float), digits);
+        }
+
+        /// <summary>
+        /// 转换为32位浮点型，并按指定小数位舍入
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <param name="digits">小数位数</param>
+        /// <returns></returns>
+        public static float ToFloat(object input, float defaultValue, int? digits = null)
+        {
+            return ToFloatOrNull(input, digits) ?? defaultValue;
         }
 
         /// <summary>
@@ -134,7 +169,19 @@ namespace Bing.Utils.Helpers
         /// <returns></returns>
         public static double ToDouble(object input, int? digits = null)
         {
-            return ToDoubleOrNull(input, digits) ?? 0;
+            return ToDouble(input, default(double), digits);
+        }
+
+        /// <summary>
+        /// 转换为64位浮点型，并按指定小数位舍入，温馨提示：4舍6入5成双
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <param name="digits">小数位数</param>
+        /// <returns></returns>
+        public static double ToDouble(object input, double defaultValue, int? digits = null)
+        {
+            return ToDoubleOrNull(input, digits) ?? defaultValue;
         }
 
         /// <summary>
@@ -165,6 +212,18 @@ namespace Bing.Utils.Helpers
         public static decimal ToDecimal(object input, int? digits = null)
         {
             return ToDecimalOrNull(input, digits) ?? 0;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="defaultValue"></param>
+        /// <param name="digits"></param>
+        /// <returns></returns>
+        public static decimal ToDecimal(object input, decimal defaultValue, int? digits = null)
+        {
+            return ToDecimalOrNull(input, digits) ?? defaultValue;
         }
 
         /// <summary>

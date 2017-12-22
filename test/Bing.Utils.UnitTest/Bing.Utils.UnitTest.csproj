@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helpers\ConvTest.cs" />
     <Compile Include="Helpers\SerialNumberTest.cs" />
     <Compile Include="Helpers\TimestampIdTest.cs" />
     <Compile Include="UnitTest1.cs" />

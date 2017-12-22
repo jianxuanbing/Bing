@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Bing.Contexts;
 using Bing.Datas.EntityFramework.Configs;
+using Bing.Datas.EntityFramework.Conventions;
 using Bing.Datas.EntityFramework.Logs;
 using Bing.Datas.UnitOfWorks;
 using Bing.Domains.Entities;
@@ -148,6 +149,7 @@ namespace Bing.Datas.EntityFramework.Core
                 mapper.Map(modelBuilder);
             }
             modelBuilder.Filter(DataFilters.SoftDelete, (ISoftDelete d) => d.IsDeleted, false);
+            modelBuilder.Conventions.Add<DecimalPrecisionAttributeConvention>();
         }
 
         /// <summary>
