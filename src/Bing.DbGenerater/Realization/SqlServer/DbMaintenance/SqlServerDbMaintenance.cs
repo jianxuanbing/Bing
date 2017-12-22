@@ -42,7 +42,7 @@ namespace Bing.DbGenerater.Realization.SqlServer.DbMaintenance
                                        ) THEN 1
                                 ELSE 0
                             END) AS IsPrimaryKey,
-							syscolumns.prec as Scale,
+							ISNULL(syscolumns.prec,0) as Scale,
 							ISNULL(syscolumns.scale,0) as DecimalDigits
                     FROM syscolumns
                     INNER JOIN systypes ON syscolumns.xtype = systypes.xtype
