@@ -12,6 +12,129 @@ namespace Bing.Utils.Helpers
     /// </summary>
     public static class Conv
     {
+        #region ToByte(转换为byte)
+
+        /// <summary>
+        /// 转换为8位可空整型
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <returns></returns>
+        public static byte ToByte(object input)
+        {
+            return ToByte(input, default(byte));
+        }
+
+        /// <summary>
+        /// 转换为8位可空整型
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static byte ToByte(object input, byte defaultValue)
+        {
+            return ToByteOrNull(input) ?? defaultValue;
+        }
+
+        /// <summary>
+        /// 转换为8位可空整型
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <returns></returns>
+        public static byte? ToByteOrNull(object input)
+        {
+            byte result;
+            var success = byte.TryParse(input.SafeString(), out result);
+            if (success)
+            {
+                return result;
+            }
+            return null;
+        }
+
+        #endregion
+
+        #region ToChar(转换为char)
+
+        /// <summary>
+        /// 转换为字符
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <returns></returns>
+        public static char ToChar(object input)
+        {
+            return ToChar(input, default(char));
+        }
+
+        /// <summary>
+        /// 转换为字符
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static char ToChar(object input, char defaultValue)
+        {
+            return ToCharOrNull(input) ?? defaultValue;
+        }
+
+        /// <summary>
+        /// 转换为可空字符
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <returns></returns>
+        public static char? ToCharOrNull(object input)
+        {
+            char result;
+            var success = char.TryParse(input.SafeString(), out result);
+            if (success)
+            {
+                return result;
+            }
+            return null;
+        }
+
+        #endregion
+
+        #region ToShort(转换为short)
+
+        /// <summary>
+        /// 转换为16位整型
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <returns></returns>
+        public static short ToShort(object input)
+        {
+            return ToShort(input, default(short));
+        }
+
+        /// <summary>
+        /// 转换为16位整型
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static short ToShort(object input, short defaultValue)
+        {
+            return ToShortOrNull(input) ?? defaultValue;
+        }
+
+        /// <summary>
+        /// 转换为16位可空整型
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <returns></returns>
+        public static short? ToShortOrNull(object input)
+        {
+            short result;
+            var success = short.TryParse(input.SafeString(), out result);
+            if (success)
+            {
+                return result;
+            }
+            return null;
+        }
+
+        #endregion
+
         #region ToInt(转换为int)
         /// <summary>
         /// 转换为32位整型
@@ -211,15 +334,15 @@ namespace Bing.Utils.Helpers
         /// <returns></returns>
         public static decimal ToDecimal(object input, int? digits = null)
         {
-            return ToDecimalOrNull(input, digits) ?? 0;
+            return ToDecimal(input, default(decimal));
         }
 
         /// <summary>
-        /// 
+        /// 转换为128位浮点型，并按指定小数位舍入，温馨提示：4舍6入5成双
         /// </summary>
-        /// <param name="input"></param>
-        /// <param name="defaultValue"></param>
-        /// <param name="digits"></param>
+        /// <param name="input">输入值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <param name="digits">小数位数</param>
         /// <returns></returns>
         public static decimal ToDecimal(object input, decimal defaultValue, int? digits = null)
         {
@@ -256,7 +379,18 @@ namespace Bing.Utils.Helpers
         /// <returns></returns>
         public static bool ToBool(object input)
         {
-            return ToBoolOrNull(input) ?? false;
+            return ToBool(input, default(bool));
+        }
+
+        /// <summary>
+        /// 转换为布尔值
+        /// </summary>
+        /// <param name="input">输入值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static bool ToBool(object input, bool defaultValue)
+        {
+            return ToBoolOrNull(input) ?? defaultValue;
         }
 
         /// <summary>
@@ -375,6 +509,50 @@ namespace Bing.Utils.Helpers
             result.AddRange(from each in array where !string.IsNullOrWhiteSpace(each) select To<T>(each));
             return result;
         }
+        #endregion
+
+        #region ToEnum(转换为枚举)
+
+        /// <summary>
+        /// 转换为枚举
+        /// </summary>
+        /// <typeparam name="T">枚举类型</typeparam>
+        /// <param name="input">输入值</param>
+        /// <returns></returns>
+        public static T ToEnum<T>(object input) where T : struct
+        {
+            return ToEnum<T>(input, default(T));
+        }
+
+        /// <summary>
+        /// 转换为枚举
+        /// </summary>
+        /// <typeparam name="T">枚举类型</typeparam>
+        /// <param name="input">输入值</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns></returns>
+        public static T ToEnum<T>(object input, T defaultValue) where T : struct
+        {
+            return ToEnumOrNull<T>(input) ?? defaultValue;
+        }
+
+        /// <summary>
+        /// 转换为可空枚举
+        /// </summary>
+        /// <typeparam name="T">枚举类型</typeparam>
+        /// <param name="input">输入值</param>
+        /// <returns></returns>
+        public static T? ToEnumOrNull<T>(object input) where T : struct
+        {
+            T result;
+            var success = System.Enum.TryParse(input.SafeString(), true, out result);
+            if (success)
+            {
+                return result;
+            }
+            return null;
+        }
+
         #endregion
 
         #region To(通用泛型转换)

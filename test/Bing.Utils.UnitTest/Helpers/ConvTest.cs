@@ -58,5 +58,29 @@ namespace Bing.Utils.UnitTest.Helpers
             var result = Conv.ToLong(obj);
             Assert.AreEqual(64, result);
         }
+
+        [TestMethod]
+        public void Test_ToEnum()
+        {
+            var obj = "NotEqual";
+            var result = Conv.ToEnum<Operator>(obj);
+            Assert.AreEqual(Operator.NotEqual, result);
+        }
+
+        [TestMethod]
+        public void Test_ToEnum_Null()
+        {
+            var obj = "";
+            var result = Conv.ToEnum<Operator>(obj);
+            Assert.AreEqual(Operator.Equal,result);
+        }
+
+        [TestMethod]
+        public void Test_ToEnum_Null_Default()
+        {
+            var obj = "";
+            var result = Conv.ToEnum(obj, Operator.NotEqual);
+            Assert.AreEqual(Operator.NotEqual,result);
+        }
     }
 }
