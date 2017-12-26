@@ -21,13 +21,26 @@ namespace Bing.Utils.Modes.Trees.Contexts
         /// 设置树节点列表数据源
         /// </summary>
         /// <typeparam name="TKey">键类型</typeparam>
-        /// <param name="items">数据源</param>
+        /// <param name="collection">数据源</param>
         /// <param name="textSelector">显示文本选择器</param>
         /// <param name="idSelector">ID选择器</param>
-        /// <param name="parentIdSelector">上级ID选择器</param>
-        /// <param name="rootId">根ID</param>
+        /// <param name="parentIdSelector">父ID选择器</param>
         /// <returns></returns>
-        ITreeContext<T> SetItems<TKey>(List<T> items, Func<T, string> textSelector, Func<T, TKey> idSelector,
-            Func<T, TKey> parentIdSelector, TKey rootId = default(TKey));
+        ITreeContext<T> SetItems<TKey>(List<T> collection, Func<T, string> textSelector,
+            Func<T, TKey> idSelector, Func<T, TKey> parentIdSelector);
+
+        /// <summary>
+        /// 设置树节点列表数据源
+        /// </summary>
+        /// <typeparam name="TKey">键类型</typeparam>
+        /// <typeparam name="TOther">输出类型</typeparam>
+        /// <param name="collection">数据源</param>
+        /// <param name="textSelector">显示文本选择器</param>
+        /// <param name="idSelector">ID选择器</param>
+        /// <param name="parentIdSelector">父ID选择器</param>
+        /// <param name="convertSelector">转换选择器</param>
+        /// <returns></returns>
+        ITreeContext<T> SetItems<TKey, TOther>(List<T> collection, Func<T, string> textSelector,
+            Func<T, TKey> idSelector, Func<T, TKey> parentIdSelector, Func<T, TOther> convertSelector);
     }
 }
