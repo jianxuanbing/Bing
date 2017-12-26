@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Bing.Utils.Npoi")]
+[assembly: AssemblyTitle("Bing.Tools.Npoi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Bing.Utils.Npoi")]
+[assembly: AssemblyProduct("Bing.Tools.Npoi")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("a09f038a-7438-41c2-bb2b-ec1bbdf32c10")]
+[assembly: Guid("75013de5-e043-4eca-b7dc-9092d1ebba00")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

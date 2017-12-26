@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A09F038A-7438-41C2-BB2B-EC1BBDF32C10}</ProjectGuid>
+    <ProjectGuid>{75013DE5-E043-4ECA-B7DC-9092D1EBBA00}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bing.Utils.Npoi</RootNamespace>
-    <AssemblyName>Bing.Utils.Npoi</AssemblyName>
+    <RootNamespace>Bing.Tools.Npoi</RootNamespace>
+    <AssemblyName>Bing.Tools.Npoi</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,14 +40,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IExcelCell.cs" />
+    <Compile Include="Abstractions\IExcelRow.cs" />
+    <Compile Include="Core\Cell.cs" />
+    <Compile Include="Core\Color.cs" />
+    <Compile Include="Core\FillPattern.cs" />
+    <Compile Include="Core\HorizontalAlignment.cs" />
+    <Compile Include="Core\IndexManager.cs" />
+    <Compile Include="Core\IndexRange.cs" />
+    <Compile Include="Core\NullCell.cs" />
+    <Compile Include="Core\Row.cs" />
+    <Compile Include="Core\VerticalAlignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Abstractions\" />
-    <Folder Include="Core\" />
-    <Folder Include="Exports\" />
-    <Folder Include="Imports\" />
+    <Folder Include="Extensions\" />
     <Folder Include="Internal\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bing.Utils\Bing.Utils.csproj">
+      <Project>{5C376212-12A7-4F32-BF86-D410AAC38B63}</Project>
+      <Name>Bing.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
