@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Utils.Develops;
 using Bing.Utils.Json;
 using Bing.Utils.Modes.Trees.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -43,14 +44,15 @@ namespace Bing.Utils.UnitTest.Modes.Trees
                     ParentId = i+9
                 });
             }
-
-            var tree = TreeBuilder.Build<Product>("产品")
-                .SetItems(list,t=>t.Name,i=>i.Id,p=>p.ParentId)
-                
-                //.SetItems(product=>product.Name)
-                .Current;
-            var result = tree.ToJson();
-            Console.WriteLine(result);
+            CodeTimer.CodeExecuteTime(() =>
+            {
+                var tree = TreeBuilder.Build<Product>("产品")
+                    .SetItems(list, t => t.Name, i => i.Id, p => p.ParentId)                    
+                    .Current;
+                //var result = tree.ToJson();
+                //Console.WriteLine(result);
+            });
+            
         }        
     }
 

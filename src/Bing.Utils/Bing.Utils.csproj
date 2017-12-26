@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Develops\CodeRamer.cs" />
+    <Compile Include="Develops\CodeTimer.cs" />
+    <Compile Include="Develops\UnitTester.cs" />
     <Compile Include="DisposeAction.cs" />
     <Compile Include="Exceptions\Warning.cs" />
     <Compile Include="Expressions\ParameterRebinder.cs" />
