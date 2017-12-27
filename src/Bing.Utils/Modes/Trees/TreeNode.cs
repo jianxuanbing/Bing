@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 namespace Bing.Utils.Modes.Trees
 {
     /// <summary>
-    /// 树节点
+    /// 泛型树节点
     /// </summary>
-    public class TreeNode:ITreeNode
+    /// <typeparam name="T">泛型</typeparam>
+    public class TreeNode<T>:ITreeNode<T>
     {
         /// <summary>
         /// 标识
@@ -29,7 +30,7 @@ namespace Bing.Utils.Modes.Trees
         /// <summary>
         /// 值
         /// </summary>
-        public object Value { get; set; }
+        public T Value { get; set; }
 
         /// <summary>
         /// 路径
@@ -44,26 +45,26 @@ namespace Bing.Utils.Modes.Trees
         /// <summary>
         /// 子树节点集合
         /// </summary>
-        public List<ITreeNode> Children { get; set; }
+        public List<ITreeNode<T>> Children { get; set; }
 
         /// <summary>
-        /// 初始化一个<see cref="TreeNode"/>类型的实例
+        /// 初始化一个<see cref="TreeNode{T}"/>类型的实例
         /// </summary>
         /// <param name="text">文本</param>
         /// <param name="value">值</param>
-        public TreeNode(string text, object value = null)
+        public TreeNode(string text, T value = default(T))
         {
             this.Text = text;
             this.Value = value;
             this.Level = 0;
-            this.Children=new List<ITreeNode>();
+            this.Children=new List<ITreeNode<T>>();
         }
 
         /// <summary>
         /// 添加子节点
         /// </summary>
         /// <param name="childNode">子节点</param>
-        public void Add(ITreeNode childNode)
+        public void Add(ITreeNode<T> childNode)
         {
             Children.Add(childNode);
             childNode.Level += 1;
@@ -73,7 +74,7 @@ namespace Bing.Utils.Modes.Trees
         /// 移除子节点
         /// </summary>
         /// <param name="childNode">子节点</param>
-        public void Remove(ITreeNode childNode)
+        public void Remove(ITreeNode<T> childNode)
         {
             Children.Remove(childNode);
         }
@@ -89,10 +90,9 @@ namespace Bing.Utils.Modes.Trees
     }
 
     /// <summary>
-    /// 泛型树节点
+    /// 树节点
     /// </summary>
-    /// <typeparam name="T">泛型</typeparam>
-    public class TreeNode<T> : TreeNode, ITreeNode
+    public class TreeNode: TreeNode<object>, ITreeNode
     {
         /// <summary>
         /// 初始化一个<see cref="TreeNode{T}"/>类型的实例
@@ -101,15 +101,6 @@ namespace Bing.Utils.Modes.Trees
         /// <param name="value">值</param>
         public TreeNode(string text,object value=null):base(text,value)
         {            
-        }
-
-        /// <summary>
-        /// 值
-        /// </summary>
-        public new T Value
-        {
-            get { return (T) base.Value; }
-            set { base.Value = value; }
-        }
+        }        
     }
 }

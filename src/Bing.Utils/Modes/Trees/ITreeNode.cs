@@ -9,7 +9,15 @@ namespace Bing.Utils.Modes.Trees
     /// <summary>
     /// 树节点
     /// </summary>
-    public interface ITreeNode
+    public interface ITreeNode:ITreeNode<object>
+    {        
+    }
+
+    /// <summary>
+    /// 泛型树节点
+    /// </summary>
+    /// <typeparam name="T">实体类型</typeparam>
+    public interface ITreeNode<T>
     {
         /// <summary>
         /// 标识
@@ -19,7 +27,7 @@ namespace Bing.Utils.Modes.Trees
         /// <summary>
         /// 父标识
         /// </summary>
-        object ParentId { get; set; }       
+        object ParentId { get; set; }
 
         /// <summary>
         /// 文本
@@ -29,7 +37,7 @@ namespace Bing.Utils.Modes.Trees
         /// <summary>
         /// 值
         /// </summary>
-        object Value { get; set; }
+        T Value { get; set; }
 
         /// <summary>
         /// 路径
@@ -44,18 +52,18 @@ namespace Bing.Utils.Modes.Trees
         /// <summary>
         /// 子节点集合
         /// </summary>
-        List<ITreeNode> Children { get; set; }
+        List<ITreeNode<T>> Children { get; set; }
 
         /// <summary>
         /// 添加子节点
         /// </summary>
         /// <param name="childNode">子节点</param>
-        void Add(ITreeNode childNode);
+        void Add(ITreeNode<T> childNode);
 
         /// <summary>
         /// 移除子节点
         /// </summary>
         /// <param name="childNode">子节点</param>
-        void Remove(ITreeNode childNode);
+        void Remove(ITreeNode<T> childNode);
     }
 }

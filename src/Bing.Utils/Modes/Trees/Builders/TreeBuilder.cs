@@ -13,40 +13,72 @@ namespace Bing.Utils.Modes.Trees.Builders
     public class TreeBuilder
     {
         /// <summary>
-        /// 生成
+        /// 获取树节点上下文
         /// </summary>
-        /// <typeparam name="T">节点类型</typeparam>
-        /// <param name="text">根节点名称</param>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <typeparam name="TOuter">输出类型</typeparam>
+        /// <returns></returns>
+        public static ITreeContext<T, TOuter> Build<T, TOuter>()
+        {
+            return new TreeContext<T, TOuter>();
+        }
+
+        /// <summary>
+        /// 获取树节点上下文
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <typeparam name="TOuter">输出类型</typeparam>
+        /// <param name="text">顶级节点显示文本</param>
+        /// <returns></returns>
+        public static ITreeContext<T, TOuter> Build<T, TOuter>(string text)
+        {
+            var root=new TreeNode<TOuter>(text);
+            return Build<T, TOuter>(root);
+        }
+
+        /// <summary>
+        /// 获取树节点上下文
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <typeparam name="TOuter">输出类型</typeparam>
+        /// <param name="rootNode">顶级节点</param>
+        /// <returns></returns>
+        public static ITreeContext<T, TOuter> Build<T, TOuter>(ITreeNode<TOuter> rootNode)
+        {
+            return new TreeContext<T, TOuter>(rootNode);
+        }
+
+        /// <summary>
+        /// 获取树节点上下文 
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <returns></returns>
+        public static ITreeContext<T> Build<T>()
+        {
+            return new TreeContext<T>();
+        }
+
+        /// <summary>
+        /// 获取树节点上下文
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="text">顶级节点显示文本</param>
         /// <returns></returns>
         public static ITreeContext<T> Build<T>(string text)
         {
-            var root = new TreeNode(text);
-            return new TreeContext<T>(root);
+            var root = new TreeNode<T>(text);
+            return Build<T>(root);
         }
 
         /// <summary>
-        /// 生成
+        /// 获取树节点上下文
         /// </summary>
         /// <typeparam name="T">实体类型</typeparam>
-        /// <param name="node">节点</param>
+        /// <param name="rootNode">顶级节点</param>
         /// <returns></returns>
-        public static ITreeContext<T> Build<T>(ITreeNode node)
+        public static ITreeContext<T> Build<T>(ITreeNode<T> rootNode)
         {
-            return new TreeContext<T>(node);
-        }
-
-        /// <summary>
-        /// 生成节点
-        /// </summary>
-        /// <typeparam name="T">实体类型</typeparam>
-        /// <param name="t">实体</param>
-        /// <param name="textSelector">文本选择器</param>
-        /// <returns></returns>
-        internal static ITreeNode BuildNode<T>(T t, Func<T, string> textSelector = null)
-        {
-            var text = textSelector != null ? textSelector(t) : Convert.ToString(t);
-            var node=new TreeNode<T>(text,t);
-            return node;
+            return new TreeContext<T>(rootNode);
         }
     }
 }
