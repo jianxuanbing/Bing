@@ -30,7 +30,7 @@ namespace Bing.Offices.Npoi
             throw new NotImplementedException();
         }
 
-        public IExcel CreateCell(Cell cell)
+        public IExcel CreateCell(IExcelCell cell)
         {
             throw new NotImplementedException();
         }
@@ -50,22 +50,22 @@ namespace Bing.Offices.Npoi
             throw new NotImplementedException();
         }
 
-        public IExcel MergeCell(Cell cell)
+        public IExcel MergeCell(IExcelCell cell)
         {
             throw new NotImplementedException();
         }
 
-        public IExcel HeadStyle(Table table, CellStyle style)
+        public IExcel HeadStyle(IExcelSheet table, CellStyle style)
         {
             throw new NotImplementedException();
         }
 
-        public IExcel BodyStyle(Table table, CellStyle style)
+        public IExcel BodyStyle(IExcelSheet table, CellStyle style)
         {
             throw new NotImplementedException();
         }
 
-        public IExcel FootStyle(Table table, CellStyle style)
+        public IExcel FootStyle(IExcelSheet table, CellStyle style)
         {
             throw new NotImplementedException();
         }

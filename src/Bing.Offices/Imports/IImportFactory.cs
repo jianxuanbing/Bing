@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bing.Offices
+namespace Bing.Offices.Imports
 {
     /// <summary>
-    /// 导入器
+    /// 文件导入器工厂
     /// </summary>
-    public interface IImport
+    public interface IImportFactory
     {
         /// <summary>
-        /// 获取结果
+        /// 创建文件导入器
         /// </summary>
-        /// <typeparam name="T">返回类型</typeparam>
+        /// <param name="format">导入格式</param>
         /// <returns></returns>
-        List<T> GetResult<T>();
+        IImport Create(ImportFormat format);
     }
 }

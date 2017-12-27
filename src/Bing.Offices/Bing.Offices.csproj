@@ -56,9 +56,17 @@
     <Compile Include="Core\Row.cs" />
     <Compile Include="Core\Styles\VerticalAlignment.cs" />
     <Compile Include="Core\Table.cs" />
+    <Compile Include="Exports\ExcelExportBase.cs" />
+    <Compile Include="Exports\ExportBase.cs" />
+    <Compile Include="Exports\ExportFormat.cs" />
+    <Compile Include="Exports\IExportFactory.cs" />
     <Compile Include="IExcel.cs" />
-    <Compile Include="IExport.cs" />
-    <Compile Include="IImport.cs" />
+    <Compile Include="Exports\IExport.cs" />
+    <Compile Include="Imports\ExcelImportBase.cs" />
+    <Compile Include="Imports\IImport.cs" />
+    <Compile Include="Imports\IImportFactory.cs" />
+    <Compile Include="Imports\ImportBase.cs" />
+    <Compile Include="Imports\ImportFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -63,6 +63,7 @@
     <Compile Include="Extensions\Common\Extensions.Common.cs" />
     <Compile Include="Extensions\Common\Extensions.Convert.cs" />
     <Compile Include="Extensions\Common\Extensions.File.cs" />
+    <Compile Include="Extensions\Common\Extensions.Format.cs" />
     <Compile Include="Extensions\Common\Extensions.Lambda.cs" />
     <Compile Include="Extensions\Common\Extensions.String.cs" />
     <Compile Include="Extensions\Common\Extensions.Validate.cs" />

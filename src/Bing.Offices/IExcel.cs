@@ -40,7 +40,7 @@ namespace Bing.Offices
         /// </summary>
         /// <param name="cell">单元格</param>
         /// <returns></returns>
-        IExcel CreateCell(Cell cell);
+        IExcel CreateCell(IExcelCell cell);
 
         /// <summary>
         /// 写入流
@@ -71,7 +71,7 @@ namespace Bing.Offices
         /// </summary>
         /// <param name="cell">单元格</param>
         /// <returns></returns>
-        IExcel MergeCell(Cell cell);
+        IExcel MergeCell(IExcelCell cell);
 
         /// <summary>
         /// 设置表头样式
@@ -79,7 +79,7 @@ namespace Bing.Offices
         /// <param name="table">单元表</param>
         /// <param name="style">单元格样式</param>
         /// <returns></returns>
-        IExcel HeadStyle(Table table, CellStyle style);
+        IExcel HeadStyle(IExcelSheet table, CellStyle style);
 
         /// <summary>
         /// 设置正文样式
@@ -87,7 +87,7 @@ namespace Bing.Offices
         /// <param name="table">单元表</param>
         /// <param name="style">单元格样式</param>
         /// <returns></returns>
-        IExcel BodyStyle(Table table, CellStyle style);
+        IExcel BodyStyle(IExcelSheet table, CellStyle style);
 
         /// <summary>
         /// 设置页脚样式
@@ -95,7 +95,7 @@ namespace Bing.Offices
         /// <param name="table">单元表</param>
         /// <param name="style">单元格样式</param>
         /// <returns></returns>
-        IExcel FootStyle(Table table, CellStyle style);
+        IExcel FootStyle(IExcelSheet table, CellStyle style);
 
         /// <summary>
         /// 列宽

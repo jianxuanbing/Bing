@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using Bing.Offices.Abstractions;
 using Bing.Offices.Core.Styles;
 
-namespace Bing.Offices
+namespace Bing.Offices.Exports
 {
     /// <summary>
-    /// 文件导出器
+    /// 导出器
     /// </summary>
     public interface IExport
     {
@@ -103,5 +103,28 @@ namespace Bing.Offices
         /// <param name="cells">单元格集合</param>
         /// <returns></returns>
         IExport Foot(params IExcelCell[] cells);
+
+        /// <summary>
+        /// 写入文件
+        /// </summary>
+        /// <param name="direcotry">目录，不包括文件名</param>
+        /// <param name="fileName">文件名，不包括扩展名</param>
+        /// <returns></returns>
+        IExport Write(string direcotry, string fileName = "");
+
+        /// <summary>
+        /// 下载
+        /// </summary>
+        /// <param name="fileName">文件名，不包括扩展名</param>
+        /// <returns></returns>
+        IExport Download(string fileName = "");
+
+        /// <summary>
+        /// 下载
+        /// </summary>
+        /// <param name="fileName">文件名，不包括扩展名</param>
+        /// <param name="encoding">字符编码</param>
+        /// <returns></returns>
+        IExport Download(string fileName, Encoding encoding);
     }
 }
