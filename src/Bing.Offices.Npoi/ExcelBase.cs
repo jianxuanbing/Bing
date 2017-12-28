@@ -90,7 +90,32 @@ namespace Bing.Offices.Npoi
         /// <returns></returns>
         public IExcel CreateWorkbook()
         {
-            _workbook = GetWorkbook();
+            _workbook = CreateInternalWorkbook();
+            return this;
+        }
+
+        /// <summary>
+        /// 创建工作簿
+        /// </summary>
+        /// <param name="filePath">文件路径，绝对路径</param>
+        /// <returns></returns>
+        public IExcel CreateWorkbook(string filePath)
+        {
+            using (var fileStream=new FileStream(filePath,FileMode.Open,FileAccess.Read))
+            {
+                _workbook = CreateInternalWorkbook(fileStream);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// 创建工作簿
+        /// </summary>
+        /// <param name="stream">文件流，传递过来的创建的工作簿对象</param>
+        /// <returns></returns>
+        public IExcel CreateWorkbook(Stream stream)
+        {
+            _workbook = CreateInternalWorkbook(stream);
             return this;
         }
 
@@ -98,7 +123,14 @@ namespace Bing.Offices.Npoi
         /// 创建工作簿
         /// </summary>
         /// <returns></returns>
-        protected abstract IWorkbook GetWorkbook();
+        protected abstract IWorkbook CreateInternalWorkbook();
+
+        /// <summary>
+        /// 创建工作簿
+        /// </summary>
+        /// <param name="stream">内存流</param>
+        /// <returns></returns>
+        protected abstract IWorkbook CreateInternalWorkbook(Stream stream);
 
         #endregion
 
@@ -392,7 +424,6 @@ namespace Bing.Offices.Npoi
         }
 
         #endregion
-
 
         public IExcelWorkbook GetWorkbook(Stream stream)
         {

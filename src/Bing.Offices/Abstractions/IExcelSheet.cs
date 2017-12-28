@@ -17,6 +17,11 @@ namespace Bing.Offices.Abstractions
         string Title { get; }
 
         /// <summary>
+        /// 工作表名
+        /// </summary>
+        string SheetName { get; set; }
+
+        /// <summary>
         /// 列数
         /// </summary>
         int ColumnNumber { get; }

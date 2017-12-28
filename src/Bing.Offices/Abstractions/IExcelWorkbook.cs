@@ -19,8 +19,28 @@ namespace Bing.Offices.Abstractions
         /// <summary>
         /// 获取工作表
         /// </summary>
-        /// <param name="sheetName">工作表名称</param>
+        /// <param name="name">工作表名称</param>
         /// <returns></returns>
-        IExcelSheet GetSheet(string sheetName = "");
+        IExcelSheet GetSheet(string name);
+
+        /// <summary>
+        /// 获取工作表
+        /// </summary>
+        /// <param name="index">工作表索引</param>
+        /// <returns></returns>
+        IExcelSheet GetSheetAt(int index);
+
+        /// <summary>
+        /// 创建工作表
+        /// </summary>
+        /// <returns></returns>
+        IExcelSheet CreateSheet();
+
+        /// <summary>
+        /// 创建工作表
+        /// </summary>
+        /// <param name="name">工作表名称</param>
+        /// <returns></returns>
+        IExcelSheet CreateSheet(string name);
     }
 }

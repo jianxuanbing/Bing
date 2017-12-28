@@ -60,6 +60,11 @@ namespace Bing.Offices.Core
         }
 
         /// <summary>
+        /// 工作表名称
+        /// </summary>
+        public string SheetName { get; set; }
+
+        /// <summary>
         /// 列数
         /// </summary>
         public int ColumnNumber => _body == null ? _header.ColumnNumber : _body.ColumnNumber;

@@ -56,6 +56,7 @@
     <Compile Include="Core\Row.cs" />
     <Compile Include="Core\Styles\VerticalAlignment.cs" />
     <Compile Include="Core\Table.cs" />
+    <Compile Include="Core\Workbook.cs" />
     <Compile Include="Exports\ExcelExportBase.cs" />
     <Compile Include="Exports\ExportBase.cs" />
     <Compile Include="Exports\ExportFormat.cs" />
@@ -67,11 +68,11 @@
     <Compile Include="Imports\IImportFactory.cs" />
     <Compile Include="Imports\ImportBase.cs" />
     <Compile Include="Imports\ImportFormat.cs" />
+    <Compile Include="Internal\WorkbookUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
-    <Folder Include="Internal\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bing.Utils\Bing.Utils.csproj">

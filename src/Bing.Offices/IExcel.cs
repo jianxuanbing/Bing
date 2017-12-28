@@ -22,6 +22,20 @@ namespace Bing.Offices
         IExcel CreateWorkbook();
 
         /// <summary>
+        /// 创建工作簿
+        /// </summary>
+        /// <param name="filePath">文件路径，绝对路径</param>
+        /// <returns></returns>
+        IExcel CreateWorkbook(string filePath);
+
+        /// <summary>
+        /// 创建工作簿
+        /// </summary>
+        /// <param name="stream">文件流，传递过来的创建的工作簿对象</param>
+        /// <returns></returns>
+        IExcel CreateWorkbook(Stream stream);
+
+        /// <summary>
         /// 创建工作表
         /// </summary>
         /// <param name="sheetName">工作表名称</param>

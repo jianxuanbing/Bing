@@ -36,9 +36,11 @@ namespace Bing.Offices.Imports
 
         protected override List<T> GetResult<T>(Stream stream)
         {
-            var workbook = _excel.GetWorkbook(stream);
-            var sheet = workbook.GetSheet(_sheetName);
+            //var workbook = _excel.GetWorkbook(stream);
+            //var sheet = workbook.GetSheet(_sheetName);
+            //var body=sheet.GetBody();
             
+
             throw new NotImplementedException();
         }
     }
