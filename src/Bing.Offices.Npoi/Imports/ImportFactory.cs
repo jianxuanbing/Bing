@@ -7,6 +7,9 @@ using Bing.Offices.Imports;
 
 namespace Bing.Offices.Npoi.Imports
 {
+    /// <summary>
+    /// 导入器工厂
+    /// </summary>
     public class ImportFactory:IImportFactory
     {
         /// <summary>
@@ -19,12 +22,22 @@ namespace Bing.Offices.Npoi.Imports
         /// </summary>
         private readonly string _sheetName;
 
+        /// <summary>
+        /// 初始化一个<see cref="ImportFactory"/>类型的实例
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="sheetName"></param>
         public ImportFactory(string path, string sheetName = "")
         {
             _path = path;
             _sheetName = sheetName;
         }
 
+        /// <summary>
+        /// 创建导入器
+        /// </summary>
+        /// <param name="format">导入格式</param>
+        /// <returns></returns>
         public IImport Create(ImportFormat format)
         {
             switch (format)

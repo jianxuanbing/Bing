@@ -98,7 +98,7 @@ namespace Bing.Offices
         IExcel FootStyle(IExcelSheet table, CellStyle style);
 
         /// <summary>
-        /// 列宽
+        /// 设置单元格列宽
         /// </summary>
         /// <param name="columnIndex">列索引</param>
         /// <param name="width">列宽度，设置字符数</param>

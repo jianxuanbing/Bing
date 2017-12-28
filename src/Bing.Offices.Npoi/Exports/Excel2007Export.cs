@@ -12,6 +12,10 @@ namespace Bing.Offices.Npoi.Exports
     /// </summary>
     public class Excel2007Export:ExcelExportBase
     {
+
+        /// <summary>
+        /// 初始化一个<see cref="Excel2007Export"/>类型的实例
+        /// </summary>
         public Excel2007Export() : base(ExportFormat.Xlsx,new Excel2007())
         {
         }

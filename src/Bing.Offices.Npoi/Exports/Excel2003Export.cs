@@ -12,6 +12,9 @@ namespace Bing.Offices.Npoi.Exports
     /// </summary>
     public class Excel2003Export: ExcelExportBase
     {
+        /// <summary>
+        /// 初始化一个<see cref="Excel2003Export"/>类型的实例
+        /// </summary>
         public Excel2003Export() : base(ExportFormat.Xls, new Excel2003())
         {
         }

@@ -17,5 +17,12 @@ namespace Bing.Utils.UnitTest
                 Console.WriteLine(item);
             }
         }
+
+        [TestMethod]
+        public void Test_Float_Type()
+        {
+            var type = typeof(float);
+            Console.WriteLine(type.ToString());
+        }
     }
 }
