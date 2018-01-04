@@ -77,10 +77,14 @@
     <Compile Include="Aspects\IgnoreAttribute.cs" />
     <Compile Include="Aspects\NotEmptyAttribute.cs" />
     <Compile Include="Aspects\NotNullAttribute.cs" />
+    <Compile Include="Caching\DistributedCache.cs" />
     <Compile Include="Caching\ExpressionCacheKeyGenerator.cs" />
     <Compile Include="Caching\ICacheKeyGenerator.cs" />
+    <Compile Include="Caching\IDistributedCache.cs" />
     <Compile Include="Caching\ILocalCache.cs" />
+    <Compile Include="Caching\LocalCache.cs" />
     <Compile Include="Caching\StringCacheKeyGenerator.cs" />
+    <Compile Include="Caching\TwoLevelCache.cs" />
     <Compile Include="Contexts\IContext.cs" />
     <Compile Include="Contexts\IUserContext.cs" />
     <Compile Include="Contexts\NullUserContext.cs" />
