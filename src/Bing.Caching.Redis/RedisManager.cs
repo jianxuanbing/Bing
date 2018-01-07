@@ -26,7 +26,7 @@ namespace Bing.Caching.Redis
         /// <summary>
         /// 对象锁
         /// </summary>
-        private static readonly object _locked=new object();
+        private static readonly object Locked=new object();
 
         /// <summary>
         /// Redis 连接对象实例
@@ -45,9 +45,9 @@ namespace Bing.Caching.Redis
         {
             get
             {
-                if (_instance == null)
+                if (_instance == null || !_instance.IsConnected)
                 {
-                    lock (_locked)
+                    lock (Locked)
                     {
                         if (_instance == null || !_instance.IsConnected)
                         {
