@@ -728,19 +728,19 @@ namespace Bing.Caching.Redis
             return Do(db => db.KeyExists(key, commandFlags));
         }
 
-        public bool KeyRemove(string key, CommandFlags commandFlags = CommandFlags.None)
+        public bool KeyDelete(string key, CommandFlags commandFlags = CommandFlags.None)
         {
             key = AddSysCustomKey(key);
             return Do(db => db.KeyDelete(key, commandFlags));
         }
 
-        public long KeyRemove(RedisKey[] keys, CommandFlags commandFlags = CommandFlags.None)
+        public long KeyDelete(RedisKey[] keys, CommandFlags commandFlags = CommandFlags.None)
         {
             return
                 Do(db => db.KeyDelete(ConvertRedisKeys(keys.Select(key => AddSysCustomKey(key)).ToList()), commandFlags));
         }
 
-        public long KeyRemove(List<string> keys, CommandFlags commandFlags = CommandFlags.None)
+        public long KeyDelete(List<string> keys, CommandFlags commandFlags = CommandFlags.None)
         {
             return Do(db => db.KeyDelete(ConvertRedisKeys(keys.Select(AddSysCustomKey).ToList()), commandFlags));
         }

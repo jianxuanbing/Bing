@@ -663,26 +663,26 @@ namespace Bing.Caching.Redis
         bool KeyExists(string key, CommandFlags commandFlags = CommandFlags.None);
 
         /// <summary>
-        /// 从Redis中移除指定键
+        /// 从Redis中删除指定键
         /// </summary>
         /// <param name="key">键</param>
         /// <param name="commandFlags">命令标识，默认无</param>
-        bool KeyRemove(string key, CommandFlags commandFlags = CommandFlags.None);
+        bool KeyDelete(string key, CommandFlags commandFlags = CommandFlags.None);
 
         /// <summary>
-        /// 从Redis中移除多个键
+        /// 从Redis中删除多个键
         /// </summary>
         /// <param name="keys">键集合</param>
         /// <param name="commandFlags">命令标识，默认无</param>
-        long KeyRemove(RedisKey[] keys, CommandFlags commandFlags = CommandFlags.None);
+        long KeyDelete(RedisKey[] keys, CommandFlags commandFlags = CommandFlags.None);
 
         /// <summary>
-        /// 从Redis中移除多个键
+        /// 从Redis中删除多个键
         /// </summary>
         /// <param name="keys">键集合</param>
         /// <param name="commandFlags">命令标识，默认无</param>
         /// <returns></returns>
-        long KeyRemove(List<string> keys, CommandFlags commandFlags = CommandFlags.None);
+        long KeyDelete(List<string> keys, CommandFlags commandFlags = CommandFlags.None);
 
         /// <summary>
         /// 重命名缓存键
