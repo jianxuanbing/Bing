@@ -88,6 +88,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Offices", "src\Bing.Of
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Offices.Npoi", "src\Bing.Offices.Npoi\Bing.Offices.Npoi.csproj", "{C1D927F4-61F0-41E8-A3AE-4F77FD0F9900}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Caching.Redis", "src\Bing.Caching.Redis\Bing.Caching.Redis.csproj", "{E444DBB7-207F-475E-BA7B-D198342DAA03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Caching.Redis.UnitTest", "test\Bing.Caching.Redis.UnitTest\Bing.Caching.Redis.UnitTest.csproj", "{FB5C7AA3-CCB9-485E-8AA6-2FAFA5A2D178}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -206,6 +210,14 @@ Global
 		{C1D927F4-61F0-41E8-A3AE-4F77FD0F9900}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1D927F4-61F0-41E8-A3AE-4F77FD0F9900}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1D927F4-61F0-41E8-A3AE-4F77FD0F9900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E444DBB7-207F-475E-BA7B-D198342DAA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E444DBB7-207F-475E-BA7B-D198342DAA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E444DBB7-207F-475E-BA7B-D198342DAA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E444DBB7-207F-475E-BA7B-D198342DAA03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5C7AA3-CCB9-485E-8AA6-2FAFA5A2D178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5C7AA3-CCB9-485E-8AA6-2FAFA5A2D178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5C7AA3-CCB9-485E-8AA6-2FAFA5A2D178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5C7AA3-CCB9-485E-8AA6-2FAFA5A2D178}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -247,5 +259,7 @@ Global
 		{71BFAF76-39E6-4F12-A425-12E745CC63E2} = {09F0B568-FD1F-4407-B525-4DCC13107011}
 		{3AE260A3-CB24-4098-9204-78E7582D6B70} = {71BFAF76-39E6-4F12-A425-12E745CC63E2}
 		{C1D927F4-61F0-41E8-A3AE-4F77FD0F9900} = {71BFAF76-39E6-4F12-A425-12E745CC63E2}
+		{E444DBB7-207F-475E-BA7B-D198342DAA03} = {41A99352-5E70-4215-918C-8EDF76196E60}
+		{FB5C7AA3-CCB9-485E-8AA6-2FAFA5A2D178} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
 	EndGlobalSection
 EndGlobal
