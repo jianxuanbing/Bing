@@ -46,6 +46,36 @@ namespace Bing.Caching.Redis
         /// 超时时间
         /// </summary>
         public int Timeout { get; set; }
+
+        /// <summary>
+        /// 获取连接字符串
+        /// </summary>
+        /// <returns></returns>
+        public string GetConnectionString()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (!string.IsNullOrWhiteSpace(Host) && Port > 0)
+            {
+                sb.Append($"{Host}:{Port}");
+            }
+
+            if (!string.IsNullOrWhiteSpace(Password))
+            {
+                sb.Append($",password={Password}");
+            }
+
+            if (DbIndex > 0)
+            {
+                sb.Append($",defaultDatabase={DbIndex}");
+            }
+
+            if (Timeout > 0)
+            {
+                sb.Append($",connectTimeout={Timeout}");
+            }
+
+            return sb.ToString();
+        }
         
     }
 }

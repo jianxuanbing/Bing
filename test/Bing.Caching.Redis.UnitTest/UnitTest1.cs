@@ -8,6 +8,8 @@ namespace Bing.Caching.Redis.UnitTest
     [TestClass]
     public class UnitTest1
     {
+
+
         [TestMethod]
         public void TestMethod1()
         {
@@ -56,6 +58,22 @@ namespace Bing.Caching.Redis.UnitTest
             //cache.AddAsync<string>("test", "神奇的傻逗", TimeSpan.FromMinutes(10));
             //var result = cache.GetAsync<string>("test");
             //Console.WriteLine(result.Result);
+        }
+
+        [TestMethod]
+        public void Test_Muilte()
+        {
+            RedisManager.SetDefaultConnectionStr(new RedisEndpoint()
+            {
+                Host = "192.168.99.100",
+                Port = 32768,
+            });
+            Random random=new Random();
+            for (int i = 0; i < 10000; i++)
+            {
+                RedisClient client = new RedisClient();
+                client.StringSet("tt" + i, "装逼的傻逗" + random.Next());                
+            }            
         }
     }
 }

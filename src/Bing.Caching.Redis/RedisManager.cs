@@ -21,7 +21,7 @@ namespace Bing.Caching.Redis
         /// <summary>
         /// Redis 连接字符串
         /// </summary>
-        internal static readonly string RedisConnectionString;
+        private static string _redisConnectionString;
 
         /// <summary>
         /// 对象锁
@@ -82,7 +82,7 @@ namespace Bing.Caching.Redis
         /// <returns></returns>
         private static ConnectionMultiplexer BuildConnectionMultiplexer(string connectionStr=null)
         {
-            connectionStr = connectionStr ?? RedisConnectionString;
+            connectionStr = connectionStr ?? _redisConnectionString;
             var connect = ConnectionMultiplexer.Connect(connectionStr);
             // 注册事件如下
             connect.ConnectionFailed += MuxerConnectionFailed;
@@ -154,6 +154,15 @@ namespace Bing.Caching.Redis
         private static void MuxerInternalError(object sender, InternalErrorEventArgs e)
         {
             Console.WriteLine("InternalError:Message"+e.Exception.Message);
+        }
+
+        /// <summary>
+        /// 设置默认连接字符串
+        /// </summary>
+        /// <param name="endpoint"></param>
+        public static void SetDefaultConnectionStr(RedisEndpoint endpoint)
+        {
+            _redisConnectionString = endpoint.GetConnectionString();
         }
     }
 }

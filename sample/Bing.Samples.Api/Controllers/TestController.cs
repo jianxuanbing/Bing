@@ -154,5 +154,21 @@ namespace Bing.Samples.Api.Controllers
                 //Console.WriteLine(result.Result);
             }
         }
+
+        public void TestMuiltCache(int len)
+        {
+            RedisManager.SetDefaultConnectionStr(new RedisEndpoint()
+            {
+                Host = "192.168.99.100",
+                Port = 32768,
+            });
+            RedisManager.SysCustomKey = "Test:";
+            Random random = new Random();
+            for (int i = 0; i < len; i++)
+            {
+                RedisClient client = new RedisClient();
+                client.StringSet("tt" + i, "装逼的傻逗" + random.Next());
+            }
+        }
     }
 }

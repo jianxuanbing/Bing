@@ -14,5 +14,11 @@
         /// 端口号
         /// </summary>
         int Port { get; set; }
+
+        /// <summary>
+        /// 获取连接字符串
+        /// </summary>
+        /// <returns></returns>
+        string GetConnectionString();
     }
 }
