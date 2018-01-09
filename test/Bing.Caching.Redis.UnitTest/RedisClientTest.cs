@@ -34,11 +34,11 @@ namespace Bing.Caching.Redis.UnitTest
         [TestMethod]
         public void Test_HashKeys()
         {
-            var result=_client.HashKeys<string>("th0");
-            foreach (var item in result)
-            {
-                Console.WriteLine(item);
-            }
+            //var result=_client.HashKeys<string>("th0");
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
         }
 
         [TestMethod]
