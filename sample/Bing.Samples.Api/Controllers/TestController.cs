@@ -167,7 +167,7 @@ namespace Bing.Samples.Api.Controllers
             for (int i = 0; i < len; i++)
             {
                 RedisClient client = new RedisClient();
-                client.StringSet("tt" + i, "装逼的傻逗" + random.Next());
+                //client.StringSet("tt" + i, "装逼的傻逗" + random.Next());
             }
         }
     }

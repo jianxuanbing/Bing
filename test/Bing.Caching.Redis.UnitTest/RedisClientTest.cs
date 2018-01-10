@@ -17,8 +17,8 @@ namespace Bing.Caching.Redis.UnitTest
             RedisManager.SysCustomKey = "Test:";
             RedisManager.SetDefaultConnectionStr(new RedisEndpoint()
             {
-                Host = "192.168.99.100",
-                Port = 32768,
+                Host = "192.168.88.22",
+                Port = 6379,
             });
             _client=new RedisClient();
         }
@@ -34,7 +34,7 @@ namespace Bing.Caching.Redis.UnitTest
         [TestMethod]
         public void Test_HashKeys()
         {
-            var result=_client.HashKeys<string>("th0");
+            var result=_client.HashGetAllKeys("th0");
             foreach (var item in result)
             {
                 Console.WriteLine(item);

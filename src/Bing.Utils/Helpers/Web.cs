@@ -65,14 +65,15 @@ namespace Bing.Utils.Helpers
         private static string GetWebClientIp()
         {
             var ip = GetWebRemoteIp();
-            foreach (var hostAddress in Dns.GetHostAddresses(ip))
-            {
-                if (hostAddress.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return hostAddress.ToString();
-                }
-            }
-            return string.Empty;
+            return ip;
+            //foreach (var hostAddress in Dns.GetHostAddresses(ip))
+            //{
+            //    if (hostAddress.AddressFamily == AddressFamily.InterNetwork)
+            //    {
+            //        return hostAddress.ToString();
+            //    }
+            //}
+            //return string.Empty;
         }
 
         /// <summary>
@@ -83,7 +84,8 @@ namespace Bing.Utils.Helpers
         {
             try
             {
-                return HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ??
+                return HttpContext.Current.Request.Headers["X_FORWARDED_FOR"] ??
+                       HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ??
                        HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"] ?? "";
             }
             catch (Exception e)
