@@ -92,6 +92,8 @@
     <Compile Include="Item.cs" />
     <Compile Include="Json\JsonExtensions.cs" />
     <Compile Include="Json\JsonUtil.cs" />
+    <Compile Include="Maths\HexConv.cs" />
+    <Compile Include="Maths\UnitConv.cs" />
     <Compile Include="Modes\IdCards\IdCard.cs" />
     <Compile Include="Modes\IdCards\IdCardVerifier.cs" />
     <Compile Include="Modes\IdCards\Sex.cs" />
