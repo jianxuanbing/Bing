@@ -19,12 +19,13 @@ namespace Bing.Logs.Log4Net
         /// </summary>
         /// <param name="services">服务集合</param>
         /// <param name="log4NetConfigFile">log4net配置文件</param>
-        public static void AddLog4Net(this ContainerBuilder services, string log4NetConfigFile = "log4net.config")
+        /// <param name="name">服务名</param>
+        public static void AddLog4Net(this ContainerBuilder services, string log4NetConfigFile = "log4net.config",string name = null)
         {
-            services.AddScoped<ILogProviderFactory, Bing.Logs.Log4Net.LogProviderFactory>();
-            services.AddScoped<ILogFormat, Bing.Logs.Formats.ContentFormat>();
-            services.AddScoped<ILogContext, Bing.Logs.Core.LogContext>();
-            services.AddScoped<ILog, Bing.Logs.Log>();
+            services.AddScoped<ILogProviderFactory, Bing.Logs.Log4Net.LogProviderFactory>(name);
+            services.AddScoped<ILogFormat, Bing.Logs.Formats.ContentFormat>(name);
+            services.AddScoped<ILogContext, Bing.Logs.Core.LogContext>(name);
+            services.AddScoped<ILog, Bing.Logs.Log>(name);
 
             Log4NetProvider.InitRepository(log4NetConfigFile);
         }

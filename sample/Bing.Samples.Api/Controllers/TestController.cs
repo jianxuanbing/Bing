@@ -22,13 +22,12 @@ namespace Bing.Samples.Api.Controllers
         /// <summary>
         /// 日志操作
         /// </summary>
-        public ILog Log { get; set; }
+        protected ILog Logger = Log.GetLog(typeof(TestController));
 
         private ITestService _testService;
         private ILoginService _loginService;
-        public TestController(ILog log,ITestService testService,ILoginService loginService)
+        public TestController(ITestService testService,ILoginService loginService)
         {
-            Log = log;
             _testService = testService;
             _loginService = loginService;
         }
@@ -76,8 +75,23 @@ namespace Bing.Samples.Api.Controllers
         /// <param name="content">日志内容</param>
         public void SendLogInfo(string content)
         {
-            Log.BussinessId(Guid.NewGuid().ToString())
-                .Module("订单")
+            Logger.BussinessId(Guid.NewGuid().ToString())
+                .Module("订单-Exceptionless")
+                .Method("PlaceOrder")
+                .Caption("有人下单了")
+                .Params("int", "a", "1")
+                .Params("string", "b", "c")
+                .Content($"购买商品数量：{100}")
+                .Content($"购买商品总额：{200}")
+                .Content($"自定义内容：{content}")
+                .Sql("select * from Users")
+                .Sql("select * from Orders")
+                .SqlParams($"@a={1},@b={2}")
+                .SqlParams($"@userId={ Guid.NewGuid().ToString()}")
+                .Info();
+            var tempLog = Log.GetLog(this, "nlog");
+            tempLog.BussinessId(Guid.NewGuid().ToString())
+                .Module("订单-NLog")
                 .Method("PlaceOrder")
                 .Caption("有人下单了")
                 .Params("int", "a", "1")

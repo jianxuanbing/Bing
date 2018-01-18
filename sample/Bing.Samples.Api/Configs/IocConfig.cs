@@ -25,7 +25,7 @@ namespace Bing.Samples.Api.Configs
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.AddLog4Net();
+            //builder.AddLog4Net();
             builder.AddBingUnitOfWork("WeiHai");
 
             builder.RegisterDynamicProxy(config =>
@@ -33,13 +33,13 @@ namespace Bing.Samples.Api.Configs
                 config.EnableParameterAspect();
             });
 
-            //builder.AddNLog();
+            builder.AddNLog("nlog");
 
-            //builder.AddExceptionless(config =>
-            //{
-            //    config.ApiKey = "CqcBoQlNP1FBxCWLe0o5ZpX3eSmB3JqK4QUvDGUw";
-            //    config.ServerUrl = "http://192.168.88.20:10240";
-            //});
+            builder.AddExceptionless(config =>
+            {
+                config.ApiKey = "CqcBoQlNP1FBxCWLe0o5ZpX3eSmB3JqK4QUvDGUw";
+                config.ServerUrl = "http://192.168.3.113:8070";
+            });
         }
     }
 }

@@ -100,12 +100,17 @@ namespace Bing.Dependency
         /// <typeparam name="TService">接口类型</typeparam>
         /// <param name="builder">容器生成器</param>
         /// <param name="instance">服务实例</param>
+        /// <param name="name">服务名称</param>
         /// <returns></returns>
         public static IRegistrationBuilder<TService, SimpleActivatorData, SingleRegistrationStyle>
-            AddSingleton<TService>(this ContainerBuilder builder, TService instance)
+            AddSingleton<TService>(this ContainerBuilder builder, TService instance,string name=null)
             where TService : class
         {
-            return builder.RegisterInstance(instance).As<TService>().SingleInstance();
+            if (name == null)
+            {
+                return builder.RegisterInstance(instance).As<TService>().SingleInstance();
+            }
+            return builder.RegisterInstance(instance).Named<TService>(name).SingleInstance();
         }
 
         #endregion

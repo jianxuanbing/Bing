@@ -22,13 +22,14 @@ namespace Bing.Logs.Exceptionless
         /// </summary>
         /// <param name="services">服务集合</param>
         /// <param name="configAction">配置操作</param>
+        /// <param name="name">服务名</param>
         public static void AddExceptionless(this ContainerBuilder services,
-            Action<ExceptionlessConfiguration> configAction)
+            Action<ExceptionlessConfiguration> configAction,string name=null)
         {
-            services.AddScoped<ILogProviderFactory, Bing.Logs.Exceptionless.LogProviderFactory>();
-            services.AddSingleton<ILogFormat>(NullLogFormat.Instance);
-            services.AddScoped<ILogContext, Bing.Logs.Exceptionless.LogContext>();
-            services.AddScoped<ILog, Log>();
+            services.AddScoped<ILogProviderFactory, Bing.Logs.Exceptionless.LogProviderFactory>(name);
+            services.AddSingleton<ILogFormat>(NullLogFormat.Instance, name);
+            services.AddScoped<ILogContext, Bing.Logs.Exceptionless.LogContext>(name);
+            services.AddScoped<ILog, Log>(name);
             configAction?.Invoke(ExceptionlessClient.Default.Configuration);
         }
     }

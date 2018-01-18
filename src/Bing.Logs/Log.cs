@@ -70,35 +70,38 @@ namespace Bing.Logs
         /// <summary>
         /// 获取日志操作实例
         /// </summary>
+        /// <param name="name">服务名</param>
         /// <returns></returns>
-        public static ILog GetLog()
+        public static ILog GetLog(string name=null)
         {
-            return GetLog(string.Empty);
+            return GetLog(string.Empty, name);
         }
 
         /// <summary>
         /// 获取日志操作实例
         /// </summary>
         /// <param name="instance">实例</param>
+        /// <param name="name">服务名</param>
         /// <returns></returns>
-        public static ILog GetLog(object instance)
+        public static ILog GetLog(object instance,string name=null)
         {
             if (instance == null)
             {
                 return GetLog();
             }
             var className = instance.GetType().ToString();
-            return GetLog(className, className);
+            return GetLog(className, className,name);
         }
 
         /// <summary>
         /// 获取日志操作实例
         /// </summary>
         /// <param name="logName">日志名称</param>
+        /// <param name="name">服务名</param>
         /// <returns></returns>
-        public static ILog GetLog(string logName)
+        public static ILog GetLog(string logName,string name)
         {
-            return GetLog(logName, string.Empty);
+            return GetLog(logName, string.Empty, name);
         }
 
         /// <summary>
@@ -106,12 +109,13 @@ namespace Bing.Logs
         /// </summary>
         /// <param name="logName">日志名称</param>
         /// <param name="class">类名</param>
+        /// <param name="name">服务名</param>
         /// <returns></returns>
-        private static ILog GetLog(string logName, string @class)
+        private static ILog GetLog(string logName, string @class,string name)
         {
-            var providerFactory = Ioc.Create<ILogProviderFactory>();
-            var format = Ioc.Create<ILogFormat>();
-            var context = Ioc.Create<ILogContext>();
+            var providerFactory = Ioc.Create<ILogProviderFactory>(name);
+            var format = Ioc.Create<ILogFormat>(name);
+            var context = Ioc.Create<ILogContext>(name);
             var userContext = Ioc.Create<IUserContext>();
             return new Log(providerFactory.Create(logName, format), context, userContext, @class);
         }
