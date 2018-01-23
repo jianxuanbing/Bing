@@ -24,7 +24,7 @@ namespace Bing.Logs.Exceptionless
         /// <param name="configAction">配置操作</param>
         /// <param name="name">服务名</param>
         public static void AddExceptionless(this ContainerBuilder services,
-            Action<ExceptionlessConfiguration> configAction,string name=null)
+            Action<ExceptionlessConfiguration> configAction, string name = null)
         {
             services.AddScoped<ILogProviderFactory, Bing.Logs.Exceptionless.LogProviderFactory>(name);
             services.AddSingleton<ILogFormat>(NullLogFormat.Instance, name);
