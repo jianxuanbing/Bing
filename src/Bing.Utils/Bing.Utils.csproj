@@ -77,6 +77,7 @@
     <Compile Include="Helpers\Internal\ObjectId.cs" />
     <Compile Include="Helpers\Lambda.cs" />
     <Compile Include="Helpers\Reflection.cs" />
+    <Compile Include="Helpers\Regexs.cs" />
     <Compile Include="Helpers\SerialNumber.cs" />
     <Compile Include="Helpers\Str.Builder.cs" />
     <Compile Include="Helpers\Str.cs" />
