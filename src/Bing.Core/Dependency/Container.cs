@@ -208,9 +208,9 @@ namespace Bing.Dependency
         /// 注册依赖
         /// </summary>
         /// <param name="configs">依赖配置</param>
-        public void Register(params IConfig[] configs)
+        public Autofac.IContainer Register(params IConfig[] configs)
         {
-            Register(null,configs);
+            return Register(null,configs);
         }
 
         /// <summary>

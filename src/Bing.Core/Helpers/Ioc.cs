@@ -93,9 +93,9 @@ namespace Bing.Helpers
         /// 注册依赖
         /// </summary>
         /// <param name="configs">依赖配置</param>
-        public static void Register(params IConfig[] configs)
+        public static Autofac.IContainer Register(params IConfig[] configs)
         {
-            DefaultContainer.Register(configs);
+            return DefaultContainer.Register(configs);
         }
 
         /// <summary>
