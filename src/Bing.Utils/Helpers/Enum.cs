@@ -26,6 +26,10 @@ namespace Bing.Utils.Helpers
             string value = member.SafeString();
             if (value.IsEmpty())
             {
+                if (typeof(TEnum).IsGenericType)
+                {
+                    return default(TEnum);
+                }
                 throw new ArgumentNullException(nameof(member));
             }
             return (TEnum)System.Enum.Parse(Common.GetType<TEnum>(), value, true);
@@ -189,7 +193,7 @@ namespace Bing.Utils.Helpers
             }
             var value = GetValue<TEnum>(field.Name);
             var description = Reflection.GetDescription(field);
-            result.Add(new Item(description, value.ToString(), value));
+            result.Add(new Item(description, value, value));
         }
         #endregion
 

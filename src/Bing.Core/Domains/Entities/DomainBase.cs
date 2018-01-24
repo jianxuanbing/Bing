@@ -194,8 +194,7 @@ namespace Bing.Domains.Entities
         {
             var name = Utils.Helpers.Lambda.GetName(expression);
             var description =
-                Utils.Helpers.Reflection.GetDisplayNameOrDescription(
-                    (PropertyInfo)Utils.Helpers.Lambda.GetMember(expression));
+                Utils.Helpers.Reflection.GetDisplayNameOrDescription(Utils.Helpers.Lambda.GetMember(expression));
             var value = Utils.Helpers.Lambda.GetValue(expression);
             AddChange(name, description, Utils.Helpers.Conv.To<TValue>(value), newValue);
         }

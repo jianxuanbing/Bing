@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Bing.GlobalConfigs;
 using Bing.Logs.Abstractions;
 using Bing.Logs.Contents;
+using Bing.Utils.Extensions;
 using Exceptionless;
 using el = global::Exceptionless;
 
@@ -191,7 +192,7 @@ namespace Bing.Logs.Exceptionless
             }
             foreach (var parameter in content.To().OrderBy(t => t.SortId))
             {
-                if (string.IsNullOrWhiteSpace(parameter.Value))
+                if (string.IsNullOrWhiteSpace(parameter.Value.SafeString()))
                 {
                     continue;
                 }

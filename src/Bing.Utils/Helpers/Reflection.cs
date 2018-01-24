@@ -145,7 +145,7 @@ namespace Bing.Utils.Helpers
         /// </summary>
         /// <param name="member">成员</param>
         /// <returns></returns>
-        public static string GetDisplayNameOrDescription(PropertyInfo member)
+        public static string GetDisplayNameOrDescription(MemberInfo member)
         {
             var result = GetDisplayName(member);
             if (!result.IsEmpty())
@@ -292,15 +292,7 @@ namespace Bing.Utils.Helpers
         /// <returns></returns>
         public static bool IsBool(PropertyInfo property)
         {
-            if (property.PropertyType == typeof(bool))
-            {
-                return true;
-            }
-            if (property.PropertyType == typeof(bool?))
-            {
-                return true;
-            }
-            return false;
+            return property.PropertyType == typeof(bool) || property.PropertyType == typeof(bool?);
         }
         #endregion
 
@@ -456,6 +448,11 @@ namespace Bing.Utils.Helpers
             if (member == null)
             {
                 return false;
+            }
+
+            if (IsInt(member))
+            {
+                return true;
             }
             switch (member.MemberType)
             {
