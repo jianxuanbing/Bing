@@ -53,19 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheConfig.cs" />
     <Compile Include="DefaultBinaryFormatterSerializer.cs" />
     <Compile Include="DefaultRedisCacheProvider.cs" />
     <Compile Include="IRedisClient.cs" />
     <Compile Include="IRedisDatabaseProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RedisCache.cs" />
-    <Compile Include="RedisCacheClient.cs" />
     <Compile Include="RedisCacheOptions.cs" />
     <Compile Include="RedisClient.cs" />
-    <Compile Include="RedisContext.cs" />
     <Compile Include="RedisDatabaseProvider.cs" />
-    <Compile Include="RedisEndpoint.cs" />
     <Compile Include="RedisManager.cs" />
     <Compile Include="ServiceExtensions.cs" />
   </ItemGroup>

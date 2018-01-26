@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using Bing.Caching.Abstractions;
+using Bing.Caching.Aspects;
 
 namespace Bing.Samples.Api.Controllers
 {
@@ -25,6 +26,7 @@ namespace Bing.Samples.Api.Controllers
         /// <param name="type"></param>
         /// <returns></returns>
         [HttpGet]
+        [CachingHandler]
         public string Get(int type = 1)
         {
             if (type == 1)

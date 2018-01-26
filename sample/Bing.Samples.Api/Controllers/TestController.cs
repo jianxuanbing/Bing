@@ -146,43 +146,6 @@ namespace Bing.Samples.Api.Controllers
         public List<Login> GetListByName(string name)
         {
             return _loginService.GetListByName(name);
-        }
-
-        [HttpPost]
-        public void TestCache(int len)
-        {
-            Random random=new Random();
-            for (int i = 0; i < len; i++)
-            {
-                RedisCache cache = new RedisCache();
-                cache.Initialize(new RedisEndpoint()
-                {
-                    Host = "192.168.99.100",
-                    Port = 32768,
-                    MinSize = 1,
-                    MaxSize = 50,
-                    Timeout = 1000
-                });
-                cache.AddAsync<string>("test" + i, "神奇的傻逗" + random.Next(), TimeSpan.FromMinutes(1));
-                var result = cache.GetAsync<string>("test" + i);
-                //Console.WriteLine(result.Result);
-            }
-        }
-
-        public void TestMuiltCache(int len)
-        {
-            RedisManager.SetDefaultConnectionStr(new RedisEndpoint()
-            {
-                Host = "192.168.99.100",
-                Port = 32768,
-            });
-            RedisManager.SysCustomKey = "Test:";
-            Random random = new Random();
-            for (int i = 0; i < len; i++)
-            {
-                RedisClient client = new RedisClient();
-                //client.StringSet("tt" + i, "装逼的傻逗" + random.Next());
-            }
-        }
+        }       
     }
 }

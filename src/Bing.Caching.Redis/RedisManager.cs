@@ -160,9 +160,9 @@ namespace Bing.Caching.Redis
         /// 设置默认连接字符串
         /// </summary>
         /// <param name="endpoint"></param>
-        public static void SetDefaultConnectionStr(RedisEndpoint endpoint)
-        {
-            _redisConnectionString = endpoint.GetConnectionString();
-        }
+        //public static void SetDefaultConnectionStr(RedisEndpoint endpoint)
+        //{
+        //    _redisConnectionString = endpoint.GetConnectionString();
+        //}
     }
 }

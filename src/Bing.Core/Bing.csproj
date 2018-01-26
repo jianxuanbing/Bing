@@ -77,44 +77,20 @@
     <Compile Include="Aspects\IgnoreAttribute.cs" />
     <Compile Include="Aspects\NotEmptyAttribute.cs" />
     <Compile Include="Aspects\NotNullAttribute.cs" />
-    <Compile Include="Caching\Abstractions\IAsyncPubSub.cs" />
     <Compile Include="Caching\Abstractions\ICacheable.cs" />
     <Compile Include="Caching\Abstractions\ICacheBus.cs" />
-    <Compile Include="Caching\Abstractions\ICacheEventable.cs" />
-    <Compile Include="Caching\Abstractions\ICacheEndpoint.cs" />
-    <Compile Include="Caching\Abstractions\ICacheProvider.cs" />
+    <Compile Include="Caching\ICacheProvider.cs" />
     <Compile Include="Caching\Abstractions\ICachePublisher.cs" />
     <Compile Include="Caching\Abstractions\ICacheSerializer.cs" />
     <Compile Include="Caching\Abstractions\ICacheSubscriber.cs" />
+    <Compile Include="Caching\Aspects\CachingHandlerAttribute.cs" />
     <Compile Include="Caching\CacheConst.cs" />
     <Compile Include="Caching\CacheTargetType.cs" />
     <Compile Include="Caching\Core\CacheMessage.cs" />
     <Compile Include="Caching\Core\CacheValue.cs" />
-    <Compile Include="Caching\Core\EventableAsyncCache.cs" />
     <Compile Include="Caching\Core\ServerEndPoint.cs" />
-    <Compile Include="Caching\DistributedCache.cs" />
-    <Compile Include="Caching\Events\CacheEventArgs.cs" />
-    <Compile Include="Caching\Events\GetCacheEventArgs.cs" />
-    <Compile Include="Caching\Events\MessageReceivedEventArgs.cs" />
-    <Compile Include="Caching\Events\SetCacheEventArgs.cs" />
-    <Compile Include="Caching\ExpressionCacheKeyGenerator.cs" />
-    <Compile Include="Caching\Abstractions\IAsyncCache.cs" />
-    <Compile Include="Caching\Abstractions\ICache.cs" />
-    <Compile Include="Caching\HashAlgorithms\ConsistentHash.cs" />
-    <Compile Include="Caching\HashAlgorithms\ConsistentHashNode.cs" />
-    <Compile Include="Caching\HashAlgorithms\HashAlgorithm.cs" />
-    <Compile Include="Caching\HashAlgorithms\IHashAlgorithm.cs" />
-    <Compile Include="Caching\ICacheClient.cs" />
-    <Compile Include="Caching\ICacheKeyGenerator.cs" />
-    <Compile Include="Caching\ICacheProvider.cs" />
-    <Compile Include="Caching\IDistributedCache.cs" />
-    <Compile Include="Caching\ILocalCache.cs" />
-    <Compile Include="Caching\Abstractions\ISyncCache.cs" />
-    <Compile Include="Caching\LocalCache.cs" />
     <Compile Include="Caching\NotifyType.cs" />
     <Compile Include="Caching\Options\RedisOptionsBase.cs" />
-    <Compile Include="Caching\StringCacheKeyGenerator.cs" />
-    <Compile Include="Caching\TwoLevelCache.cs" />
     <Compile Include="Contexts\IContext.cs" />
     <Compile Include="Contexts\IUserContext.cs" />
     <Compile Include="Contexts\NullUserContext.cs" />
@@ -260,9 +236,7 @@
       <Name>Bing.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Caching\Aspects\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\LibraryResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
