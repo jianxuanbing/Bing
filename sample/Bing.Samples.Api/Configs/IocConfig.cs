@@ -9,6 +9,8 @@ using AspectCore.Extensions.Autofac;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Bing.Aspects;
+using Bing.Caching.Core;
+using Bing.Caching.Redis;
 using Bing.Datas.EntityFramework;
 using Bing.Datas.UnitOfWorks;
 using Bing.Dependency;
@@ -39,6 +41,11 @@ namespace Bing.Samples.Api.Configs
             {
                 config.ApiKey = "CqcBoQlNP1FBxCWLe0o5ZpX3eSmB3JqK4QUvDGUw";
                 config.ServerUrl = "http://192.168.3.113:8070";
+            });
+            builder.AddDefaultRedisCache(x =>
+            {
+                x.EndPoints.Add(new ServerEndPoint("192.168.3.115",6379));
+                x.Password = "";
             });
         }
     }
