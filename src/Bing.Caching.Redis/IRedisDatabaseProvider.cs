@@ -17,5 +17,10 @@ namespace Bing.Caching.Redis
         /// </summary>
         /// <returns></returns>
         IDatabase GetDatabase();
+
+        /// <summary>
+        /// Redis 缓存配置
+        /// </summary>
+        RedisCacheOptions Options { get; }
     }
 }

@@ -23,13 +23,18 @@ namespace Bing.Caching.Redis
         private readonly Lazy<ConnectionMultiplexer> _connectionMultiplexer;
 
         /// <summary>
+        /// Redis 缓存配置
+        /// </summary>
+        public RedisCacheOptions Options => _options;
+
+        /// <summary>
         /// 初始化一个<see cref="RedisCacheOptions"/>类型的实例
         /// </summary>
         /// <param name="options">Redis缓存配置</param>
         public RedisDatabaseProvider(RedisCacheOptions options)
-        {
-            _options = options;
-            _connectionMultiplexer=new Lazy<ConnectionMultiplexer>(CreateConnectionMultiplexer);
+        {            
+            _options = options;            
+            _connectionMultiplexer =new Lazy<ConnectionMultiplexer>(CreateConnectionMultiplexer);
         }
 
         /// <summary>
@@ -39,7 +44,7 @@ namespace Bing.Caching.Redis
         public IDatabase GetDatabase()
         {
             return _connectionMultiplexer.Value.GetDatabase(_options.Database);
-        }
+        }        
 
         /// <summary>
         /// 创建Redis多连接复用器

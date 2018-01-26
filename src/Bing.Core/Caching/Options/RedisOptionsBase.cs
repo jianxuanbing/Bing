@@ -13,6 +13,11 @@ namespace Bing.Caching.Options
     public class RedisOptionsBase
     {
         /// <summary>
+        /// 系统前缀
+        /// </summary>
+        public string SystemPrefix { get; set; } = null;
+
+        /// <summary>
         /// 获取或设置 用于连接到Redis服务器的密码
         /// </summary>
         public string Password { get; set; } = null;
