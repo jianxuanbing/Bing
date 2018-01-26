@@ -13,7 +13,7 @@ namespace Bing.Caching.Redis
     /// <summary>
     /// 默认的Redis缓存提供程序
     /// </summary>
-    public class DefaultRedisCacheProvider:Bing.Caching.Abstractions.ICacheProvider
+    public class DefaultRedisCacheProvider:ICacheProvider
     {
         /// <summary>
         /// 缓存数据库

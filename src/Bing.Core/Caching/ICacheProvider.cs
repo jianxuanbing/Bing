@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bing.Caching.Core;
 
-namespace Bing.Caching.Abstractions
+namespace Bing.Caching
 {
     /// <summary>
     /// 缓存提供程序

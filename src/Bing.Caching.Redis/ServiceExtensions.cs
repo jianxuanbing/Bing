@@ -19,12 +19,13 @@ namespace Bing.Caching.Redis
         {
             services.CheckNotNull(nameof(services));
             optionsAction.CheckNotNull(nameof(optionsAction));
+
             var options=new RedisCacheOptions();
             optionsAction.Invoke(options);
             services.AddSingleton<ICacheSerializer, DefaultBinaryFormatterSerializer>();
             services.AddSingleton<IRedisDatabaseProvider, RedisDatabaseProvider>();
             services.AddSingleton(options);
-            services.AddSingleton<Bing.Caching.Abstractions.ICacheProvider, DefaultRedisCacheProvider>();
+            services.AddSingleton<ICacheProvider, DefaultRedisCacheProvider>();
         }
     }
 }

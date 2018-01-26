@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using Bing.Caching.Abstractions;
+using Bing.Caching;
 using Bing.Caching.Aspects;
 
 namespace Bing.Samples.Api.Controllers

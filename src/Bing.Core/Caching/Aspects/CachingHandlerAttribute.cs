@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AspectCore.DynamicProxy;
+using AspectCore.DynamicProxy.Parameters;
 using AspectCore.Injector;
 using Bing.Aspects.Base;
 using Bing.Caching.Abstractions;
@@ -31,7 +32,7 @@ namespace Bing.Caching.Aspects
         /// 获取或设置 缓存提供程序
         /// </summary>
         [FromContainer]
-        public Bing.Caching.Abstractions.ICacheProvider CacheProvider { get; set; }
+        public ICacheProvider CacheProvider { get; set; }
 
         /// <summary>
         /// 缓存键连接字符
@@ -70,7 +71,7 @@ namespace Bing.Caching.Aspects
             var typeName = context.ServiceMethod.DeclaringType?.Name;
             var methodName = context.ServiceMethod.Name;
             var methodArguments =
-                this.FormatArgumentsToPartOfCacheKey(context.ServiceMethod.GetParameters(), paramCount);
+                this.FormatArgumentsToPartOfCacheKey(context.GetParameters(), paramCount);
 
             return this.GenerateCacheKey(typeName, methodName, methodArguments);
         }
@@ -103,9 +104,9 @@ namespace Bing.Caching.Aspects
         /// <param name="methodArguments">方法参数</param>
         /// <param name="paramCount">参数数量</param>
         /// <returns></returns>
-        private IList<string> FormatArgumentsToPartOfCacheKey(IList<ParameterInfo> methodArguments, int paramCount = 5)
+        private IList<string> FormatArgumentsToPartOfCacheKey(ParameterCollection methodArguments, int paramCount = 5)
         {
-            return methodArguments.Select(this.GetArgumentValue).Take(paramCount).ToList();
+            return methodArguments.Select(x=>this.GetArgumentValue(x.Value)).Take(paramCount).ToList();
         }
 
         /// <summary>
