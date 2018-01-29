@@ -55,6 +55,17 @@ namespace Bing.Utils.Json
             }
             return JsonConvert.DeserializeObject<T>(json);
         }
+
+        /// <summary>
+        /// 将Json字符串转换为对象
+        /// </summary>
+        /// <param name="json">Json字符串</param>
+        /// <param name="type">实体类型</param>
+        /// <returns></returns>
+        public static object ToObject(string json,Type type)
+        {
+            return JsonConvert.DeserializeObject(json,type);
+        }
         #endregion
 
         #region ToJson(将对象转换为Json字符串)

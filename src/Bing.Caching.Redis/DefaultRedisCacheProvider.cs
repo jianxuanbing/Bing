@@ -80,6 +80,17 @@ namespace Bing.Caching.Redis
         }
 
         /// <summary>
+        /// 将RedisValue反序列化成对象
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <param name="type">数据类型</param>
+        /// <returns></returns>
+        private object ToObj(RedisValue value, Type type)
+        {
+            return JsonUtil.ToObject(value.SafeString(), type);
+        }
+
+        /// <summary>
         /// 将RedisValue反序列成对象列表
         /// </summary>
         /// <typeparam name="T">数据类型</typeparam>
@@ -236,6 +247,27 @@ namespace Bing.Caching.Redis
                 return new CacheValue<T>(value,true);
             }
             return CacheValue<T>.NoValue;
+        }
+
+        /// <summary>
+        /// 获取缓存
+        /// </summary>
+        /// <param name="cacheKey">缓存键</param>
+        /// <param name="type">实体类型</param>
+        /// <returns></returns>
+        public CacheValue<object> Get(string cacheKey, Type type)
+        {
+            cacheKey.CheckNotNullOrEmpty(nameof(cacheKey));
+
+            cacheKey = AddSysCustomKey(cacheKey);
+
+            var result = _database.StringGet(cacheKey);
+            if (!result.IsNull)
+            {
+                var value = ToObj(result,type);
+                return new CacheValue<object>(value, true);
+            }
+            return CacheValue<object>.NoValue;
         }
 
         /// <summary>

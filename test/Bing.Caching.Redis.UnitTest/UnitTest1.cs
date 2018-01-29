@@ -7,8 +7,6 @@ namespace Bing.Caching.Redis.UnitTest
 {
     [TestClass]
     public class UnitTest1
-    {
-
-        
+    {        
     }
 }

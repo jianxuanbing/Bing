@@ -24,5 +24,12 @@ namespace Bing.Utils.UnitTest
             var type = typeof(float);
             Console.WriteLine(type.ToString());
         }
+
+        [TestMethod]
+        public void Test_Json()
+        {
+            
+        }
     }
+
 }

@@ -42,10 +42,10 @@ namespace Bing.Samples.Api.Configs
                 config.ApiKey = "CqcBoQlNP1FBxCWLe0o5ZpX3eSmB3JqK4QUvDGUw";
                 config.ServerUrl = "http://192.168.3.113:8070";
             });
-            builder.AddDefaultRedisCache(x =>
+            builder.AddDefaultRedisCache(config =>
             {
-                x.EndPoints.Add(new ServerEndPoint("192.168.3.115",6379));
-                x.Password = "";
+                config.EndPoints.Add(new ServerEndPoint("192.168.3.115", 9494));
+                config.Password = "";
             });
         }
     }

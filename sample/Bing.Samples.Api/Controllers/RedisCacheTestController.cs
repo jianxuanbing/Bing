@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Http;
 using Bing.Caching;
 using Bing.Caching.Aspects;
+using Bing.Samples.Domains.Models;
+using Bing.Samples.Services;
 
 namespace Bing.Samples.Api.Controllers
 {
@@ -15,9 +17,12 @@ namespace Bing.Samples.Api.Controllers
     {
         private ICacheProvider _cacheProvider;
 
-        public RedisCacheTestController(ICacheProvider cacheProvider)
+        private ITestService _testService;
+
+        public RedisCacheTestController(ICacheProvider cacheProvider,ITestService testService)
         {
             _cacheProvider = cacheProvider;
+            _testService = testService;
         }
 
         /// <summary>
@@ -45,6 +50,12 @@ namespace Bing.Samples.Api.Controllers
                 return $"cached value: {res}";
             }
             return "error";
+        }
+
+        [HttpGet]
+        public List<ItemResult> GetItems()
+        {
+            return _testService.GetItems();
         }
     }
 }

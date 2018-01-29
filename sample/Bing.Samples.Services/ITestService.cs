@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Bing.Aspects;
 using Bing.Dependency;
 using Bing.Logs.Aspects;
+using Bing.Samples.Domains.Models;
 
 namespace Bing.Samples.Services
 {
@@ -15,5 +16,7 @@ namespace Bing.Samples.Services
 
         [DebugLog]
         void WriteOtherLog(string content);
+
+        List<ItemResult> GetItems();
     }
 }

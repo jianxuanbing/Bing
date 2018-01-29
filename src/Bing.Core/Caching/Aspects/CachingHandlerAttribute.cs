@@ -46,7 +46,8 @@ namespace Bing.Caching.Aspects
         public override async Task Invoke(AspectContext context, AspectDelegate next)
         {
             var cacheKey = GenerateCacheKey(context, ParamCount);
-            var cacheValue = CacheProvider.Get<object>(cacheKey);
+            var type = context.ServiceMethod.ReturnType;
+            var cacheValue = CacheProvider.Get(cacheKey,type);
             if (cacheValue.HasValue)
             {
                 context.ReturnValue = cacheValue.Value;
