@@ -117,7 +117,7 @@ namespace Bing.Caching.Aspects
         /// <returns></returns>
         private string GetArgumentValue(object arg)
         {
-            if (arg is int || arg is long || arg is string)
+            if (arg is int || arg is long || arg is string || arg is Guid || arg is decimal)
             {
                 return arg.ToString();
             }
