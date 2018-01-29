@@ -19,6 +19,19 @@ namespace Bing.Caching.Redis
         IDatabase GetDatabase();
 
         /// <summary>
+        /// 获取当前Redis服务器
+        /// </summary>
+        /// <param name="hostAndPort">主机名和端口</param>
+        /// <returns></returns>
+        IServer GetServer(string hostAndPort);
+
+        /// <summary>
+        /// 获取 Redis多连接复用器
+        /// </summary>
+        /// <returns></returns>
+        ConnectionMultiplexer GetConnectionMultiplexer();
+
+        /// <summary>
         /// Redis 缓存配置
         /// </summary>
         RedisCacheOptions Options { get; }

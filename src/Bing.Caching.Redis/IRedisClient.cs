@@ -10,7 +10,7 @@ namespace Bing.Caching.Redis
     /// <summary>
     /// Redis 客户端接口
     /// </summary>
-    public interface IRedisClient:IDisposable
+    public interface IRedisClient
     {
         #region String(字符串类型数据操作)
         /// <summary>
@@ -117,6 +117,7 @@ namespace Bing.Caching.Redis
         /// <param name="commandFlags">命令标识，默认无</param>
         /// <returns></returns>
         double StringDecrement(string key, double value = 1, CommandFlags commandFlags = CommandFlags.None);
+
         /// <summary>
         /// Redis String类型 模糊查询 key* 查询出所有key开头的键
         /// </summary>
@@ -130,7 +131,6 @@ namespace Bing.Caching.Redis
         /// <summary>
         /// Redis String类型 新增一条记录
         /// </summary>
-        /// <typeparam name="T">引用类型</typeparam>
         /// <param name="key">键</param>
         /// <param name="value">值</param>
         /// <param name="expiry">过期时间</param>
@@ -232,6 +232,7 @@ namespace Bing.Caching.Redis
         /// <param name="commandFlags">命令标识，默认无</param>
         /// <returns></returns>
         Task<double> StringDecrementAsync(string key, double value = 1, CommandFlags commandFlags = CommandFlags.None);
+
         /// <summary>
         /// Redis String类型 模糊查询 key* 查询出所有key开头的键
         /// </summary>
@@ -705,11 +706,7 @@ namespace Bing.Caching.Redis
         /// </summary>
         /// <returns></returns>
         List<string> GetAllKeys();
-
-        /// <summary>
-        /// 释放数据连接
-        /// </summary>
-        void DbConnectionStop();
+        
         #endregion
 
         #region Subscribe(发布订阅)
@@ -784,6 +781,11 @@ namespace Bing.Caching.Redis
         /// 清空服务器上所有库的缓存数据
         /// </summary>
         void ClearAll();
+
+        /// <summary>
+        /// 释放数据连接
+        /// </summary>
+        void DbConnectionStop();
         #endregion
     }
 }

@@ -44,7 +44,26 @@ namespace Bing.Caching.Redis
         public IDatabase GetDatabase()
         {
             return _connectionMultiplexer.Value.GetDatabase(_options.Database);
-        }        
+        }
+
+        /// <summary>
+        /// 获取 Redis多连接复用器
+        /// </summary>
+        /// <returns></returns>
+        public ConnectionMultiplexer GetConnectionMultiplexer()
+        {
+            return _connectionMultiplexer.Value;
+        }
+
+        /// <summary>
+        /// 获取当前Redis服务器
+        /// </summary>
+        /// <param name="hostAndPort">主机名和端口</param>
+        /// <returns></returns>
+        public IServer GetServer(string hostAndPort)
+        {
+            return _connectionMultiplexer.Value.GetServer(hostAndPort);
+        }
 
         /// <summary>
         /// 创建Redis多连接复用器
