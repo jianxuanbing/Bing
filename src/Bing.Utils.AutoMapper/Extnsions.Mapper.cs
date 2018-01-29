@@ -86,16 +86,7 @@ namespace Bing.Utils.AutoMapper
                 {
                     return Mapper.Map(source, destination);
                 }
-                var maps = Mapper.Configuration.GetAllTypeMaps();
-                Mapper.Initialize(config =>
-                {
-                    ClearConfig();
-                    foreach (var item in maps)
-                    {
-                        config.CreateMap(item.SourceType, item.DestinationType);
-                    }
-                    config.CreateMap(sourceType, destinationType);
-                });
+                InitMaps(sourceType,destinationType);
             }
             return Mapper.Map(source, destination);
         }
@@ -122,10 +113,7 @@ namespace Bing.Utils.AutoMapper
                     }
                     catch (InvalidOperationException)
                     {
-                        Mapper.Initialize(config =>
-                        {
-                            config.CreateMap(sourceType, destinationType);
-                        });
+                        InitMaps(sourceType,destinationType);
                     }
                     return Mapper.Configuration.FindTypeMapFor(sourceType, destinationType);
                 }
@@ -154,6 +142,35 @@ namespace Bing.Utils.AutoMapper
                 throw new ArgumentException("泛型类型参数不能为空");
             }
             return genericArgumentsTypes[0];
+        }
+
+        /// <summary>
+        /// 初始化映射配置
+        /// </summary>
+        /// <param name="sourceType">源类型</param>
+        /// <param name="destinationType">目标类型</param>
+        private static void InitMaps(Type sourceType, Type destinationType)
+        {
+            try
+            {
+                var maps = Mapper.Configuration.GetAllTypeMaps();
+                Mapper.Initialize(config =>
+                {
+                    ClearConfig();
+                    foreach (var item in maps)
+                    {
+                        config.CreateMap(item.SourceType, item.DestinationType);
+                    }
+                    config.CreateMap(sourceType, destinationType);
+                });
+            }
+            catch (InvalidOperationException)
+            {
+                Mapper.Initialize(config =>
+                {
+                    config.CreateMap(sourceType, destinationType);
+                });
+            }
         }
 
         /// <summary>

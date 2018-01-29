@@ -27,4 +27,12 @@ namespace Bing.Utils.AutoMapper.UnitTest
 
         public Guid? GroupId { get; set; }
     }
+
+    /// <summary>
+    /// 用户信息视图 数据传输对象
+    /// </summary>
+    public class UserInfoViewDto
+    {
+        public string Name { get; set; }
+    }
 }
