@@ -95,6 +95,10 @@
     <Compile Include="Json\JsonUtil.cs" />
     <Compile Include="Maths\HexConv.cs" />
     <Compile Include="Maths\UnitConv.cs" />
+    <Compile Include="Modes\BankCards\BankCardRuleBuilder.cs" />
+    <Compile Include="Modes\BankCards\BankInfo.cs" />
+    <Compile Include="Modes\BankCards\CardRule.cs" />
+    <Compile Include="Modes\BankCards\CardType.cs" />
     <Compile Include="Modes\IdCards\IdCard.cs" />
     <Compile Include="Modes\IdCards\IdCardVerifier.cs" />
     <Compile Include="Modes\IdCards\Sex.cs" />

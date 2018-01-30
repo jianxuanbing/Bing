@@ -53,6 +53,7 @@
     <Compile Include="Helpers\ConvTest.cs" />
     <Compile Include="Helpers\SerialNumberTest.cs" />
     <Compile Include="Helpers\TimestampIdTest.cs" />
+    <Compile Include="Modes\BankCards\BankInfoTest.cs" />
     <Compile Include="Modes\Trees\TreeBuilderTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
