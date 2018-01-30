@@ -196,6 +196,12 @@ namespace Bing.Utils.Modes.BankCards
             });
 
             #endregion
+
+            #region 民生银行
+
+
+
+            #endregion
         }
     }
 }
