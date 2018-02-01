@@ -236,7 +236,9 @@
       <Name>Bing.Utils</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SqlBuilder\Conditions\OrderBys\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\LibraryResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>

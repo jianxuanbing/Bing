@@ -121,6 +121,6 @@ namespace Bing.Caching
         /// <param name="cacheKey">缓存键</param>
         /// <param name="cacheValue">缓存值</param>
         /// <param name="expiration">过期时间</param>
-        Task RefreshAsync<T>(string cacheKey, T cacheValue, TimeSpan expiration) where T : class;
+        Task RefreshAsync<T>(string cacheKey, T cacheValue, TimeSpan expiration) where T : class;        
     }
 }

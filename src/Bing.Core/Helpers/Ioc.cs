@@ -71,6 +71,17 @@ namespace Bing.Helpers
         /// <summary>
         /// 创建对象
         /// </summary>
+        /// <param name="type">对象类型</param>
+        /// <param name="name">服务名称</param>
+        /// <returns></returns>
+        public static object Create(Type type, string name = null)
+        {
+            return DefaultContainer.Create(type, name);
+        }
+
+        /// <summary>
+        /// 创建对象
+        /// </summary>
         /// <typeparam name="TResult">返回类型</typeparam>
         /// <param name="type">对象类型</param>
         /// <param name="name">服务名称</param>

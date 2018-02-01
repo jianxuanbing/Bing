@@ -10,6 +10,7 @@ using AspectCore.DynamicProxy.Parameters;
 using AspectCore.Injector;
 using Bing.Aspects.Base;
 using Bing.Caching.Abstractions;
+using Bing.Helpers;
 
 namespace Bing.Caching.Aspects
 {
@@ -30,7 +31,7 @@ namespace Bing.Caching.Aspects
 
         /// <summary>
         /// 获取或设置 缓存提供程序
-        /// </summary>
+        /// </summary>        
         [FromContainer]
         public ICacheProvider CacheProvider { get; set; }
 

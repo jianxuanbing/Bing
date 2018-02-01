@@ -14,7 +14,7 @@ namespace Bing.Caching.Redis
     /// <summary>
     /// 默认的Redis缓存提供程序
     /// </summary>
-    public class DefaultRedisCacheProvider:ICacheProvider
+    public class DefaultRedisCacheProvider: IRedisCacheProvider
     {
         /// <summary>
         /// 缓存数据库
@@ -381,6 +381,15 @@ namespace Bing.Caching.Redis
 
             await this.RemoveAsync(cacheKey);
             await this.SetAsync(cacheKey, cacheValue, expiration);
+        }
+
+        /// <summary>
+        /// 获取Redis客户端
+        /// </summary>
+        /// <returns></returns>
+        public IRedisClient GetClient()
+        {
+            return this.Client;
         }
     }
 }

@@ -15,6 +15,11 @@ namespace Bing.Caching.Redis
     /// </summary>
     public static partial class ServiceExtensions
     {
+        /// <summary>
+        /// 添加默认Redis缓存
+        /// </summary>
+        /// <param name="services">服务</param>
+        /// <param name="optionsAction">配置</param>
         public static void AddDefaultRedisCache(this ContainerBuilder services, Action<RedisCacheOptions> optionsAction)
         {
             services.CheckNotNull(nameof(services));
@@ -22,9 +27,10 @@ namespace Bing.Caching.Redis
 
             var options=new RedisCacheOptions();
             optionsAction.Invoke(options);
-            services.AddSingleton<ICacheSerializer, DefaultBinaryFormatterSerializer>();
+            services.AddSingleton<ICacheSerializer, DefaultJsonFormatterSerializer>();
             services.AddSingleton<IRedisDatabaseProvider, RedisDatabaseProvider>();
             services.AddSingleton(options);
+            services.AddSingleton<IRedisCacheProvider, DefaultRedisCacheProvider>();
             services.AddSingleton<ICacheProvider, DefaultRedisCacheProvider>();
         }
     }

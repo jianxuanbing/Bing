@@ -54,9 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheProviderExtensions.cs" />
-    <Compile Include="DefaultBinaryFormatterSerializer.cs" />
+    <Compile Include="DefaultJsonFormatterSerializer.cs" />
     <Compile Include="DefaultRedisCacheProvider.cs" />
+    <Compile Include="IRedisCacheProvider.cs" />
     <Compile Include="IRedisClient.cs" />
     <Compile Include="IRedisDatabaseProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
