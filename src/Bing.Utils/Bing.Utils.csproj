@@ -113,6 +113,8 @@
     <Compile Include="Parameters\Formats\IParameterFormat.cs" />
     <Compile Include="Parameters\Formats\ParameterFormatBase.cs" />
     <Compile Include="Parameters\Formats\UrlParameterFormat.cs" />
+    <Compile Include="Parameters\ParameterBuilder.cs" />
+    <Compile Include="Parameters\UrlParameterBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\R.Designer.cs">
       <AutoGen>True</AutoGen>
