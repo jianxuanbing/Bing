@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnyRadixConvert_CharacterIsNotValid" xml:space="preserve">
+    <value>参数中的字符\"{0}\"不是 {1} 进制数的有效字符。</value>
+  </data>
+  <data name="AnyRadixConvert_Overflow" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="ParameterCheck_Between" xml:space="preserve">
     <value>参数“{0}”的值必须在“{1}”与“{2}”之间。</value>
   </data>

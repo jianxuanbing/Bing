@@ -61,6 +61,24 @@ namespace Bing.Utils.Properties {
         }
         
         /// <summary>
+        ///   查找类似 参数中的字符\&quot;{0}\&quot;不是 {1} 进制数的有效字符。 的本地化字符串。
+        /// </summary>
+        internal static string AnyRadixConvert_CharacterIsNotValid {
+            get {
+                return ResourceManager.GetString("AnyRadixConvert_CharacterIsNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 0 的本地化字符串。
+        /// </summary>
+        internal static string AnyRadixConvert_Overflow {
+            get {
+                return ResourceManager.GetString("AnyRadixConvert_Overflow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 参数“{0}”的值必须在“{1}”与“{2}”之间。 的本地化字符串。
         /// </summary>
         internal static string ParameterCheck_Between {
