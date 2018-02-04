@@ -59,6 +59,7 @@
     <Compile Include="Expressions\ParameterRebinder.cs" />
     <Compile Include="Expressions\PredicateExpressionBuilder.cs" />
     <Compile Include="ExtensionMethodSetting.cs" />
+    <Compile Include="Extensions\BaseType\ArrayExtensions.cs" />
     <Compile Include="Extensions\Common\Extensions.Check.cs" />
     <Compile Include="Extensions\Common\Extensions.Common.cs" />
     <Compile Include="Extensions\Common\Extensions.Convert.cs" />

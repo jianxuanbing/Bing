@@ -47,6 +47,16 @@ namespace Bing.Utils.Extensions
             }
             return false;
         }
+
+        /// <summary>
+        /// 数组是否为空
+        /// </summary>
+        /// <param name="array">数据</param>
+        /// <returns></returns>
+        public static bool IsEmpty(this Array array)
+        {
+            return array == null || array.Length == 0;
+        }
         #endregion
 
         #region IsNull(是否为空)
