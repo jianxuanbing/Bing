@@ -105,6 +105,9 @@ namespace Bing.Utils.Extensions
                 return false;
             }
         }
+        #endregion
+
+        #region Swap(交换数组中两索引的值)
 
         /// <summary>
         /// 交换数组中两索引的值
@@ -117,6 +120,12 @@ namespace Bing.Utils.Extensions
         {
             Common.Swap(ref array[index1], ref array[index2]);
         }
+
+
+
+        #endregion
+
+        #region SwapRow(交换数组中两行的值)
 
         /// <summary>
         /// 交换数组中两行的值
@@ -132,5 +141,8 @@ namespace Bing.Utils.Extensions
                 Common.Swap(ref array[row1, i], ref array[row2, i]);
             }
         }
+
+        #endregion
+
     }
 }
