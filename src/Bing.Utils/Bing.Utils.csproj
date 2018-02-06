@@ -126,6 +126,15 @@
     <Compile Include="Timing\DateTimeRange.cs" />
     <Compile Include="Timing\DateTimeUtil.cs" />
     <Compile Include="Transplants\Atomics\AtomicInteger.cs" />
+    <Compile Include="Validators\IdentityCards\Gender.cs" />
+    <Compile Include="Validators\IdentityCards\IdCardLength.cs" />
+    <Compile Include="Validators\IdentityCards\IdCardValidationResult.cs" />
+    <Compile Include="Validators\IdentityCards\Validators\ErrorMessage.cs" />
+    <Compile Include="Validators\IValidatonDictionary.cs" />
+    <Compile Include="Validators\IValidator.cs" />
+    <Compile Include="Validators\ValidationResult.cs" />
+    <Compile Include="Validators\ValidatorBase.cs" />
+    <Compile Include="Validators\ValidatorWithDictionaryBase.cs" />
     <Compile Include="Webs\UserAgentUtil.cs" />
   </ItemGroup>
   <ItemGroup>

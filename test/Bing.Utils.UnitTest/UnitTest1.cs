@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Bing.Utils.Json;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Bing.Utils.UnitTest
@@ -28,8 +29,29 @@ namespace Bing.Utils.UnitTest
         [TestMethod]
         public void Test_Json()
         {
-            
+            TestA a=new TestA(Guid.NewGuid());
+
+            var result = a.ToJson();
+            Console.WriteLine(result);
+
+            var temp = result.ToObject<TestA>();
+            var result1 = temp.ToJson();
+            Console.WriteLine(result1);
         }
+
+
+        public class TestA
+        {
+            public Guid Id { get; }
+
+            public TestA() : this(Guid.Empty) { }
+
+            public TestA(Guid id)
+            {
+                Id = id;
+            }
+        }
+        
     }
 
 }
