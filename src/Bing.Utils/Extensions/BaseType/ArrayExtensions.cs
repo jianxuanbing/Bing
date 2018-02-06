@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Utils.Helpers;
 
 namespace Bing.Utils.Extensions
 {
@@ -105,7 +106,31 @@ namespace Bing.Utils.Extensions
             }
         }
 
-        #endregion
+        /// <summary>
+        /// 交换数组中两索引的值
+        /// </summary>
+        /// <typeparam name="T">数据类型</typeparam>
+        /// <param name="array">数组</param>
+        /// <param name="index1">索引1</param>
+        /// <param name="index2">索引2</param>
+        public static void Swap<T>(this T[] array, int index1, int index2)
+        {
+            Common.Swap(ref array[index1], ref array[index2]);
+        }
 
+        /// <summary>
+        /// 交换数组中两行的值
+        /// </summary>
+        /// <typeparam name="T">数据类型</typeparam>
+        /// <param name="array">二维数组</param>
+        /// <param name="row1">行索引1</param>
+        /// <param name="row2">行索引2</param>
+        public static void SwapRow<T>(this T[,] array, int row1, int row2)
+        {
+            for (int i = array.GetLength(1) - 1; i >= 0; --i)
+            {
+                Common.Swap(ref array[row1, i], ref array[row2, i]);
+            }
+        }
     }
 }

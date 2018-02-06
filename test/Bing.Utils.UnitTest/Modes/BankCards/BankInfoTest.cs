@@ -15,7 +15,7 @@ namespace Bing.Utils.UnitTest.Modes.BankCards
         [TestMethod]
         public void Test_BankInfo()
         {
-            var card = "6217996620000156427";
+            var card = "6217001210024455220";
             var result = BankCardRuleBuilder.GetBankInfo(card);
             Console.WriteLine(result.ToJson());
         }
