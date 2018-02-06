@@ -11,6 +11,8 @@ namespace Bing.Utils.Extensions
     /// </summary>
     public static class ArrayExtensions
     {
+        #region Add(添加数据项)
+
         /// <summary>
         /// 添加数据项
         /// </summary>
@@ -20,10 +22,14 @@ namespace Bing.Utils.Extensions
         /// <returns></returns>
         public static T[] Add<T>(this T[] array, T item)
         {
-            Array.Resize(ref array,array.Length+1);
+            Array.Resize(ref array, array.Length + 1);
             array[array.Length - 1] = item;
             return array;
         }
+
+        #endregion
+
+        #region ForEach(遍历数组)
 
         /// <summary>
         /// 遍历数组
@@ -36,8 +42,8 @@ namespace Bing.Utils.Extensions
             {
                 return;
             }
-            
-            ArrayTraverse walker=new ArrayTraverse(array);
+
+            ArrayTraverse walker = new ArrayTraverse(array);
 
             do
             {
@@ -66,8 +72,8 @@ namespace Bing.Utils.Extensions
             /// <param name="array">数组</param>
             public ArrayTraverse(Array array)
             {
-                Position=new int[array.Rank];
-                _maxLengths=new int[array.Rank];
+                Position = new int[array.Rank];
+                _maxLengths = new int[array.Rank];
 
                 for (int i = 0; i < array.Rank; i++)
                 {
@@ -97,6 +103,9 @@ namespace Bing.Utils.Extensions
 
                 return false;
             }
-        }        
+        }
+
+        #endregion
+
     }
 }
