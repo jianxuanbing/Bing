@@ -101,6 +101,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00-document", "00-document"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils.AutoMapper.UnitTest", "test\Bing.Utils.AutoMapper.UnitTest\Bing.Utils.AutoMapper.UnitTest.csproj", "{77DFE992-9EA1-4285-9D33-982C6BF17675}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Comments", "src\Bing.Comments\Bing.Comments.csproj", "{998E9900-383F-44CB-A261-43BE545B870C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -235,6 +237,10 @@ Global
 		{77DFE992-9EA1-4285-9D33-982C6BF17675}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77DFE992-9EA1-4285-9D33-982C6BF17675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77DFE992-9EA1-4285-9D33-982C6BF17675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{998E9900-383F-44CB-A261-43BE545B870C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{998E9900-383F-44CB-A261-43BE545B870C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{998E9900-383F-44CB-A261-43BE545B870C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{998E9900-383F-44CB-A261-43BE545B870C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -280,5 +286,6 @@ Global
 		{FB5C7AA3-CCB9-485E-8AA6-2FAFA5A2D178} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
 		{8C9DCDE9-748A-49D0-8755-252DF2059384} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
 		{77DFE992-9EA1-4285-9D33-982C6BF17675} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
+		{998E9900-383F-44CB-A261-43BE545B870C} = {09F0B568-FD1F-4407-B525-4DCC13107011}
 	EndGlobalSection
 EndGlobal
