@@ -215,7 +215,10 @@
     <Compile Include="SqlBuilder\Conditions\ParamContext.cs" />
     <Compile Include="SqlBuilder\Conditions\RelationType.cs" />
     <Compile Include="SqlBuilder\Conditions\SqlOperator.cs" />
+    <Compile Include="SqlBuilder\Logics\ILogicSqlBuilder.cs" />
+    <Compile Include="SqlBuilder\Logics\LogicSqlBuilder.cs" />
     <Compile Include="SqlBuilder\SqlBuilderException.cs" />
+    <Compile Include="SqlBuilder\SqlBusinessLogicOptions.cs" />
     <Compile Include="Validations\Aspects\ValidAttribute.cs" />
     <Compile Include="Validations\DataAnnotationValidation.cs" />
     <Compile Include="Validations\Handlers\DefaultValidationHandler.cs" />

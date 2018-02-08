@@ -233,7 +233,7 @@ namespace Bing.SqlBuilder.Conditions
         /// </summary>
         /// <param name="sql">Sql语句</param>
         /// <returns></returns>
-        public virtual IConditionBuilder AppendRaw(string sql)
+        public virtual IConditionBuilder AppendRaw(string sql,params object[] param)
         {
             if (string.IsNullOrWhiteSpace(sql))
             {
@@ -243,9 +243,8 @@ namespace Bing.SqlBuilder.Conditions
             {
                 return this;
             }
-            return AppendRaw(RelationType.And, sql);
-        }
-
+            return AppendRaw(RelationType.And, string.Format(sql,param));
+        }        
         #endregion
 
         #region Block(添加含有括号的条件)
@@ -362,6 +361,20 @@ namespace Bing.SqlBuilder.Conditions
             ParamContext.Index++;
             string parameterName = string.Format("{0}{1}{2}", ParameterPrefix, ParameterKey, ParamContext.Index);
             this.ParamDictionary.Add(parameterName, fieldValue);
+            return parameterName;
+        }
+
+        /// <summary>
+        /// 添加参数
+        /// </summary>
+        /// <param name="fieldName">字段名</param>
+        /// <param name="fieldValue">字段值</param>
+        /// <returns></returns>
+        public string AddParameter(string fieldName, object fieldValue)
+        {
+            fieldName = fieldName.TrimStart(ParameterPrefix[0]);
+            string parameterName = string.Format("{0}{1}", ParameterPrefix, fieldName);
+            this.ParamDictionary.Add(parameterName,fieldValue);
             return parameterName;
         }
 

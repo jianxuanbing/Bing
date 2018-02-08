@@ -69,7 +69,7 @@ namespace Bing.SqlBuilder.Conditions
         /// </summary>
         /// <param name="sql">Sql语句</param>
         /// <returns></returns>
-        IConditionBuilder AppendRaw(string sql);
+        IConditionBuilder AppendRaw(string sql, params object[] param);
 
         /// <summary>
         /// 添加含有括号的条件

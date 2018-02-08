@@ -120,5 +120,19 @@ namespace Bing.UnitTest.SqlBuilder.Conditions
             Console.WriteLine(result);
             Console.WriteLine(param);
         }
+
+        [TestMethod]
+        public void Test_CustomParam()
+        {
+            ConditionBuilder builder=new ConditionBuilder();
+            builder.AppendRaw("(LEFT({0}, LEN({1})) = {1}",
+                    builder.AddParameter("ParentID", "BB2A1B4A-5E9E-33D5-697B-39E37974ACC4"), "ParentID")
+                .Equal("IsDeleted", 1).Equal("Status", 1);
+            var result = builder.ToString();
+            var param = builder.GetParamDict().ToJson();
+
+            Console.WriteLine(result);
+            Console.WriteLine(param);
+        }        
     }
 }
