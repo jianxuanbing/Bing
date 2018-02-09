@@ -50,6 +50,14 @@ namespace Bing.Utils.Modes.Trees
         /// <summary>
         /// 初始化一个<see cref="TreeNode{T}"/>类型的实例
         /// </summary>
+        public TreeNode()
+        {
+            
+        }
+
+        /// <summary>
+        /// 初始化一个<see cref="TreeNode{T}"/>类型的实例
+        /// </summary>
         /// <param name="text">文本</param>
         /// <param name="value">值</param>
         public TreeNode(string text, T value = default(T))

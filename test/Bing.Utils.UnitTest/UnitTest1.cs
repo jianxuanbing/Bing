@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Bing.Utils.Helpers;
 using Bing.Utils.Json;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -39,7 +40,6 @@ namespace Bing.Utils.UnitTest
             Console.WriteLine(result1);
         }
 
-
         public class TestA
         {
             public Guid Id { get; }
@@ -51,6 +51,16 @@ namespace Bing.Utils.UnitTest
                 Id = id;
             }
         }
+
+        [TestMethod]
+        public void Test_Conv_Decimal()
+        {
+            var result = Conv.ToDecimal((decimal)189 /99, 2);
+            Console.WriteLine(result);
+        }
+
+
+        
         
     }
 

@@ -334,7 +334,7 @@ namespace Bing.Utils.Helpers
         /// <returns></returns>
         public static decimal ToDecimal(object input, int? digits = null)
         {
-            return ToDecimal(input, default(decimal));
+            return ToDecimal(input, default(decimal), digits);
         }
 
         /// <summary>
