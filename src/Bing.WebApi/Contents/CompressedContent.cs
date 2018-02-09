@@ -57,6 +57,12 @@ namespace Bing.WebApi.Contents
             Headers.ContentEncoding.Add(encodingType);
         }
 
+        /// <summary>
+        /// 将内容序列化到流当中
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         protected override Task SerializeToStreamAsync(Stream stream, TransportContext context)
         {
             Stream compressedStream = null;
@@ -79,6 +85,11 @@ namespace Bing.WebApi.Contents
             });
         }
 
+        /// <summary>
+        /// 尝试计算长度
+        /// </summary>
+        /// <param name="length">长度</param>
+        /// <returns></returns>
         protected override bool TryComputeLength(out long length)
         {
             length = -1;
