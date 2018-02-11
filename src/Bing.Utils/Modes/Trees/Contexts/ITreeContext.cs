@@ -16,12 +16,12 @@ namespace Bing.Utils.Modes.Trees.Contexts
         /// <summary>
         /// 数据源
         /// </summary>
-        List<ITreeNode<TOuter>> Data { get; set; }
+        List<TreeNode<TOuter>> Data { get; set; }
 
         /// <summary>
         /// 当前节点
         /// </summary>
-        ITreeNode<TOuter> Current { get; set; }
+        TreeNode<TOuter> Current { get; set; }
 
         /// <summary>
         /// 分隔符
@@ -57,13 +57,13 @@ namespace Bing.Utils.Modes.Trees.Contexts
         /// 获取当前树节点
         /// </summary>
         /// <returns></returns>
-        ITreeNode<TOuter> GetTreeNode();
+        TreeNode<TOuter> GetTreeNode();
 
         /// <summary>
         /// 获取树节点
         /// </summary>
         /// <returns></returns>
-        List<ITreeNode<TOuter>> GetTrees();
+        List<TreeNode<TOuter>> GetTrees();
     }
 
     /// <summary>

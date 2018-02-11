@@ -43,7 +43,7 @@ namespace Bing.Utils.Modes.Trees.Builders
         /// <typeparam name="TOuter">输出类型</typeparam>
         /// <param name="rootNode">顶级节点</param>
         /// <returns></returns>
-        public static ITreeContext<T, TOuter> Build<T, TOuter>(ITreeNode<TOuter> rootNode)
+        public static ITreeContext<T, TOuter> Build<T, TOuter>(TreeNode<TOuter> rootNode)
         {
             return new TreeContext<T, TOuter>(rootNode);
         }
@@ -76,7 +76,7 @@ namespace Bing.Utils.Modes.Trees.Builders
         /// <typeparam name="T">实体类型</typeparam>
         /// <param name="rootNode">顶级节点</param>
         /// <returns></returns>
-        public static ITreeContext<T> Build<T>(ITreeNode<T> rootNode)
+        public static ITreeContext<T> Build<T>(TreeNode<T> rootNode)
         {
             return new TreeContext<T>(rootNode);
         }

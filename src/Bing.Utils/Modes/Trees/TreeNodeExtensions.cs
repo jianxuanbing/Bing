@@ -16,9 +16,9 @@ namespace Bing.Utils.Modes.Trees
         /// </summary>
         /// <param name="treeNode">当前节点</param>
         /// <returns></returns>
-        public static IEnumerable<ITreeNode> GetLeafNodes(this ITreeNode treeNode)
+        public static IEnumerable<TreeNode> GetLeafNodes(this TreeNode treeNode)
         {
-            foreach (ITreeNode child in treeNode.Children)
+            foreach (TreeNode child in treeNode.Children)
             {
                 if (child.Children.Any())
                 {

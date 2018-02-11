@@ -19,12 +19,12 @@ namespace Bing.Utils.Modes.Trees.Contexts
         /// <summary>
         /// 数据源
         /// </summary>
-        public List<ITreeNode<TOuter>> Data { get; set; }
+        public List<TreeNode<TOuter>> Data { get; set; }
 
         /// <summary>
         /// 当前节点
         /// </summary>
-        public ITreeNode<TOuter> Current { get; set; }
+        public TreeNode<TOuter> Current { get; set; }
 
         /// <summary>
         /// 分隔符
@@ -42,10 +42,10 @@ namespace Bing.Utils.Modes.Trees.Contexts
         /// 初始化一个<see cref="TreeContext{T,TOuter}"/>类型的实例
         /// </summary>
         /// <param name="node">节点</param>
-        public TreeContext(ITreeNode<TOuter> node)
+        public TreeContext(TreeNode<TOuter> node)
         {
             Current = node;
-            Data = new List<ITreeNode<TOuter>>();
+            Data = new List<TreeNode<TOuter>>();
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Bing.Utils.Modes.Trees.Contexts
         /// 获取当前树节点
         /// </summary>
         /// <returns></returns>
-        public ITreeNode<TOuter> GetTreeNode()
+        public TreeNode<TOuter> GetTreeNode()
         {
             return Current;
         }
@@ -102,7 +102,7 @@ namespace Bing.Utils.Modes.Trees.Contexts
         /// 获取树节点
         /// </summary>
         /// <returns></returns>
-        public List<ITreeNode<TOuter>> GetTrees()
+        public List<TreeNode<TOuter>> GetTrees()
         {
             return Data;
         }
@@ -118,8 +118,8 @@ namespace Bing.Utils.Modes.Trees.Contexts
         /// <param name="parentNode">父节点</param>
         /// <param name="convertSelector">转换选择器</param>
         /// <returns></returns>
-        internal IEnumerable<ITreeNode<TOuter>> GenerateTree<TKey>(List<T> collection, Func<T, string> textSelector,
-            Func<T, TKey> idSelector, Func<T, TKey> parentIdSelector, ITreeNode<TOuter> parentNode,
+        internal IEnumerable<TreeNode<TOuter>> GenerateTree<TKey>(List<T> collection, Func<T, string> textSelector,
+            Func<T, TKey> idSelector, Func<T, TKey> parentIdSelector, TreeNode<TOuter> parentNode,
             Func<T, TOuter> convertSelector=null)
         {
             var level = parentNode == null || parentNode.Level == 0 ? 1 : parentNode.Level + 1;
@@ -130,7 +130,7 @@ namespace Bing.Utils.Modes.Trees.Contexts
                        (parentNode?.Id != null && parentNode.Id.Equals(selector));
             }).ToList())
             {
-                ITreeNode<TOuter> node = convertSelector == null
+                TreeNode<TOuter> node = convertSelector == null
                     ? new TreeNode<TOuter>(textSelector(c), Conv.To<TOuter>(c))
                     : new TreeNode<TOuter>(textSelector(c), convertSelector(c));
                 node.Id = idSelector(c);
@@ -165,7 +165,7 @@ namespace Bing.Utils.Modes.Trees.Contexts
         /// 初始化一个<see cref="TreeContext{T}"/>类型的实例
         /// </summary>
         /// <param name="rootNode">根节点</param>
-        public TreeContext(ITreeNode<T> rootNode):base(rootNode)
+        public TreeContext(TreeNode<T> rootNode):base(rootNode)
         {
         }
     }
