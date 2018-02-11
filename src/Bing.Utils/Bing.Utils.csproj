@@ -71,6 +71,7 @@
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Helpers\Check.cs" />
     <Compile Include="Helpers\Common.cs" />
+    <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\Const.cs" />
     <Compile Include="Helpers\Conv.cs" />
     <Compile Include="Helpers\Enum.cs" />
