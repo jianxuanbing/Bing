@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Helpers\ConvTest.cs" />
     <Compile Include="Helpers\SerialNumberTest.cs" />
+    <Compile Include="Helpers\StrTest.cs" />
     <Compile Include="Helpers\TimestampIdTest.cs" />
     <Compile Include="Maths\HexConvTest.cs" />
     <Compile Include="Modes\BankCards\BankInfoTest.cs" />

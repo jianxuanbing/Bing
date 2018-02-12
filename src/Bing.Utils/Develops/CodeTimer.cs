@@ -50,16 +50,20 @@ namespace Bing.Utils.Develops
                 return;
             }
 
+            // 保留当前控制台前景色，并使用黄色输出名称参数
             ConsoleColor currentForeColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(name);
 
+            // 强制GC进行收集，并记录目前各代已经收集的次数
             GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
             int[] gcCounts = new int[GC.MaxGeneration + 1];
             for (int i = 0; i < GC.MaxGeneration; i++)
             {
                 gcCounts[i] = GC.CollectionCount(1);
             }
+
+            // 执行代码，记录下消耗的时间及CPU时钟周期
             Stopwatch watch = new Stopwatch();
             watch.Start();
             ulong cycleCount = GetCycleCount();
@@ -70,10 +74,12 @@ namespace Bing.Utils.Develops
             ulong cpuCycles = GetCycleCount() - cycleCount;
             watch.Stop();
 
+            // 恢复控制台默认前景色，并打印出消耗时间及CPU时钟周期
             Console.ForegroundColor = currentForeColor;
             Console.WriteLine("\tTime Elapsed:\t" + watch.Elapsed.TotalMilliseconds + "ms");
             Console.WriteLine("\tCPU Cycles:\t" + cpuCycles.ToString("N0"));
 
+            // 打印执行过程中各代垃圾收集回收次数
             for (int i = 0; i < GC.MaxGeneration; i++)
             {
                 int count = GC.CollectionCount(i) - gcCounts[i];
