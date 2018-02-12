@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Bing.Caching.Abstractions;
 using Bing.Caching.Core;
 using Bing.Utils.Extensions;
+using Bing.Utils.Helpers;
 using Bing.Utils.Json;
 using StackExchange.Redis;
 
@@ -76,6 +77,10 @@ namespace Bing.Caching.Redis
         /// <returns></returns>
         private T ToObj<T>(RedisValue value)
         {
+            if (typeof(T).IsValueType || typeof(T) == typeof(string))
+            {
+                return Conv.To<T>(value);
+            }
             return value.SafeString().ToObject<T>();
         }
 
