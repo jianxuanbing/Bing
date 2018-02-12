@@ -179,9 +179,9 @@ namespace Bing.Caching.Redis
             cacheKey.CheckNotNullOrEmpty(nameof(cacheKey));
             expiration.CheckGreaterThan(nameof(expiration), TimeSpan.Zero);
 
-            cacheKey = AddSysCustomKey(cacheKey);
+            var tempCacheKey= AddSysCustomKey(cacheKey);
 
-            var result = _database.StringGet(cacheKey);
+            var result = _database.StringGet(tempCacheKey);
             if (!result.IsNull)
             {
                 var value = ToObj<T>(result);
@@ -210,9 +210,9 @@ namespace Bing.Caching.Redis
             cacheKey.CheckNotNullOrEmpty(nameof(cacheKey));
             expiration.CheckGreaterThan(nameof(expiration), TimeSpan.Zero);
 
-            cacheKey = AddSysCustomKey(cacheKey);
+            var tempCacheKey = AddSysCustomKey(cacheKey);
 
-            var result = await _database.StringGetAsync(cacheKey);
+            var result = await _database.StringGetAsync(tempCacheKey);
             if (!result.IsNull)
             {
                 var value =ToObj<T>(result);
