@@ -192,6 +192,22 @@ namespace Bing.Utils.Helpers
         }
         #endregion
 
+        #region IsTel(是否中国电话)
+        /// <summary>
+        /// 是否中国电话，格式：010-85849685
+        /// </summary>
+        /// <param name="value">电话</param>
+        /// <returns></returns>
+        public static bool IsTel(string value)
+        {
+            if (value.IsEmpty())
+            {
+                return false;
+            }
+            return value.IsMatch(@"^\d{3,4}-?\d{6,8}$", RegexOptions.IgnoreCase);
+        }
+        #endregion
+
         #region IsIdCard(是否身份证号码)
         /// <summary>
         /// 是否身份证号码
@@ -414,6 +430,64 @@ namespace Bing.Utils.Helpers
             }
             return Uri.IsWellFormedUriString(value, UriKind.Absolute);
         }
+        #endregion
+
+        #region IsMainDomainUrl(是否主域名Url地址)
+        /// <summary>
+        /// 是否主域名或者www开头的域名
+        /// </summary>
+        /// <param name="value">url地址</param>
+        /// <returns></returns>
+        public static bool IsMainDomainUrl(string value)
+        {
+            if (value.IsEmpty())
+            {
+                return false;
+            }
+            return
+                value.IsMatch(
+                    @"^http(s)?\://((www.)?[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{1,10}))(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\?\'\\\+&%\$#\=~_\-]+))*$");
+        }
+        #endregion
+
+        #region IsMainDomain(是否主域名)
+
+        /// <summary>
+        /// 是否主域名
+        /// </summary>
+        /// <param name="value">域名字符串</param>
+        /// <returns></returns>
+        public static bool IsMainDomain(string value)
+        {
+            if (value.IsEmpty())
+            {
+                return false;
+            }
+            return value.IsMatch(
+                @"^((www.)?[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{1,10}))(\:[0-9]+)*$",
+                RegexOptions.IgnoreCase);
+        }
+
+        #endregion
+
+        #region IsDomain(是否域名)
+
+        /// <summary>
+        /// 是否域名
+        /// </summary>
+        /// <param name="value">域名字符串</param>
+        /// <returns></returns>
+        public static bool IsDomain(string value)
+        {
+            if (value.IsEmpty())
+            {
+                return false;
+            }
+            return value.IsMatch(
+                @"^(([a-zA-Z0-9\-]+\.)?[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{1,10}))(\:[0-9]+)*$",
+                RegexOptions.IgnoreCase);
+        }
+
         #endregion
 
         #region IsMac(是否Mac地址)
@@ -680,65 +754,7 @@ namespace Bing.Utils.Helpers
             return value.IsMatch(@"[0-9]+");
         }
         #endregion
-
-        #region IsMainDomainUrl(是否主域名Url地址)
-        /// <summary>
-        /// 是否主域名或者www开头的域名
-        /// </summary>
-        /// <param name="value">url地址</param>
-        /// <returns></returns>
-        public static bool IsMainDomainUrl(string value)
-        {
-            if (value.IsEmpty())
-            {
-                return false;
-            }
-            return
-                value.IsMatch(
-                    @"^http(s)?\://((www.)?[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{1,10}))(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\?\'\\\+&%\$#\=~_\-]+))*$");
-        }
-        #endregion
-
-        #region IsMainDomain(是否主域名)
-
-        /// <summary>
-        /// 是否主域名
-        /// </summary>
-        /// <param name="value">域名字符串</param>
-        /// <returns></returns>
-        public static bool IsMainDomain(string value)
-        {
-            if (value.IsEmpty())
-            {
-                return false;
-            }
-            return value.IsMatch(
-                @"^((www.)?[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{1,10}))(\:[0-9]+)*$",
-                RegexOptions.IgnoreCase);
-        }
-
-        #endregion
-
-        #region IsDomain(是否域名)
-
-        /// <summary>
-        /// 是否域名
-        /// </summary>
-        /// <param name="value">域名字符串</param>
-        /// <returns></returns>
-        public static bool IsDomain(string value)
-        {
-            if (value.IsEmpty())
-            {
-                return false;
-            }
-            return value.IsMatch(
-                @"^(([a-zA-Z0-9\-]+\.)?[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{1,10}))(\:[0-9]+)*$",
-                RegexOptions.IgnoreCase);
-        }
-
-        #endregion
-
+        
         #region IsMobileUser(是否手机用户)
         /// <summary>
         /// 是否手机用户
@@ -835,22 +851,6 @@ namespace Bing.Utils.Helpers
                 return false;
             }
             return true;
-        }
-        #endregion
-
-        #region IsTel(是否中国电话)
-        /// <summary>
-        /// 是否中国电话，格式：010-85849685
-        /// </summary>
-        /// <param name="value">电话</param>
-        /// <returns></returns>
-        public static bool IsTel(string value)
-        {
-            if (value.IsEmpty())
-            {
-                return false;
-            }
-            return value.IsMatch(@"^\d{3,4}-?\d{6,8}$", RegexOptions.IgnoreCase);
         }
         #endregion
 
