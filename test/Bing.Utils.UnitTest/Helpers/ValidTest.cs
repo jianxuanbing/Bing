@@ -49,5 +49,13 @@ namespace Bing.Utils.UnitTest.Helpers
             Console.WriteLine(result1);
             Console.WriteLine(result2);
         }
+
+        [TestMethod]
+        public void Test_IsPostfix()
+        {
+            var source = "test.txt";
+            var result = Valid.IsPostfix(source, new string[] {"txt"});
+            Console.WriteLine(result);
+        }
     }
 }
