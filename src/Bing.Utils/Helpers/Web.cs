@@ -27,7 +27,7 @@ namespace Bing.Utils.Helpers
                 {
                     return HttpContext.Current.Request.Url.ToString();
                 }
-                catch (Exception e)
+                catch
                 {
                     return string.Empty;
                 }
@@ -86,7 +86,7 @@ namespace Bing.Utils.Helpers
                 return HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ??
                        HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"] ?? "";
             }
-            catch (Exception e)
+            catch
             {
                 return string.Empty;
             }
@@ -163,7 +163,7 @@ namespace Bing.Utils.Helpers
             bool isInnerIp = false;
             ulong ipNum = Ip2Ulong(ip);
 
-            /**
+            /*
              * 私有IP
              * A类：10.0.0.0-10.255.255.255
              * B类：172.16.0.0-172.31.255.255
@@ -285,7 +285,7 @@ namespace Bing.Utils.Helpers
                     var browser = HttpContext.Current.Request.Browser;
                     return string.Format("{0} {1}", browser.Browser, browser.Version);
                 }
-                catch (Exception e)
+                catch
                 {
                     return string.Empty;
                 }

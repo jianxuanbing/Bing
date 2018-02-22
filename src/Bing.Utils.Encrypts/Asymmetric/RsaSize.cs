@@ -11,8 +11,17 @@ namespace Bing.Utils.Encrypts.Asymmetric
     /// </summary>
     public enum RsaSize
     {
+        /// <summary>
+        /// R1024
+        /// </summary>
         R1024 = 1024,
+        /// <summary>
+        /// R2048
+        /// </summary>
         R2048 = 2048,
+        /// <summary>
+        /// R4096
+        /// </summary>
         R4096 = 4096
     }
 }

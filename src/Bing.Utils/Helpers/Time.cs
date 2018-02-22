@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -159,6 +160,39 @@ namespace Bing.Utils.Helpers
 
         #endregion
 
+        #region ParseIso8601(将ISO8601标准时间字符串转换为DateTime)
 
+        /// <summary>
+        /// 将ISO8601标准时间字符串转换为DateTime
+        /// </summary>
+        /// <param name="value">ISO8601标准时间字符串</param>
+        /// <param name="isLocal">是否本地时间</param>
+        /// <returns></returns>
+        public static DateTime ParseIso8601(string value, bool isLocal = true)
+        {
+            var result = DateTime.ParseExact(value, Const.TIME_FORMAT_ISO8601, CultureInfo.InvariantCulture,
+                DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+            if (isLocal)
+            {
+                result = result.ToLocalTime();
+            }
+            return result;
+        }
+
+        #endregion
+
+        #region FormatIso8601(格式化为ISO8601标准时间)
+
+        /// <summary>
+        /// 格式化为ISO8601标准时间
+        /// </summary>
+        /// <param name="value">输入值</param>
+        /// <returns></returns>
+        public static string FormatIso8601(DateTime value)
+        {
+            return value.ToUniversalTime().ToString(Const.TIME_FORMAT_ISO8601, CultureInfo.InvariantCulture);
+        }
+
+        #endregion
     }
 }

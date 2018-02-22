@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,5 +35,21 @@ namespace Bing.Utils.Extensions
         }
 
         #endregion
+
+        #region FormatInvariant(格式化字符串，不依赖区域性)
+
+        /// <summary>
+        /// 格式化字符串，不依赖区域性
+        /// </summary>
+        /// <param name="format">格式化字符串</param>
+        /// <param name="args">参数</param>
+        /// <returns></returns>
+        public static string FormatInvariant(this string format, params object[] args)
+        {
+            return string.Format(CultureInfo.InvariantCulture, format, args);
+        }
+
+        #endregion
+
     }
 }

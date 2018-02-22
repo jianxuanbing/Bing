@@ -370,5 +370,14 @@ namespace Bing.Utils.Helpers
         };
 
         #endregion
+
+        #region TIME_FORMAT_ISO8601(时间格式化：ISO8601标准时间)
+
+        /// <summary>
+        /// 时间格式化：ISO8601标准时间
+        /// </summary>
+        public const string TIME_FORMAT_ISO8601 = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'";
+
+        #endregion
     }
 }

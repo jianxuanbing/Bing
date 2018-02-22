@@ -88,6 +88,7 @@
     <Compile Include="Helpers\Thread.cs" />
     <Compile Include="Helpers\Time.cs" />
     <Compile Include="Helpers\TimestampId.cs" />
+    <Compile Include="Helpers\Valid.cs" />
     <Compile Include="Helpers\Web.cs" />
     <Compile Include="IdGenerators\IGuidGenerator.cs" />
     <Compile Include="IdGenerators\SequentialGuidGenerator.cs" />

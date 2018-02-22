@@ -54,6 +54,8 @@
     <Compile Include="Helpers\SerialNumberTest.cs" />
     <Compile Include="Helpers\StrTest.cs" />
     <Compile Include="Helpers\TimestampIdTest.cs" />
+    <Compile Include="Helpers\TimeTest.cs" />
+    <Compile Include="Helpers\ValidTest.cs" />
     <Compile Include="Maths\HexConvTest.cs" />
     <Compile Include="Modes\BankCards\BankInfoTest.cs" />
     <Compile Include="Modes\Trees\TreeBuilderTest.cs" />

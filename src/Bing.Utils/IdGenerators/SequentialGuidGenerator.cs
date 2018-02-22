@@ -67,6 +67,11 @@ namespace Bing.Utils.IdGenerators
             }
         }
 
+        /// <summary>
+        /// 创建有序的 Guid
+        /// </summary>
+        /// <param name="guidType">有序 Guid 类型</param>
+        /// <returns></returns>
         public Guid Create(SequentialGuidType guidType)
         {
             // We start with 16 bytes of cryptographically strong random data.
@@ -149,9 +154,21 @@ namespace Bing.Utils.IdGenerators
     /// </summary>
     public enum SequentialGuidDatabaseType
     {
+        /// <summary>
+        /// SqlServer
+        /// </summary>
         SqlServer,
+        /// <summary>
+        /// Oracle
+        /// </summary>
         Oracle,
+        /// <summary>
+        /// MySql
+        /// </summary>
         MySql,
+        /// <summary>
+        /// PostgreSql
+        /// </summary>
         PostgreSql
     }
 

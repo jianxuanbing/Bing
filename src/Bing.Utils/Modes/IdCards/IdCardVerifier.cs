@@ -34,7 +34,7 @@ namespace Bing.Utils.Modes.IdCards
         /// <returns></returns>
         public char CalculateVerifyCode(string source)
         {
-            /**
+            /*
              * <li>校验码（第十八位数）：<br/>
              * <ul>
              * <li>十七位数字本体码加权求和公式 S = Sum(Ai * Wi), i = 0...16 ，先对前17位数字的权求和；
