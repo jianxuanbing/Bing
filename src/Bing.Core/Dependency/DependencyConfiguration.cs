@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Bing.Contexts;
+using Bing.Events.Handlers;
 using Bing.Helpers;
 using Bing.Reflections;
 using Bing.Runtimes;
@@ -139,16 +140,16 @@ namespace Bing.Dependency
         /// </summary>
         private void RegistEventHandlers()
         {
-            //var handlerTypes = GetTypes(typeof(IEventHandler<>));
-            //foreach (var handler in handlerTypes)
-            //{
-            //    _builder.RegisterType(handler)
-            //        .As(handler.FindInterfaces(
-            //            (filter, criteria) => filter.IsGenericType &&
-            //                                  ((Type)criteria).IsAssignableFrom(filter.GetGenericTypeDefinition()),
-            //            typeof(IEventHandler<>)
-            //        )).InstancePerLifetimeScope();
-            //}
+            var handlerTypes = GetTypes(typeof(IEventHandler<>));
+            foreach (var handler in handlerTypes)
+            {
+                _builder.RegisterType(handler)
+                    .As(handler.FindInterfaces(
+                        (filter, criteria) => filter.IsGenericType &&
+                                              ((Type)criteria).IsAssignableFrom(filter.GetGenericTypeDefinition()),
+                        typeof(IEventHandler<>)
+                    )).InstancePerLifetimeScope();
+            }
         }
 
         #endregion

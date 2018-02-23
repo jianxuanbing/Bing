@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -227,6 +228,10 @@
     <ProjectReference Include="..\..\src\Bing.Datas.EntityFramework\Bing.Datas.EntityFramework.csproj">
       <Project>{9094029B-31BE-4CA3-81A5-9337DDA519A0}</Project>
       <Name>Bing.Datas.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Events\Bing.Events.csproj">
+      <Project>{64D68A7E-6B90-416A-BE69-EC74F37E1A4E}</Project>
+      <Name>Bing.Events</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bing.Logs.Exceptionless\Bing.Logs.Exceptionless.csproj">
       <Project>{569CA993-406C-4939-BF3C-6461B7A52E3C}</Project>

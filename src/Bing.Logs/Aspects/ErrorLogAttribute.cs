@@ -20,7 +20,7 @@ namespace Bing.Logs.Aspects
         public override async Task Invoke(AspectContext context, AspectDelegate next)
         {
             var methodName = GetMethodName(context);
-            var log = Log.GetLog(methodName);
+            var log = Log.GetLog(methodName,null);
             try
             {
                 await next(context);

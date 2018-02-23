@@ -16,7 +16,7 @@ namespace Bing.Caching.Redis
     public static partial class ServiceExtensions
     {
         /// <summary>
-        /// 添加默认Redis缓存
+        /// 注册默认Redis缓存
         /// </summary>
         /// <param name="services">服务</param>
         /// <param name="optionsAction">配置</param>

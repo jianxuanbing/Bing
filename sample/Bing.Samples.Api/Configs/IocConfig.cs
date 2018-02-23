@@ -14,6 +14,7 @@ using Bing.Caching.Redis;
 using Bing.Datas.EntityFramework;
 using Bing.Datas.UnitOfWorks;
 using Bing.Dependency;
+using Bing.Events.Default;
 using Bing.Logs.Aspects;
 using Bing.Logs.Exceptionless;
 using Bing.Logs.Log4Net;
@@ -35,18 +36,20 @@ namespace Bing.Samples.Api.Configs
                 config.EnableParameterAspect();
             });
 
-            builder.AddNLog("nlog");
+            builder.AddNLog();
 
-            builder.AddExceptionless(config =>
-            {
-                config.ApiKey = "CqcBoQlNP1FBxCWLe0o5ZpX3eSmB3JqK4QUvDGUw";
-                config.ServerUrl = "http://192.168.3.113:8070";
-            });
+            //builder.AddExceptionless(config =>
+            //{
+            //    config.ApiKey = "CqcBoQlNP1FBxCWLe0o5ZpX3eSmB3JqK4QUvDGUw";
+            //    config.ServerUrl = "http://192.168.3.113:8070";
+            //});
             builder.AddDefaultRedisCache(config =>
             {
                 config.EndPoints.Add(new ServerEndPoint("192.168.3.115", 9494));
                 config.Password = "";
             });
+
+            builder.AddDefaultEventBus();
         }
     }
 }

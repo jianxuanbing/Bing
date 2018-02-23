@@ -167,6 +167,14 @@
     <Compile Include="Domains\Repositories\IRepository.cs" />
     <Compile Include="Domains\Repositories\Pager.cs" />
     <Compile Include="Domains\Repositories\PagerList.cs" />
+    <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\Handlers\IEventHandler.cs" />
+    <Compile Include="Events\Handlers\IEventHandlerFactory.cs" />
+    <Compile Include="Events\IEvent.cs" />
+    <Compile Include="Events\IEventBus.cs" />
+    <Compile Include="Events\Messages\IMessageEvent.cs" />
+    <Compile Include="Events\Messages\IMessageEventBus.cs" />
+    <Compile Include="Events\Messages\MessageEvent.cs" />
     <Compile Include="Exceptions\ConcurrencyException.cs" />
     <Compile Include="GlobalConfigs\ConfigManager.cs" />
     <Compile Include="GlobalConfigs\Models\BingConfig.cs" />

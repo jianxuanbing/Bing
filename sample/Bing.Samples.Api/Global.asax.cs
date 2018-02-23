@@ -18,9 +18,7 @@ namespace Bing.Samples.Api
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            IocConfigInitialize.Init(ScopeType.Http,new IConfig[] {new IocConfig(), });
-            var logger = Ioc.Create<ILog>();
-            logger.Info("初始化信息成功");
+            IocConfigInitialize.Init(ScopeType.Http,new IConfig[] {new IocConfig(), });            
             GlobalConfiguration.Configuration.DependencyResolver=new AutofacWebApiDependencyResolver(Ioc.GetContainer());
         }
     }

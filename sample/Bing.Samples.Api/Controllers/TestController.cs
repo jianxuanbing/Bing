@@ -146,6 +146,16 @@ namespace Bing.Samples.Api.Controllers
         public List<Login> GetListByName(string name)
         {
             return _loginService.GetListByName(name);
-        }       
+        }
+
+        /// <summary>
+        /// 发布事件
+        /// </summary>
+        /// <param name="name"></param>
+        [HttpGet]
+        public void PublishEvent(string name)
+        {
+            _testService.PublishEvent(name);
+        }
     }
 }

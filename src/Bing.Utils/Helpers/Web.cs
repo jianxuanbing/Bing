@@ -98,7 +98,12 @@ namespace Bing.Utils.Helpers
         /// <returns></returns>
         private static string GetWebProxyRealIp()
         {
+            if (HttpContext.Current?.Request == null)
+            {
+                return string.Empty;
+            }
             var request = HttpContext.Current.Request;
+            
             string ip = request.Headers.Get("x-forwarded-for");
 
             if (string.IsNullOrEmpty(ip) || string.Equals("unknown", ip, StringComparison.OrdinalIgnoreCase))

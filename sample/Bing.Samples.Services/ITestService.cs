@@ -18,5 +18,7 @@ namespace Bing.Samples.Services
         void WriteOtherLog(string content);
 
         List<ItemResult> GetItems();
+
+        void PublishEvent(string name);
     }
 }

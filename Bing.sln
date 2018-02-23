@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing", "src\Bing.Core\Bing.csproj", "{39F3E099-6B64-4AD5-884E-2A0628D9D74C}"
 EndProject
@@ -110,6 +110,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils.Winform", "src\Bing.Utils.Winform\Bing.Utils.Winform.csproj", "{75C25E63-5602-4417-8D8A-0D22DB894FE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils.Winform.UnitTest", "test\Bing.Utils.Winform.UnitTest\Bing.Utils.Winform.UnitTest.csproj", "{E85D5A4E-394D-4E74-AE07-E92CBB6A8FD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Events", "src\Bing.Events\Bing.Events.csproj", "{64D68A7E-6B90-416A-BE69-EC74F37E1A4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Events.RabbitMQ", "src\Bing.Events.RabbitMQ\Bing.Events.RabbitMQ.csproj", "{780A2A7F-E1C2-4BEB-B19F-CE646C071E22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -265,6 +269,14 @@ Global
 		{E85D5A4E-394D-4E74-AE07-E92CBB6A8FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E85D5A4E-394D-4E74-AE07-E92CBB6A8FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E85D5A4E-394D-4E74-AE07-E92CBB6A8FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64D68A7E-6B90-416A-BE69-EC74F37E1A4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64D68A7E-6B90-416A-BE69-EC74F37E1A4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64D68A7E-6B90-416A-BE69-EC74F37E1A4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64D68A7E-6B90-416A-BE69-EC74F37E1A4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{780A2A7F-E1C2-4BEB-B19F-CE646C071E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{780A2A7F-E1C2-4BEB-B19F-CE646C071E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{780A2A7F-E1C2-4BEB-B19F-CE646C071E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{780A2A7F-E1C2-4BEB-B19F-CE646C071E22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -315,5 +327,10 @@ Global
 		{DB6CE6C9-DA58-4029-8FFF-B0FA8E979D88} = {41A99352-5E70-4215-918C-8EDF76196E60}
 		{75C25E63-5602-4417-8D8A-0D22DB894FE8} = {7E8EB0B0-2E8C-49BD-A44A-D4E6F21BDAE5}
 		{E85D5A4E-394D-4E74-AE07-E92CBB6A8FD7} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
+		{64D68A7E-6B90-416A-BE69-EC74F37E1A4E} = {41A99352-5E70-4215-918C-8EDF76196E60}
+		{780A2A7F-E1C2-4BEB-B19F-CE646C071E22} = {41A99352-5E70-4215-918C-8EDF76196E60}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8467E72B-4FFE-4CE1-8650-86DBABEA5548}
 	EndGlobalSection
 EndGlobal
