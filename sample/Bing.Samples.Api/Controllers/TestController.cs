@@ -17,6 +17,9 @@ using Bing.Utils.Helpers;
 
 namespace Bing.Samples.Api.Controllers
 {
+    /// <summary>
+    /// 测试 相关API
+    /// </summary>
     public class TestController:ApiController
     {
         /// <summary>
@@ -142,6 +145,11 @@ namespace Bing.Samples.Api.Controllers
             return _loginService.GetAllLogin();
         }
 
+        /// <summary>
+        /// 获取列表名
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet]
         public List<Login> GetListByName(string name)
         {
