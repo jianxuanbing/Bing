@@ -20,5 +20,7 @@ namespace Bing.Samples.Services
         List<ItemResult> GetItems();
 
         void PublishEvent(string name);
+
+        void PublishMessageEvent(string name);
     }
 }

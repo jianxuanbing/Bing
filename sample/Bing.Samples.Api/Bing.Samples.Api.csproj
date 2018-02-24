@@ -229,6 +229,10 @@
       <Project>{9094029B-31BE-4CA3-81A5-9337DDA519A0}</Project>
       <Name>Bing.Datas.EntityFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Events.RabbitMQ\Bing.Events.RabbitMQ.csproj">
+      <Project>{780A2A7F-E1C2-4BEB-B19F-CE646C071E22}</Project>
+      <Name>Bing.Events.RabbitMQ</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Bing.Events\Bing.Events.csproj">
       <Project>{64D68A7E-6B90-416A-BE69-EC74F37E1A4E}</Project>
       <Name>Bing.Events</Name>

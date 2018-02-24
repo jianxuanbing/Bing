@@ -58,6 +58,17 @@ namespace Bing.Helpers
         }
 
         /// <summary>
+        /// 创建集合
+        /// </summary>
+        /// <param name="type">对象类型</param>
+        /// <param name="name">服务名称</param>
+        /// <returns></returns>
+        public static List<object> CreateList(Type type, string name = null)
+        {
+            return ((IEnumerable<object>) DefaultContainer.CreateList(type, name)).ToList();
+        }
+
+        /// <summary>
         /// 创建对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>

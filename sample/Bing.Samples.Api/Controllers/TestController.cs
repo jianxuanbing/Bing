@@ -157,5 +157,15 @@ namespace Bing.Samples.Api.Controllers
         {
             _testService.PublishEvent(name);
         }
+
+        /// <summary>
+        /// 发布消息事件
+        /// </summary>
+        /// <param name="name"></param>
+        [HttpGet]
+        public void PublishMessageEvent(string name)
+        {
+            _testService.PublishMessageEvent(name);
+        }
     }
 }

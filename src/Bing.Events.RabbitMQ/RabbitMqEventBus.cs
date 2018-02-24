@@ -30,12 +30,12 @@ namespace Bing.Events.RabbitMQ
         /// </summary>
         /// <param name="messageEventBus">消息事件总线</param>
         /// <param name="options">RabbitMq 事件总线配置</param>
-        public RabbitMqEventBus(IMessageEventBus messageEventBus, RabbitMqEventBusOptions options)
+        public RabbitMqEventBus(/*IMessageEventBus messageEventBus,*/ RabbitMqEventBusOptions options)
         {
             _channel = options.Channel;
             _options = options;
 
-            _options.MessagePublisher = messageEventBus;
+            //_options.MessagePublisher = messageEventBus;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Bing.Events.RabbitMQ
         /// </summary>
         public void Dispose()
         {
-            _channel?.Dispose();
+            //_channel?.Dispose();
         }
     }
 }

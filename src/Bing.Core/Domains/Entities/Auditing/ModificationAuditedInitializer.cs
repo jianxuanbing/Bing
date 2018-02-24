@@ -154,10 +154,12 @@ namespace Bing.Domains.Entities.Auditing
         {
             var result = (IModificationAudited<string>)_entity;
             result.LastModificationTime = DateTime.Now;
-            result.LastModifierId = ConfigManager.Config.UserContext.EnabledUserName
-                ? _userContext.UserName.SafeString()
-                : _userContext.UserId.SafeString();
-
+            if (result.LastModifierId.IsEmpty())
+            {
+                result.LastModifierId = ConfigManager.Config.UserContext.EnabledUserName
+                    ? _userContext.UserName.SafeString()
+                    : _userContext.UserId.SafeString();
+            }            
         }
     }
 }

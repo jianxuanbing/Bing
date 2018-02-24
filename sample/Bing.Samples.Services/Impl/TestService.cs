@@ -13,6 +13,7 @@ using Bing.Logs.Aspects;
 using Bing.Logs.Extensions;
 using Bing.Samples.Domains.Models;
 using Bing.Samples.Services.Events;
+using Bing.Samples.Services.Messages;
 
 namespace Bing.Samples.Services.Impl
 {
@@ -50,6 +51,14 @@ namespace Bing.Samples.Services.Impl
         public void PublishEvent(string name)
         {
             _eventBus.Publish(new TestEvent()
+            {
+                Name = name
+            });
+        }
+
+        public void PublishMessageEvent(string name)
+        {
+            _eventBus.Publish(new TestMessageEvent()
             {
                 Name = name
             });

@@ -34,8 +34,12 @@
       <HintPath>..\..\packages\AspectCore.Abstractions.0.2.4\lib\net45\AspectCore.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\StackExchange.Redis.1.2.7-alpha-00002\lib\net45\StackExchange.Redis.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
       <Private>True</Private>
@@ -50,16 +54,22 @@
   <ItemGroup>
     <Compile Include="Events\TestEvent.cs" />
     <Compile Include="Handlers\TestEventHandler.cs" />
+    <Compile Include="Handlers\TestMessageEventHandler.cs" />
     <Compile Include="ILoginService.cs" />
     <Compile Include="Impl\LoginService.cs" />
     <Compile Include="Impl\TestService.cs" />
     <Compile Include="ITestService.cs" />
+    <Compile Include="Messages\TestMessageEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Bing.Aspects\Bing.Aspects.csproj">
       <Project>{01992500-94B3-49F7-A619-6E9855E19CC6}</Project>
       <Name>Bing.Aspects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Bing.Caching.Redis\Bing.Caching.Redis.csproj">
+      <Project>{E444DBB7-207F-475E-BA7B-D198342DAA03}</Project>
+      <Name>Bing.Caching.Redis</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Bing.Core\Bing.csproj">
       <Project>{39F3E099-6B64-4AD5-884E-2A0628D9D74C}</Project>

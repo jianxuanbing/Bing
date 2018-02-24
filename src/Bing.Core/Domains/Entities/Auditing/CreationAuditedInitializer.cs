@@ -154,10 +154,12 @@ namespace Bing.Domains.Entities.Auditing
         {
             var result = (ICreationAudited<string>)_entity;
             result.CreationTime = DateTime.Now;
-            result.CreatorId = ConfigManager.Config.UserContext.EnabledUserName
-                ? _userContext.UserName.SafeString()
-                : _userContext.UserId.SafeString();
-
+            if (!result.CreatorId.IsEmpty())
+            {
+                result.CreatorId = ConfigManager.Config.UserContext.EnabledUserName
+                    ? _userContext.UserName.SafeString()
+                    : _userContext.UserId.SafeString();
+            }           
         }
     }
 }

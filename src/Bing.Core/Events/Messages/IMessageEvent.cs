@@ -25,5 +25,10 @@ namespace Bing.Events.Messages
         /// 回调
         /// </summary>
         string Callback { get; set; }
+
+        /// <summary>
+        /// 消息类型
+        /// </summary>
+        string MessageType { get; set; }
     }
 }

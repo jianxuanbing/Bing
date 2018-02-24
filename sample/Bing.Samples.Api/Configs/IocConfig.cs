@@ -15,6 +15,7 @@ using Bing.Datas.EntityFramework;
 using Bing.Datas.UnitOfWorks;
 using Bing.Dependency;
 using Bing.Events.Default;
+using Bing.Events.RabbitMQ;
 using Bing.Logs.Aspects;
 using Bing.Logs.Exceptionless;
 using Bing.Logs.Log4Net;
@@ -46,10 +47,20 @@ namespace Bing.Samples.Api.Configs
             builder.AddDefaultRedisCache(config =>
             {
                 config.EndPoints.Add(new ServerEndPoint("192.168.3.115", 9494));
-                config.Password = "";
+                config.Password = "wolfRedis";
+                config.SystemPrefix = "Test:";
             });
 
-            builder.AddDefaultEventBus();
+            //builder.AddDefaultEventBus();
+            builder.AddRabbitMqEventBus(options =>
+            {
+                options.HostName = "192.168.3.115";
+                options.UserName = "jian";
+                options.Password = "123456";
+                options.QueueName = "eventBus";
+                options.ExchangeName = "sampleEventBus";
+                options.RouteKey = "sampleEventBus.*";
+            });
         }
     }
 }
