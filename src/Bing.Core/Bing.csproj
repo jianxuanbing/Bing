@@ -32,21 +32,17 @@
     <DocumentationFile>bin\Release\Bing.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AspectCore.Abstractions, Version=0.2.4.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AspectCore.Abstractions.0.2.4\lib\net45\AspectCore.Abstractions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="AspectCore.Abstractions, Version=0.3.1.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Abstractions.0.3.1\lib\net45\AspectCore.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="AspectCore.Core, Version=0.2.4.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AspectCore.Core.0.2.4\lib\net45\AspectCore.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="AspectCore.Core, Version=0.3.1.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Core.0.3.1\lib\net45\AspectCore.Core.dll</HintPath>
     </Reference>
-    <Reference Include="AspectCore.Extensions.Autofac, Version=0.2.4.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AspectCore.Extensions.Autofac.0.2.4\lib\net45\AspectCore.Extensions.Autofac.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="AspectCore.Extensions.Autofac, Version=0.3.1.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Extensions.Autofac.0.3.1\lib\net45\AspectCore.Extensions.Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="AspectCore.Extensions.Reflection, Version=0.2.4.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AspectCore.Extensions.Reflection.0.2.4\lib\net45\AspectCore.Extensions.Reflection.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="AspectCore.Extensions.Reflection, Version=0.3.1.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Extensions.Reflection.0.3.1\lib\net45\AspectCore.Extensions.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>

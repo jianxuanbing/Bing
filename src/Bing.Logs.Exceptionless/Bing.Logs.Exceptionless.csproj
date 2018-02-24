@@ -36,9 +36,8 @@
       <HintPath>..\..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Exceptionless, Version=4.1.1972.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Exceptionless.4.1.1972\lib\net45\Exceptionless.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Exceptionless, Version=4.2.1989.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Exceptionless.4.2.1989\lib\net45\Exceptionless.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />

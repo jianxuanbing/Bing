@@ -30,12 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AspectCore.Abstractions, Version=0.2.4.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AspectCore.Abstractions.0.2.4\lib\net45\AspectCore.Abstractions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="AspectCore.Abstractions, Version=0.3.1.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Abstractions.0.3.1\lib\net45\AspectCore.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="StackExchange.Redis, Version=1.2.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\StackExchange.Redis.1.2.7-alpha-00002\lib\net45\StackExchange.Redis.dll</HintPath>
+    <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\StackExchange.Redis.1.2.6\lib\net45\StackExchange.Redis.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

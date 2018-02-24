@@ -30,20 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AspectCore.Abstractions, Version=0.2.4.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AspectCore.Abstractions.0.2.4\lib\net45\AspectCore.Abstractions.dll</HintPath>
+    <Reference Include="AspectCore.Abstractions, Version=0.3.1.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Abstractions.0.3.1\lib\net45\AspectCore.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="AspectCore.Core, Version=0.2.4.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AspectCore.Core.0.2.4\lib\net45\AspectCore.Core.dll</HintPath>
+    <Reference Include="AspectCore.Core, Version=0.3.1.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Core.0.3.1\lib\net45\AspectCore.Core.dll</HintPath>
     </Reference>
-    <Reference Include="AspectCore.Extensions.Reflection, Version=0.2.4.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AspectCore.Extensions.Reflection.0.2.4\lib\net45\AspectCore.Extensions.Reflection.dll</HintPath>
+    <Reference Include="AspectCore.Extensions.Reflection, Version=0.3.1.0, Culture=neutral, PublicKeyToken=2ab7daa5defcf11f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AspectCore.Extensions.Reflection.0.3.1\lib\net45\AspectCore.Extensions.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RabbitMQ.Client, Version=3.6.9.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RabbitMQ.Client.3.6.9\lib\net45\RabbitMQ.Client.dll</HintPath>
