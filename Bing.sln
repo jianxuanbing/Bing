@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing", "src\Bing.Core\Bing.csproj", "{39F3E099-6B64-4AD5-884E-2A0628D9D74C}"
 EndProject
@@ -115,6 +115,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Events", "src\Bing.Events\Bing.Events.csproj", "{64D68A7E-6B90-416A-BE69-EC74F37E1A4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Events.RabbitMQ", "src\Bing.Events.RabbitMQ\Bing.Events.RabbitMQ.csproj", "{780A2A7F-E1C2-4BEB-B19F-CE646C071E22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Compression", "src\Bing.Compression\Bing.Compression.csproj", "{960D335B-C40E-4635-AFD9-26FC87DAD2C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Compression.SevenZip", "src\Bing.Compression.SevenZip\Bing.Compression.SevenZip.csproj", "{A0704064-BDF1-496A-8DFD-B0185872E26D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -278,6 +282,14 @@ Global
 		{780A2A7F-E1C2-4BEB-B19F-CE646C071E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{780A2A7F-E1C2-4BEB-B19F-CE646C071E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{780A2A7F-E1C2-4BEB-B19F-CE646C071E22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{960D335B-C40E-4635-AFD9-26FC87DAD2C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{960D335B-C40E-4635-AFD9-26FC87DAD2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{960D335B-C40E-4635-AFD9-26FC87DAD2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{960D335B-C40E-4635-AFD9-26FC87DAD2C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0704064-BDF1-496A-8DFD-B0185872E26D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0704064-BDF1-496A-8DFD-B0185872E26D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0704064-BDF1-496A-8DFD-B0185872E26D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0704064-BDF1-496A-8DFD-B0185872E26D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -330,6 +342,8 @@ Global
 		{E85D5A4E-394D-4E74-AE07-E92CBB6A8FD7} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
 		{64D68A7E-6B90-416A-BE69-EC74F37E1A4E} = {41A99352-5E70-4215-918C-8EDF76196E60}
 		{780A2A7F-E1C2-4BEB-B19F-CE646C071E22} = {41A99352-5E70-4215-918C-8EDF76196E60}
+		{960D335B-C40E-4635-AFD9-26FC87DAD2C3} = {09F0B568-FD1F-4407-B525-4DCC13107011}
+		{A0704064-BDF1-496A-8DFD-B0185872E26D} = {09F0B568-FD1F-4407-B525-4DCC13107011}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8467E72B-4FFE-4CE1-8650-86DBABEA5548}

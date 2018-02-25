@@ -10,7 +10,7 @@ namespace Bing.Utils.Helpers
     /// <summary>
     /// 常量
     /// </summary>
-    public static class Const
+    public static partial class Const
     {
         #region Default(默认)
         /// <summary>
