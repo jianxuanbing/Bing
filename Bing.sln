@@ -120,6 +120,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Compression", "src\Bin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Compression.SevenZip", "src\Bing.Compression.SevenZip\Bing.Compression.SevenZip.csproj", "{A0704064-BDF1-496A-8DFD-B0185872E26D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Sms", "src\Bing.Sms\Bing.Sms.csproj", "{51D35362-AC32-4FAC-96FC-A48F8DB25D89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -290,6 +292,10 @@ Global
 		{A0704064-BDF1-496A-8DFD-B0185872E26D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0704064-BDF1-496A-8DFD-B0185872E26D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0704064-BDF1-496A-8DFD-B0185872E26D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D35362-AC32-4FAC-96FC-A48F8DB25D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D35362-AC32-4FAC-96FC-A48F8DB25D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D35362-AC32-4FAC-96FC-A48F8DB25D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D35362-AC32-4FAC-96FC-A48F8DB25D89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -344,6 +350,7 @@ Global
 		{780A2A7F-E1C2-4BEB-B19F-CE646C071E22} = {41A99352-5E70-4215-918C-8EDF76196E60}
 		{960D335B-C40E-4635-AFD9-26FC87DAD2C3} = {09F0B568-FD1F-4407-B525-4DCC13107011}
 		{A0704064-BDF1-496A-8DFD-B0185872E26D} = {09F0B568-FD1F-4407-B525-4DCC13107011}
+		{51D35362-AC32-4FAC-96FC-A48F8DB25D89} = {09F0B568-FD1F-4407-B525-4DCC13107011}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8467E72B-4FFE-4CE1-8650-86DBABEA5548}
