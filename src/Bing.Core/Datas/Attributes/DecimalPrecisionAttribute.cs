@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Bing.Datas.Attributes
 {
     /// <summary>
-    /// 自定义Decimal类型的精度
+    /// 自定义 Decimal 类型的精度
     /// </summary>
     [AttributeUsage(AttributeTargets.Property,Inherited = false,AllowMultiple = false)]
     public class DecimalPrecisionAttribute:Attribute

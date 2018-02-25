@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Configs\EfConfig.cs" />
     <Compile Include="Configs\EfLogLevel.cs" />
+    <Compile Include="Conventions\DateTimePrecisionAttributeConvention.cs" />
     <Compile Include="Conventions\DecimalPrecisionAttributeConvention.cs" />
     <Compile Include="Core\IMap.cs" />
     <Compile Include="Core\MapBase.cs" />

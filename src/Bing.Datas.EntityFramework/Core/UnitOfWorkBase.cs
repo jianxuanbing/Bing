@@ -150,6 +150,7 @@ namespace Bing.Datas.EntityFramework.Core
             }
             modelBuilder.Filter(DataFilters.SoftDelete, (ISoftDelete d) => d.IsDeleted, false);
             modelBuilder.Conventions.Add<DecimalPrecisionAttributeConvention>();
+            modelBuilder.Conventions.Add<DateTimePrecisionAttributeConvention>();
         }
 
         /// <summary>
