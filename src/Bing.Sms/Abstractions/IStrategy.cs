@@ -15,6 +15,6 @@ namespace Bing.Sms.Abstractions
         /// 应用
         /// </summary>
         /// <param name="gateways">短信网关列表</param>
-        void Apply(IList<IGateway> gateways);
+        IList<IGateway> Apply(IList<IGateway> gateways);
     }
 }

@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commons\CommonEqualityComparer.cs" />
     <Compile Include="Develops\CodeRamer.cs" />
     <Compile Include="Develops\CodeTimer.cs" />
     <Compile Include="Develops\UnitTester.cs" />
@@ -145,9 +146,7 @@
       <LastGenOutput>R.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

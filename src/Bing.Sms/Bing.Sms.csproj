@@ -41,12 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\IGateway.cs" />
+    <Compile Include="Abstractions\IGateways.cs" />
     <Compile Include="Abstractions\IMessage.cs" />
     <Compile Include="Abstractions\IStrategy.cs" />
+    <Compile Include="Core\EasySms.cs" />
     <Compile Include="Core\Message.cs" />
+    <Compile Include="Core\Messenger.cs" />
     <Compile Include="Core\SmsConfig.cs" />
     <Compile Include="Exceptions\GatewayErrorException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strategy\RandomStrategy.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

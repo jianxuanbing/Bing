@@ -118,7 +118,7 @@ namespace Bing.Utils.Extensions
         /// <param name="index2">索引2</param>
         public static void Swap<T>(this T[] array, int index1, int index2)
         {
-            Common.Swap(ref array[index1], ref array[index2]);
+            Helpers.Common.Swap(ref array[index1], ref array[index2]);
         }
 
 
@@ -138,7 +138,7 @@ namespace Bing.Utils.Extensions
         {
             for (int i = array.GetLength(1) - 1; i >= 0; --i)
             {
-                Common.Swap(ref array[row1, i], ref array[row2, i]);
+                Helpers.Common.Swap(ref array[row1, i], ref array[row2, i]);
             }
         }
 
