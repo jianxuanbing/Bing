@@ -9,6 +9,8 @@ namespace Bing.UnitTest
         [TestMethod]
         public void TestMethod1()
         {
+            var date = DateTime.Now.ToString("yyMMdd");
+            Console.WriteLine(date);
         }
     }
 }
