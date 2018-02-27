@@ -15,7 +15,7 @@ namespace Bing.Tools.QrCode.UnitTest
         public void Test_SaveBase64()
         {
             ZXingQrCodeService service=new ZXingQrCodeService();
-            var result=service.SaveBase64("13610142496");
+            var result=service.SaveBase64("01496");
             Console.WriteLine(result);
         }
 
@@ -25,7 +25,7 @@ namespace Bing.Tools.QrCode.UnitTest
             ZXingBarcodeService service=new ZXingBarcodeService();
             service.Size(200, 100);
             service.Correction(ErrorCorrectionLevel.H);
-            var result = service.SaveBase64("13610142496ABCD");
+            var result = service.SaveBase64("1142ABCD");
             Console.WriteLine(result);
         }
     }
