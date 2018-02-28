@@ -36,11 +36,29 @@ namespace Bing.Tools.QrCode.ZXing
         private ZQI.ErrorCorrectionLevel _level;
 
         /// <summary>
+        /// 宽度
+        /// </summary>
+        private int _width;
+
+        /// <summary>
+        /// 高度
+        /// </summary>
+        private int _height;
+
+        /// <summary>
+        /// 边距
+        /// </summary>
+        private int _margin;
+
+        /// <summary>
         /// 初始化一个<see cref="ZXingQrCodeService"/>类型的实例
         /// </summary>
         public ZXingQrCodeService()
         {
             _size = 10;
+            _width = 250;
+            _height = 250;
+            _margin = 0;
             _level = ZQI.ErrorCorrectionLevel.L;
             _dict=new Dictionary<EncodeHintType, object>();
         }
@@ -63,6 +81,30 @@ namespace Bing.Tools.QrCode.ZXing
         public IQrCodeService Size(int size)
         {
             _size = size;
+            return this;
+        }
+
+        /// <summary>
+        /// 设置二维码尺寸
+        /// </summary>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <returns></returns>
+        public IQrCodeService Size(int width, int height)
+        {
+            _width = width;
+            _height = height;
+            return this;
+        }
+
+        /// <summary>
+        /// 设置边距
+        /// </summary>
+        /// <param name="margin">边距</param>
+        /// <returns></returns>
+        public IQrCodeService Margin(int margin)
+        {
+            _margin = margin;
             return this;
         }
 
@@ -136,9 +178,9 @@ namespace Bing.Tools.QrCode.ZXing
                 Format = BarcodeFormat.QR_CODE,
                 Options = new QrCodeEncodingOptions()
                 {
-                    Height = 250,
-                    Width = 250,
-                    Margin = 0
+                    Height = _width,
+                    Width = _height,
+                    Margin = _margin
                 }
             };
             var pixelData = qrCodeWriter.Write(content);
@@ -160,6 +202,8 @@ namespace Bing.Tools.QrCode.ZXing
                         bitmap.UnlockBits(bitmapData);
                     }
 
+                    bitmap.MakeTransparent();
+                    
                     bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                     return ms.ToArray();
                 }
@@ -178,9 +222,9 @@ namespace Bing.Tools.QrCode.ZXing
                 Format = BarcodeFormat.QR_CODE,
                 Options = new QrCodeEncodingOptions()
                 {
-                    Height = 250,
-                    Width = 250,
-                    Margin = 0,
+                    Height = _height,
+                    Width = _width,
+                    Margin = _margin,
                     ErrorCorrection = _level,
                     CharacterSet = "UTF-8"
                 }
@@ -188,7 +232,7 @@ namespace Bing.Tools.QrCode.ZXing
             var pixelData = qrCodeWriter.Write(content);
 
             using (var bitmap = new System.Drawing.Bitmap(pixelData.Width, pixelData.Height, System.Drawing.Imaging.PixelFormat.Format32bppRgb))
-            {
+            {                
                 var bitmapData =
                     bitmap.LockBits(new System.Drawing.Rectangle(0, 0, pixelData.Width, pixelData.Height),
                         System.Drawing.Imaging.ImageLockMode.WriteOnly,

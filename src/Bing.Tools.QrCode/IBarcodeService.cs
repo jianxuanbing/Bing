@@ -33,6 +33,13 @@ namespace Bing.Tools.QrCode
         IBarcodeService ShowContent();
 
         /// <summary>
+        /// 设置边距
+        /// </summary>
+        /// <param name="margin">边距</param>
+        /// <returns></returns>
+        IBarcodeService Margin(int margin);
+
+        /// <summary>
         /// 生成条码并保存到指定位置，返回条码图片完整路径
         /// </summary>
         /// <param name="content">内容</param>

@@ -26,6 +26,21 @@ namespace Bing.Tools.QrCode
         IQrCodeService Size(int size);
 
         /// <summary>
+        /// 设置二维码尺寸
+        /// </summary>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <returns></returns>
+        IQrCodeService Size(int width, int height);
+
+        /// <summary>
+        /// 设置边距
+        /// </summary>
+        /// <param name="margin">边距</param>
+        /// <returns></returns>
+        IQrCodeService Margin(int margin);
+
+        /// <summary>
         /// 设置容错处理
         /// </summary>
         /// <param name="level">容错级别</param>

@@ -39,6 +39,11 @@ namespace Bing.Tools.QrCode.ZXing
         private bool _showContent;
 
         /// <summary>
+        /// 边距
+        /// </summary>
+        private int _margin;
+
+        /// <summary>
         /// 初始化一个<see cref="ZXingBarcodeService"/>类型的实例
         /// </summary>
         public ZXingBarcodeService()
@@ -98,6 +103,17 @@ namespace Bing.Tools.QrCode.ZXing
         }
 
         /// <summary>
+        /// 设置边距
+        /// </summary>
+        /// <param name="margin">边距</param>
+        /// <returns></returns>
+        public IBarcodeService Margin(int margin)
+        {
+            _margin = margin;
+            return this;
+        }
+
+        /// <summary>
         /// 生成条码并保存到指定位置，返回条码图片完整路径
         /// </summary>
         /// <param name="content">内容</param>
@@ -130,7 +146,7 @@ namespace Bing.Tools.QrCode.ZXing
                 {
                     Height = _height,
                     Width = _width,
-                    Margin = 2,
+                    Margin = _margin,
                     PureBarcode = _showContent,                    
                     Hints =
                     {
@@ -158,6 +174,8 @@ namespace Bing.Tools.QrCode.ZXing
                     {
                         bitmap.UnlockBits(bitmapData);
                     }
+
+                    bitmap.MakeTransparent();
 
                     bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                     return ms.ToArray();
