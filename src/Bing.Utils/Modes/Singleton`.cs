@@ -32,7 +32,7 @@ namespace Bing.Utils.Modes
                 {
                     lock (_lockers)
                     {
-                        locker = _lockers.Get(type, x => new object());
+                        locker = _lockers.GetOrAdd(type, x => new object());
                     }
                 }
                 lock (locker)
@@ -64,7 +64,7 @@ namespace Bing.Utils.Modes
                 {
                     lock (_lockers)
                     {
-                        locker = _lockers.Get(type, x => new object());
+                        locker = _lockers.GetOrAdd(type, x => new object());
                     }
                 }
                 lock (locker)

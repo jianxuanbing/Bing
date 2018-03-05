@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Bing.Utils.Extensions
     {
         #region IsEmpty(是否为空)
         /// <summary>
-        /// 字符串 是否为空、null或空白字符串
+        /// 判断 字符串 是否为空、null或空白字符串
         /// </summary>
         /// <param name="value">数据</param>
         /// <returns></returns>
@@ -22,7 +23,7 @@ namespace Bing.Utils.Extensions
         }
 
         /// <summary>
-        /// Guid 是否为空、null或Guid.Empty
+        /// 判断 Guid 是否为空、null或Guid.Empty
         /// </summary>
         /// <param name="value">数据</param>
         /// <returns></returns>
@@ -36,7 +37,7 @@ namespace Bing.Utils.Extensions
         }
 
         /// <summary>
-        /// Guid 是否为空、null或Guid.Empty
+        /// 判断 Guid 是否为空、null或Guid.Empty
         /// </summary>
         /// <param name="value">数据</param>
         /// <returns></returns>
@@ -50,7 +51,7 @@ namespace Bing.Utils.Extensions
         }
 
         /// <summary>
-        /// 数组 是否为空
+        /// 判断 数组 是否为空
         /// </summary>
         /// <param name="array">数据</param>
         /// <returns></returns>
@@ -60,7 +61,7 @@ namespace Bing.Utils.Extensions
         }
 
         /// <summary>
-        /// 可变字符串 是否为空
+        /// 判断 可变字符串 是否为空
         /// </summary>
         /// <param name="sb">数据</param>
         /// <returns></returns>
@@ -70,7 +71,7 @@ namespace Bing.Utils.Extensions
         }
 
         /// <summary>
-        /// 泛型集合 是否为空
+        /// 判断 泛型集合 是否为空
         /// </summary>
         /// <typeparam name="T">泛型对象</typeparam>
         /// <param name="list">数据</param>
@@ -81,7 +82,7 @@ namespace Bing.Utils.Extensions
         }
 
         /// <summary>
-        /// 迭代集合 是否为空
+        /// 判断 迭代集合 是否为空
         /// </summary>
         /// <typeparam name="T">泛型对象</typeparam>
         /// <param name="list">数据</param>
@@ -92,7 +93,7 @@ namespace Bing.Utils.Extensions
         }
 
         /// <summary>
-        /// 字典 是否为空
+        /// 判断 字典 是否为空
         /// </summary>
         /// <typeparam name="TKey">键类型</typeparam>
         /// <typeparam name="TValue">值类型</typeparam>
@@ -102,11 +103,21 @@ namespace Bing.Utils.Extensions
         {
             return null == dictionary || dictionary.Count == 0;
         }
+
+        /// <summary>
+        /// 判断 字典 是否为空
+        /// </summary>
+        /// <param name="dictionary">数据</param>
+        /// <returns></returns>
+        public static bool IsEmpty(this IDictionary dictionary)
+        {
+            return null == dictionary || dictionary.Count == 0;
+        }
         #endregion
 
         #region IsNull(是否为空)
         /// <summary>
-        /// 目标对象是否为空
+        /// 判断目标对象是否为空
         /// </summary>
         /// <param name="target">目标对象</param>
         /// <returns></returns>
@@ -116,7 +127,7 @@ namespace Bing.Utils.Extensions
         }
 
         /// <summary>
-        /// 目标对象是否为空
+        /// 判断目标对象是否为空
         /// </summary>
         /// <typeparam name="T">目标对象类型</typeparam>
         /// <param name="target">目标对象</param>

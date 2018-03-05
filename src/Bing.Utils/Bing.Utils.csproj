@@ -69,7 +69,7 @@
     <Compile Include="Extensions\Common\Extensions.Lambda.cs" />
     <Compile Include="Extensions\Common\Extensions.String.cs" />
     <Compile Include="Extensions\Common\Extensions.Validate.cs" />
-    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\Collections\DictionaryExtensions.cs" />
     <Compile Include="Helpers\Check.cs" />
     <Compile Include="Helpers\Common.cs" />
     <Compile Include="Helpers\Config.cs" />
