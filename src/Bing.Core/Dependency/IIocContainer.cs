@@ -13,86 +13,64 @@ namespace Bing.Dependency
     {
 
         /// <summary>
-        /// 注册容器引擎
+        /// 设置容器
         /// </summary>
         /// <param name="container">容器</param>
-        void UseEngine(object container);
+        void SetContainer(object container);
 
         /// <summary>
-        /// 获取容器引擎
+        /// 获取容器
         /// </summary>
-        /// <typeparam name="T">容器引擎类型</typeparam>
+        /// <typeparam name="T">容器类型</typeparam>
         /// <returns></returns>
-        T GetEngine<T>();
-
-        /// <summary>
-        /// 创建对象
-        /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <returns></returns>
-        T Create<T>();
+        T GetContainer<T>();
 
         /// <summary>
         /// 创建对象
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="type">类型</param>
+        /// <param name="name">服务名称</param>
         /// <returns></returns>
-        T Create<T>(Type type);
-
-        /// <summary>
-        /// 创建对象
-        /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="argumentsAsAnonymousType">匿名参数类型</param>
-        /// <returns></returns>
-        T Create<T>(object argumentsAsAnonymousType);
-
-        /// <summary>
-        /// 创建对象
-        /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="serviceName">服务名称</param>
-        /// <returns></returns>
-        T CreateNamed<T>(string serviceName);
+        T Create<T>(string name = null);
 
         /// <summary>
         /// 创建对象
         /// </summary>
         /// <param name="type">类型</param>
+        /// <param name="name">服务名称</param>
         /// <returns></returns>
-        object Create(Type type);
+        object Create(Type type, string name = null);
+
+        /// <summary>
+        /// 创建集合
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="name">服务名称</param>
+        /// <returns></returns>
+        List<T> CreateList<T>(string name = null);
+
+        /// <summary>
+        /// 创建集合
+        /// </summary>
+        /// <param name="type">对象类型</param>
+        /// <param name="name">服务名称</param>
+        /// <returns></returns>
+        object CreateList(Type type, string name = null);
 
         /// <summary>
         /// 该类型是否已注册
         /// </summary>
         /// <param name="type">对象类型</param>
+        /// <param name="name">服务名称</param>
         /// <returns></returns>
-        bool IsRegistered(Type type);
+        bool IsRegistered(Type type, string name = null);
 
         /// <summary>
         /// 该类型是否已注册
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="name">服务名称</param>
         /// <returns></returns>
-        bool IsRegistered<T>();
-
-        void Register<T>(LifetimeStyle lifetimeStyle = LifetimeStyle.Singleton, string serviceName = null,
-            bool isDefulat = false) where T:class;
-
-        void Register(Type type, LifetimeStyle lifetimeStyle = LifetimeStyle.Singleton, string serviceName = null,
-            bool propertiesAutowired = true, bool isDefault = false);
-
-        void Register<T>(T impl, bool propertiesAutowired = true, bool isDefault = false) where T : class;
-
-        void Register<TService, TImplementation>(LifetimeStyle lifetimeStyle = LifetimeStyle.Singleton,
-            string serviceName = null, bool propertiesAutowired = true, bool isDefault = false) where TService : class
-            where TImplementation : class, TService;
-
-        void Register<TService, TImplementation>(TImplementation implementation, bool propertiesAutowired = true,
-            bool isDefault = false) where TService : class where TImplementation : class, TService;
-
-        void Register(Type service, Type implementation, LifetimeStyle lifetimeStyle = LifetimeStyle.Singleton,
-            string serviceName = null, bool propertiesAutowired = true, bool isDefault = false);
+        bool IsRegistered<T>(string name=null);
     }
 }

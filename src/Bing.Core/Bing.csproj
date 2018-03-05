@@ -130,6 +130,7 @@
     <Compile Include="Dependency\IDependency.cs" />
     <Compile Include="Dependency\IDependencyRegistrar.cs" />
     <Compile Include="Dependency\IIocContainer.cs" />
+    <Compile Include="Dependency\IocManager.cs" />
     <Compile Include="Dependency\IScopeDependency.cs" />
     <Compile Include="Dependency\ISingletonDependency.cs" />
     <Compile Include="Dependency\ITransientDependency.cs" />

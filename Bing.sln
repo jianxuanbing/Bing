@@ -128,6 +128,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Tools.QrCode.ZXing", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Tools.QrCode.UnitTest", "test\Bing.Tools.QrCode.UnitTest\Bing.Tools.QrCode.UnitTest.csproj", "{ED34F27F-AC13-4371-B654-113C4E8FCA5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Autofac", "src\Bing.Autofac\Bing.Autofac.csproj", "{308D8039-C44C-49CF-AF8E-4DCC60246FD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -314,6 +316,10 @@ Global
 		{ED34F27F-AC13-4371-B654-113C4E8FCA5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED34F27F-AC13-4371-B654-113C4E8FCA5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED34F27F-AC13-4371-B654-113C4E8FCA5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{308D8039-C44C-49CF-AF8E-4DCC60246FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{308D8039-C44C-49CF-AF8E-4DCC60246FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{308D8039-C44C-49CF-AF8E-4DCC60246FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{308D8039-C44C-49CF-AF8E-4DCC60246FD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -372,6 +378,7 @@ Global
 		{89B30E2C-C4F7-4F5D-B1A2-4EFDD20B8BFE} = {09F0B568-FD1F-4407-B525-4DCC13107011}
 		{007A14D0-7395-4AA0-8507-EB8D677BC757} = {09F0B568-FD1F-4407-B525-4DCC13107011}
 		{ED34F27F-AC13-4371-B654-113C4E8FCA5B} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
+		{308D8039-C44C-49CF-AF8E-4DCC60246FD1} = {41A99352-5E70-4215-918C-8EDF76196E60}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8467E72B-4FFE-4CE1-8650-86DBABEA5548}
