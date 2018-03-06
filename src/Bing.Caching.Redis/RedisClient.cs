@@ -1213,6 +1213,19 @@ namespace Bing.Caching.Redis
             return server.Keys(this._database.Database).Select(key => key.ToString()).ToList();
         }
 
+        /// <summary>
+        /// 获取全部缓存键，可模糊匹配
+        /// </summary>
+        /// <param name="key">缓存键</param>
+        /// <returns></returns>
+        public List<string> GetAllKeys(string key)
+        {
+            key = AddSysCustomKey(key);
+            var result = (string[])_database.ScriptEvaluate(LuaScript.Prepare("return redis.call('KEYS',@keypattern)"),
+                new {keypattern = key});
+            return result.ToList();
+        }
+
         #endregion
 
         #region Subscribe(发布订阅)

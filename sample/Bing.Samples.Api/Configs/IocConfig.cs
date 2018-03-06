@@ -48,7 +48,7 @@ namespace Bing.Samples.Api.Configs
             {
                 config.EndPoints.Add(new ServerEndPoint("192.168.3.115", 9494));
                 config.Password = "wolfRedis";
-                config.SystemPrefix = "Test:";
+                //config.SystemPrefix = "Lxm:";
             });
 
             //builder.AddDefaultEventBus();

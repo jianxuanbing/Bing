@@ -706,7 +706,14 @@ namespace Bing.Caching.Redis
         /// </summary>
         /// <returns></returns>
         List<string> GetAllKeys();
-        
+
+        /// <summary>
+        /// 获取全部缓存键，可模糊匹配
+        /// </summary>
+        /// <param name="key">缓存键</param>
+        /// <returns></returns>
+        List<string> GetAllKeys(string key);
+
         #endregion
 
         #region Subscribe(发布订阅)
