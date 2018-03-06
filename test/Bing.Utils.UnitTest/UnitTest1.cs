@@ -59,7 +59,14 @@ namespace Bing.Utils.UnitTest
             Console.WriteLine(result);
         }
 
+        [TestMethod]
+        public void Test_Conv_DateTime()
+        {
+            string time = "2018-02-01";
 
+            var result = Convert.ToDateTime(time);
+            Console.WriteLine(time);
+        }
         
         
     }
