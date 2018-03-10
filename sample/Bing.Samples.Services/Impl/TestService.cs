@@ -21,6 +21,8 @@ namespace Bing.Samples.Services.Impl
     {
         private IEventBus _eventBus;
 
+        protected ILog Logger = Log.GetLog(typeof(TestService));
+
         public TestService(IEventBus eventBus)
         {
             _eventBus = eventBus;
@@ -62,6 +64,13 @@ namespace Bing.Samples.Services.Impl
             {
                 Name = name
             });
+        }
+
+        public void WriteCustomerLog(string content)
+        {
+            Logger.Caption("输出自定义日志").Content(content).Debug();
+
+            throw new NotImplementedException();
         }
     }
 }

@@ -175,5 +175,15 @@ namespace Bing.Samples.Api.Controllers
         {
             _testService.PublishMessageEvent(name);
         }
+
+        /// <summary>
+        /// 写入自定义日志
+        /// </summary>
+        /// <param name="content"></param>
+        [HttpPost]
+        public void WriteCustomerLog(string content)
+        {
+            _testService.WriteCustomerLog(content);
+        }
     }
 }

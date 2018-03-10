@@ -25,5 +25,10 @@ namespace Bing.Datas.EntityFramework.Configs
         /// 是否启用验证版本号，默认启用
         /// </summary>
         public static bool EnabledValidateVersion = true;
+
+        /// <summary>
+        /// Ado日志拦截器
+        /// </summary>
+        public static Action<string,string,object> AdoLogInterceptor = null;
     }
 }

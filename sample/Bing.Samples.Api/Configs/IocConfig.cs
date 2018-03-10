@@ -12,6 +12,7 @@ using Bing.Aspects;
 using Bing.Caching.Core;
 using Bing.Caching.Redis;
 using Bing.Datas.EntityFramework;
+using Bing.Datas.EntityFramework.Configs;
 using Bing.Datas.UnitOfWorks;
 using Bing.Dependency;
 using Bing.Events.Default;

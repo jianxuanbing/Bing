@@ -22,5 +22,7 @@ namespace Bing.Samples.Services
         void PublishEvent(string name);
 
         void PublishMessageEvent(string name);
+
+        void WriteCustomerLog(string content);
     }
 }

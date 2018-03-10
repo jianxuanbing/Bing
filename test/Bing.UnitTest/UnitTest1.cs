@@ -12,5 +12,12 @@ namespace Bing.UnitTest
             var date = DateTime.Now.ToString("yyMMdd");
             Console.WriteLine(date);
         }
+
+        [TestMethod]
+        public void Test_GetType()
+        {
+            var logType = Type.GetType("Bing.Logs.ILog, Bing.Logs");
+            Console.WriteLine(logType.Assembly);
+        }
     }
 }
