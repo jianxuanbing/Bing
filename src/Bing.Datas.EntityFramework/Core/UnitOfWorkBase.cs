@@ -94,7 +94,7 @@ namespace Bing.Datas.EntityFramework.Core
         /// <returns></returns>
         protected virtual EfLog GetLog()
         {
-            return _log ?? (_log = new EfLog(TraceId, Log.GetLog("SqlTraceLog")));
+            return _log ?? (_log = new EfLog(TraceId, Log.GetLog("SqlTraceLog",null)));
         }
 
         #endregion
