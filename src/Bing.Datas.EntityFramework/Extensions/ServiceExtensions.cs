@@ -20,14 +20,12 @@ namespace Bing.Datas.EntityFramework.Extensions
         /// <typeparam name="TImplementation">工作单元实现类型</typeparam>
         /// <param name="services">服务集合</param>
         /// <param name="connectionName">参数名</param>
-        /// <param name="level">EF日志级别</param>
         /// <returns></returns>
         public static void AddUnitOfWork<TService, TImplementation>(this ContainerBuilder services,
-            string connectionName, EfLogLevel level = EfLogLevel.Sql)
+            string connectionName)
             where TService : class, IUnitOfWork
             where TImplementation : UnitOfWorkBase, TService
         {
-            EfConfig.LogLevel = level;
             services.AddScoped<TService, TImplementation>().WithParameter("connection", connectionName).PropertiesAutowired();
         }
     }

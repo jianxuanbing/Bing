@@ -46,7 +46,7 @@ namespace Bing.Datas.EntityFramework.Logs
         /// <param name="log">sql日志</param>
         public void Write(string log)
         {
-            if (!Logger.IsDebugEnabled|| !IsEnabled())
+            if (!Logger.IsDebugEnabled||!IsEnabled())
             {
                 return;
             }
@@ -80,10 +80,6 @@ namespace Bing.Datas.EntityFramework.Logs
         /// <returns></returns>
         private bool IsEnabled()
         {
-            if (EfConfig.LogLevel == EfLogLevel.Off)
-            {
-                return false;
-            }
             if (EfConfig.LogLevel == EfLogLevel.All)
             {
                 return true;
