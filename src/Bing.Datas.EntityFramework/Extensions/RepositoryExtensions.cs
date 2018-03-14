@@ -12,7 +12,7 @@ namespace Bing.Datas.EntityFramework.Extensions
     /// <summary>
     /// 仓储扩展
     /// </summary>
-    public static class RepositoryExtensions
+    public static partial class RepositoryExtensions
     {
         /// <summary>
         /// 从数据上下文中 删除实体

@@ -57,6 +57,7 @@
     <Compile Include="AggregateRootMap.cs" />
     <Compile Include="Bulks\BulkInsert.cs" />
     <Compile Include="EntityMap.cs" />
+    <Compile Include="Extensions\RepositoryExtensions.cs" />
     <Compile Include="IMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper.cs" />

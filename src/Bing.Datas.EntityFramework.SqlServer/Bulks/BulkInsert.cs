@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using Bing.Datas.EntityFramework.Extensions;
 using EntityFramework.Mapping;
 
 namespace Bing.Datas.EntityFramework.SqlServer.Bulks
@@ -34,7 +35,22 @@ namespace Bing.Datas.EntityFramework.SqlServer.Bulks
         /// <param name="entities">实体集</param>
         public BulkInsert(DbContext context, IEnumerable<TEntity> entities)
         {
+            Context = context;
+            Entities = entities;
+            Map = Context.GetMetaData<TEntity>();
+        }
 
+        /// <summary>
+        /// 插入数据
+        /// </summary>
+        /// <param name="batchSize">批大小</param>
+        /// <param name="options">批量选项</param>
+        /// <returns></returns>
+        public int Insert(int batchSize = 1000, SqlBulkCopyOptions options = SqlBulkCopyOptions.Default)
+        {
+            var dt = Bing.Datas.EntityFramework.Helper.ToDataTable(Entities.ToList(), Map);
+            return SqlHelper.BulkCopy((SqlConnection) Context.Database.Connection, Map.TableName, dt, batchSize,
+                options);
         }
     }
 }
