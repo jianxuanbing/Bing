@@ -38,6 +38,11 @@ namespace Bing.Caching.Options
         public int ConnectionTimeout { get; set; } = 5000;
 
         /// <summary>
+        /// 获取或设置 同步过期时间
+        /// </summary>
+        public int SyncTimeout { get; set; } = 5000;
+
+        /// <summary>
         /// 获取 用于连接到Redis服务器的端点列表
         /// </summary>
         public IList<ServerEndPoint> EndPoints { get; }=new List<ServerEndPoint>();
