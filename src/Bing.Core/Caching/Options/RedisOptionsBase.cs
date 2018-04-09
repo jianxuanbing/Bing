@@ -33,18 +33,23 @@ namespace Bing.Caching.Options
         public string SslHost { get; set; } = null;
 
         /// <summary>
-        /// 获取或设置 连接过期时间
+        /// 获取或设置 连接有效时间（单位：毫秒，默认：5秒，除非<see cref="SyncTimeout"/>较高）
         /// </summary>
         public int ConnectionTimeout { get; set; } = 5000;
 
         /// <summary>
-        /// 获取或设置 同步过期时间
+        /// 获取或设置 同步操作的时间（单位：毫秒，默认：5秒）
         /// </summary>
         public int SyncTimeout { get; set; } = 5000;
 
         /// <summary>
-        /// 获取 用于连接到Redis服务器的端点列表
+        /// 获取或设置 用于连接到Redis服务器的端点列表
         /// </summary>
         public IList<ServerEndPoint> EndPoints { get; }=new List<ServerEndPoint>();
+
+        /// <summary>
+        /// 获取或设置 是否允许执行管理操作
+        /// </summary>
+        public bool AllowAdmin { get; set; } = false;
     }
 }

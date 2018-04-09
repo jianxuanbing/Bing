@@ -9,11 +9,7 @@ namespace Bing.Caching.Abstractions
     /// <summary>
     /// 缓存
     /// </summary>
-    public interface ICacheable
+    public interface ICaching
     {
-        /// <summary>
-        /// 获取 缓存键
-        /// </summary>
-        string CacheKey { get; }
     }
 }

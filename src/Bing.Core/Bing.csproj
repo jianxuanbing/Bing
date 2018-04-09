@@ -73,8 +73,11 @@
     <Compile Include="Aspects\IgnoreAttribute.cs" />
     <Compile Include="Aspects\NotEmptyAttribute.cs" />
     <Compile Include="Aspects\NotNullAttribute.cs" />
-    <Compile Include="Caching\Abstractions\ICacheable.cs" />
+    <Compile Include="Caching\Abstractions\ICachable.cs" />
     <Compile Include="Caching\Abstractions\ICacheBus.cs" />
+    <Compile Include="Caching\Abstractions\ICaching.cs" />
+    <Compile Include="Caching\Abstractions\ICachingKeyGenerator.cs" />
+    <Compile Include="Caching\Default\DefaultCachingKeyGenerator.cs" />
     <Compile Include="Caching\ICacheProvider.cs" />
     <Compile Include="Caching\Abstractions\ICachePublisher.cs" />
     <Compile Include="Caching\Abstractions\ICacheSerializer.cs" />

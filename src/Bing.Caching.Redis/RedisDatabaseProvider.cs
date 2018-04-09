@@ -77,7 +77,8 @@ namespace Bing.Caching.Redis
                 Password = _options.Password,
                 Ssl = _options.IsSsl,
                 SslHost = _options.SslHost,
-                SyncTimeout = _options.SyncTimeout
+                SyncTimeout = _options.SyncTimeout,
+                AllowAdmin = _options.AllowAdmin
             };
 
             foreach (var endPoint in _options.EndPoints)

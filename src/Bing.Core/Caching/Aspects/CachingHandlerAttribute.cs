@@ -126,9 +126,9 @@ namespace Bing.Caching.Aspects
             {
                 return ((DateTime) arg).ToString("yyyyMMddHHmmss");
             }
-            if (arg is ICacheable)
+            if (arg is ICachable)
             {
-                return ((ICacheable) arg).CacheKey;
+                return ((ICachable) arg).CacheKey;
             }
             return null;
         }
