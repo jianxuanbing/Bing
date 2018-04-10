@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using StackExchange.Redis;
@@ -47,6 +48,19 @@ namespace Bing.Caching.Redis
         }
 
         /// <summary>
+        /// 获取 服务器列表
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<IServer> GetServerList()
+        {
+            var endpoints = GetMastersServersEndpoints();
+            foreach (var endPoint in endpoints)
+            {
+                yield return _connectionMultiplexer.Value.GetServer(endPoint);
+            }
+        }
+
+        /// <summary>
         /// 获取 Redis多连接复用器
         /// </summary>
         /// <returns></returns>
@@ -86,6 +100,37 @@ namespace Bing.Caching.Redis
                 configurationOptions.EndPoints.Add(endPoint.Host,endPoint.Port);
             }
             return ConnectionMultiplexer.Connect(configurationOptions.ToString());
+        }
+
+        /// <summary>
+        /// 获取主服务器端点列表
+        /// </summary>
+        /// <returns></returns>
+        private List<EndPoint> GetMastersServersEndpoints()
+        {
+            var masters=new List<EndPoint>();
+            foreach (var endPoint in _connectionMultiplexer.Value.GetEndPoints())
+            {
+                var server = _connectionMultiplexer.Value.GetServer(endPoint);
+                if (server.IsConnected)
+                {
+                    // 集群
+                    if (server.ServerType == ServerType.Cluster)
+                    {
+                        masters.AddRange(server.ClusterConfiguration.Nodes.Where(n => !n.IsSlave)
+                            .Select(n => n.EndPoint));
+                        break;
+                    }
+                    // 单节点，主-从
+                    if (server.ServerType == ServerType.Standalone & !server.IsSlave)
+                    {
+                        masters.Add(endPoint);
+                        break;
+                    }
+                }
+            }
+
+            return masters;
         }
     }
 }

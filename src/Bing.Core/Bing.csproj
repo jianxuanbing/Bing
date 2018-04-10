@@ -77,6 +77,7 @@
     <Compile Include="Caching\Abstractions\ICacheBus.cs" />
     <Compile Include="Caching\Abstractions\ICaching.cs" />
     <Compile Include="Caching\Abstractions\ICachingKeyGenerator.cs" />
+    <Compile Include="Caching\Default\DefaultBinaryFormatterSerializer.cs" />
     <Compile Include="Caching\Default\DefaultCachingKeyGenerator.cs" />
     <Compile Include="Caching\ICacheProvider.cs" />
     <Compile Include="Caching\Abstractions\ICachePublisher.cs" />

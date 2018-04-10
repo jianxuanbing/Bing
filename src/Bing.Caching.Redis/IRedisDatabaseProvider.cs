@@ -19,6 +19,12 @@ namespace Bing.Caching.Redis
         IDatabase GetDatabase();
 
         /// <summary>
+        /// 获取 服务器列表
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<IServer> GetServerList();
+
+        /// <summary>
         /// 获取当前Redis服务器
         /// </summary>
         /// <param name="hostAndPort">主机名和端口</param>

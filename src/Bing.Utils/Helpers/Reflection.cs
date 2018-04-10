@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Bing.Utils.Extensions;
 
@@ -520,6 +521,25 @@ namespace Bing.Utils.Helpers
                    || typeDefinition == typeof(IList<>)
                    || typeDefinition == typeof(List<>);
         }
+        #endregion
+
+        #region GetTypeName(获取类型名称)
+
+        /// <summary>
+        /// 减去全名正则
+        /// </summary>
+        static readonly Regex SubtractFullNameRegex=new Regex(@", Version=\d+.\d+.\d+.\d+, Culture=\w+, PublicKeyToken=\w+", RegexOptions.Compiled);
+
+        /// <summary>
+        /// 获取类型名称
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns></returns>
+        public static string GetTypeName(Type type)
+        {
+            return SubtractFullNameRegex.Replace(type.AssemblyQualifiedName, "");
+        }
+
         #endregion
 
     }

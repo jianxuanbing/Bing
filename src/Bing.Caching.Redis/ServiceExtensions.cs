@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Bing.Caching.Abstractions;
+using Bing.Caching.Default;
 using Bing.Dependency;
 using Bing.Utils.Extensions;
 
@@ -27,7 +28,7 @@ namespace Bing.Caching.Redis
 
             var options=new RedisCacheOptions();
             optionsAction.Invoke(options);
-            services.AddSingleton<ICacheSerializer, DefaultJsonFormatterSerializer>();
+            services.AddSingleton<ICacheSerializer, DefaultBinaryFormatterSerializer>();
             services.AddSingleton<IRedisDatabaseProvider, RedisDatabaseProvider>();
             services.AddSingleton(options);
             services.AddSingleton<IRedisCacheProvider, DefaultRedisCacheProvider>();

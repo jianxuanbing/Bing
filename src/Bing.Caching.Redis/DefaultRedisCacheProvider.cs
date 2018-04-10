@@ -23,9 +23,14 @@ namespace Bing.Caching.Redis
         private readonly IDatabase _database;
 
         /// <summary>
+        /// 缓存服务器列表
+        /// </summary>
+        private readonly IEnumerable<IServer> _servers;
+
+        /// <summary>
         /// Redis 数据库提供程序
         /// </summary>
-        private readonly IRedisDatabaseProvider _dbProvider;
+        private readonly IRedisDatabaseProvider _dbProvider;        
 
         /// <summary>
         /// 序列化器
@@ -55,6 +60,8 @@ namespace Bing.Caching.Redis
             _dbProvider = dbProvider;
             _serializer = serializer;
             _database = _dbProvider.GetDatabase();
+            _servers = _dbProvider.GetServerList();
+
             Client = new RedisClient(_dbProvider);
         }
 
@@ -386,6 +393,71 @@ namespace Bing.Caching.Redis
 
             await this.RemoveAsync(cacheKey);
             await this.SetAsync(cacheKey, cacheValue, expiration);
+        }
+
+        public void RemoveByPrefix(string prefix)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveByPrefixAsync(string prefix)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetAll<T>(IDictionary<string, T> value, TimeSpan expiration) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetAllAsync<T>(IDictionary<string, T> value, TimeSpan expiration) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDictionary<string, CacheValue<T>> GetAll<T>(IEnumerable<string> cacheKeys) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IDictionary<string, CacheValue<T>>> GetAllAsync<T>(IEnumerable<string> cacheKeys) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public IDictionary<string, CacheValue<T>> GetByPrefix<T>(string prefix) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IDictionary<string, CacheValue<T>>> GetByPrefixAsync<T>(string prefix) where T : class
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveAll(IEnumerable<string> cacheKeys)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveAllAsync(IEnumerable<string> cacheKeys)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetCount(string prefix = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Flush()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task FlushAsync()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

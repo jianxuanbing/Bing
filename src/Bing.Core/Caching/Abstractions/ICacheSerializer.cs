@@ -11,13 +11,34 @@ namespace Bing.Caching.Abstractions
     /// </summary>
     public interface ICacheSerializer
     {
-        T Deserialize<T>(string value);
+        /// <summary>
+        /// 序列化指定的对象为字节数组
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="value">值</param>
+        /// <returns></returns>
+        byte[] Serialize<T>(T value);
 
-        Task<T> DeserializeAsync<T>(string value);
+        /// <summary>
+        /// 反序列化指定的字节数组为对象
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="bytes">字节数组</param>
+        /// <returns></returns>
+        T Deserialize<T>(byte[] bytes);
 
+        /// <summary>
+        /// 序列化对象
+        /// </summary>
+        /// <param name="obj">对象</param>
+        /// <returns></returns>
+        ArraySegment<byte> SerializeObject(object obj);
 
-        string Serialize<T>(T value);
-
-        Task<string> SerializeAsync<T>(T value);
+        /// <summary>
+        /// 反序列化对象
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <returns></returns>
+        object DeserializeObject(ArraySegment<byte> value);
     }
 }

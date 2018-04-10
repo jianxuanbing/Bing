@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing", "src\Bing.Core\Bing.csproj", "{39F3E099-6B64-4AD5-884E-2A0628D9D74C}"
 EndProject
@@ -131,6 +131,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Autofac", "src\Bing.Autofac\Bing.Autofac.csproj", "{308D8039-C44C-49CF-AF8E-4DCC60246FD1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Extensions", "src\Bing.Extensions\Bing.Extensions.csproj", "{B194184F-90B6-4F57-94D1-33F09156C010}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Caching.Serialization.Json", "src\Bing.Caching.Serialization.Json\Bing.Caching.Serialization.Json.csproj", "{54225954-7E23-46AD-BD56-01DD0C6C7FFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Caching.Serialization.MessagePack", "src\Bing.Caching.Serialization.MessagePack\Bing.Caching.Serialization.MessagePack.csproj", "{E97FFC05-2007-4AD0-88CF-4914BA6F93BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Caching.Serialization.Protobuf", "src\Bing.Caching.Serialization.Protobuf\Bing.Caching.Serialization.Protobuf.csproj", "{1BED7664-A922-4523-BA7F-7AB45F4F092A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -326,6 +332,18 @@ Global
 		{B194184F-90B6-4F57-94D1-33F09156C010}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B194184F-90B6-4F57-94D1-33F09156C010}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B194184F-90B6-4F57-94D1-33F09156C010}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54225954-7E23-46AD-BD56-01DD0C6C7FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54225954-7E23-46AD-BD56-01DD0C6C7FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54225954-7E23-46AD-BD56-01DD0C6C7FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54225954-7E23-46AD-BD56-01DD0C6C7FFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E97FFC05-2007-4AD0-88CF-4914BA6F93BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E97FFC05-2007-4AD0-88CF-4914BA6F93BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E97FFC05-2007-4AD0-88CF-4914BA6F93BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E97FFC05-2007-4AD0-88CF-4914BA6F93BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BED7664-A922-4523-BA7F-7AB45F4F092A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BED7664-A922-4523-BA7F-7AB45F4F092A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BED7664-A922-4523-BA7F-7AB45F4F092A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BED7664-A922-4523-BA7F-7AB45F4F092A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -386,6 +404,9 @@ Global
 		{ED34F27F-AC13-4371-B654-113C4E8FCA5B} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
 		{308D8039-C44C-49CF-AF8E-4DCC60246FD1} = {41A99352-5E70-4215-918C-8EDF76196E60}
 		{B194184F-90B6-4F57-94D1-33F09156C010} = {7E8EB0B0-2E8C-49BD-A44A-D4E6F21BDAE5}
+		{54225954-7E23-46AD-BD56-01DD0C6C7FFB} = {41A99352-5E70-4215-918C-8EDF76196E60}
+		{E97FFC05-2007-4AD0-88CF-4914BA6F93BC} = {41A99352-5E70-4215-918C-8EDF76196E60}
+		{1BED7664-A922-4523-BA7F-7AB45F4F092A} = {41A99352-5E70-4215-918C-8EDF76196E60}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8467E72B-4FFE-4CE1-8650-86DBABEA5548}
