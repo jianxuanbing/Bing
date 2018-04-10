@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bing.Aspects;
+using Bing.Caching.Abstractions;
 using Bing.Dependency;
 using Bing.Samples.Domains.Models;
 using Bing.Samples.Domains.Request.Act;
@@ -13,7 +14,7 @@ namespace Bing.Samples.Services
     /// <summary>
     /// 登录 服务
     /// </summary>
-    public interface ILoginService: IScopeDependency
+    public interface ILoginService: IScopeDependency, ICaching
     {
         /// <summary>
         /// 注册

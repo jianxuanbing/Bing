@@ -8,6 +8,7 @@ using Autofac;
 using Bing.Dependency;
 using Bing.Logs.Log4Net;
 using AspectCore.DynamicProxy.Parameters;
+using Bing.Caching;
 
 namespace Bing.Samples.Consoles.Configs
 {

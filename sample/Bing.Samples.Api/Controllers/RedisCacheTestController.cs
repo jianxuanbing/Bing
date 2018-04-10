@@ -34,7 +34,7 @@ namespace Bing.Samples.Api.Controllers
         /// <param name="type"></param>
         /// <returns></returns>
         [HttpGet]
-        [CachingHandler]
+        [CachingAble]
         public string Get(int type = 1)
         {
             if (type == 1)

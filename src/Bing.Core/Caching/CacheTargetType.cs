@@ -12,23 +12,34 @@ namespace Bing.Caching
     public enum CacheTargetType
     {
         /// <summary>
-        /// Redis
+        /// 内存缓存（本地）
         /// </summary>
-        Redis=0,
+        Memory=0,
 
         /// <summary>
-        /// CouchBase
+        /// SQLite（本地）
         /// </summary>
-        CouchBase=1,
+        SQLite=1,
 
         /// <summary>
-        /// Memcached
+        /// Redis（远程）
         /// </summary>
-        Memcached=2,
+        Redis=2,
 
         /// <summary>
-        /// WebCache
+        /// Memcached（远程）
         /// </summary>
-        WebCache=3
+        Memcached = 3,
+
+        /// <summary>
+        /// WebCache（远程）
+        /// </summary>
+        WebCache = 4,
+
+        /// <summary>
+        /// CouchBase（远程）
+        /// </summary>
+        CouchBase = 5,
+        
     }
 }

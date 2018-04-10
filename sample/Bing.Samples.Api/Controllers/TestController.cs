@@ -47,6 +47,17 @@ namespace Bing.Samples.Api.Controllers
         }
 
         /// <summary>
+        /// 获取Redis异步内容
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public string GetTestRedisAsyncContent(string content)
+        {
+            return _testService.GetTestContent(content);
+        }
+
+        /// <summary>
         /// 测试空内容
         /// </summary>
         /// <param name="content"></param>

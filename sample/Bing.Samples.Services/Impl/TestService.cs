@@ -20,18 +20,26 @@ namespace Bing.Samples.Services.Impl
     public class TestService:ITestService
     {
         private IEventBus _eventBus;
+        private ICacheProvider _cacheProvider;
 
         protected ILog Logger = Log.GetLog(typeof(TestService));
 
-        public TestService(IEventBus eventBus)
+        public TestService(IEventBus eventBus,ICacheProvider cacheProvider)
         {
             _eventBus = eventBus;
+            _cacheProvider = cacheProvider;
         }
 
-        [CachingHandler]
+        [CachingAble]
         public string GetContent(string content)
         {
             return content;
+        }
+
+        public string GetTestContent(string content)
+        {
+            _cacheProvider.SetAsync("Test",content,TimeSpan.FromSeconds(60));
+            return _cacheProvider.GetAsync<string>("Test").Result.Value;
         }
         
         public void WriteOtherLog(string content)
@@ -42,7 +50,7 @@ namespace Bing.Samples.Services.Impl
         public List<ItemResult> GetItems()
         {
             var provider = Ioc.Create<ICacheProvider>();
-            var result=provider.Get("IDropdownService:GetRegionList",typeof(List<ItemResult>));
+            var result=provider.Get<List<ItemResult>>("IDropdownService:GetRegionList");
             if (result.HasValue)
             {
                 return result.Value as List<ItemResult>;

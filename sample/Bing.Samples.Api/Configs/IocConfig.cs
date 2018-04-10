@@ -9,8 +9,10 @@ using AspectCore.Extensions.Autofac;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Bing.Aspects;
+using Bing.Caching;
 using Bing.Caching.Core;
 using Bing.Caching.Redis;
+using Bing.Caching.Serialization.Json;
 using Bing.Datas.EntityFramework;
 using Bing.Datas.EntityFramework.Configs;
 using Bing.Datas.UnitOfWorks;
@@ -33,6 +35,8 @@ namespace Bing.Samples.Api.Configs
             //builder.AddLog4Net();
             builder.AddBingUnitOfWork("WeiHai");
 
+
+
             builder.RegisterDynamicProxy(config =>
             {
                 config.EnableParameterAspect();
@@ -48,20 +52,22 @@ namespace Bing.Samples.Api.Configs
             builder.AddDefaultRedisCache(config =>
             {
                 config.EndPoints.Add(new ServerEndPoint("192.168.3.115", 9494));
-                config.Password = "wolfRedis";
-                //config.SystemPrefix = "Lxm:";
+                config.Password = "";
+                //config.Password = "wolfRedis";
+                config.SystemPrefix = "BingSamples:";
             });
 
-            //builder.AddDefaultEventBus();
-            builder.AddRabbitMqEventBus(options =>
-            {
-                options.HostName = "192.168.3.115";
-                options.UserName = "jian";
-                options.Password = "123456";
-                options.QueueName = "eventBus";
-                options.ExchangeName = "sampleEventBus";
-                options.RouteKey = "sampleEventBus.*";
-            });
+            builder.AddDefaultEventBus();
+            builder.AddDefaultJsonSerializer();
+            //builder.AddRabbitMqEventBus(options =>
+            //{
+            //    options.HostName = "192.168.3.115";
+            //    options.UserName = "jian";
+            //    options.Password = "123456";
+            //    options.QueueName = "eventBus";
+            //    options.ExchangeName = "sampleEventBus";
+            //    options.RouteKey = "sampleEventBus.*";
+            //});
         }
     }
 }

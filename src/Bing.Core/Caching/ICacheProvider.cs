@@ -58,13 +58,13 @@ namespace Bing.Caching
         /// <returns></returns>
         CacheValue<T> Get<T>(string cacheKey) where T : class;
 
-        /// <summary>
-        /// 获取缓存
-        /// </summary>
-        /// <param name="cacheKey">缓存键</param>
-        /// <param name="type">实体类型</param>
-        /// <returns></returns>
-        CacheValue<object> Get(string cacheKey,Type type);
+        ///// <summary>
+        ///// 获取缓存
+        ///// </summary>
+        ///// <param name="cacheKey">缓存键</param>
+        ///// <param name="type">实体类型</param>
+        ///// <returns></returns>
+        //CacheValue<object> Get(string cacheKey,Type type);
 
         /// <summary>
         /// 获取缓存

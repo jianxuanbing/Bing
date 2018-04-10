@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Bing.Caching.Abstractions;
 using Bing.Caching.Core;
@@ -153,7 +154,8 @@ namespace Bing.Caching.Redis
             cacheValue.CheckNotNull(nameof(cacheValue));
             expiration.CheckGreaterThan(nameof(expiration),TimeSpan.Zero);
 
-            var content = ToJson(cacheValue);
+            //var content = ToJson(cacheValue);
+            var content = _serializer.Serialize(cacheValue);
             cacheKey = AddSysCustomKey(cacheKey);
 
             _database.StringSet(cacheKey, content, expiration);
@@ -172,7 +174,8 @@ namespace Bing.Caching.Redis
             cacheValue.CheckNotNull(nameof(cacheValue));
             expiration.CheckGreaterThan(nameof(expiration), TimeSpan.Zero);
 
-            var content = ToJson(cacheValue);
+            //var content = ToJson(cacheValue);
+            var content = _serializer.Serialize(cacheValue);
             cacheKey = AddSysCustomKey(cacheKey);
 
             await _database.StringSetAsync(cacheKey, content, expiration);
@@ -196,7 +199,8 @@ namespace Bing.Caching.Redis
             var result = _database.StringGet(tempCacheKey);
             if (!result.IsNull)
             {
-                var value = ToObj<T>(result);
+                //var value = ToObj<T>(result);
+                var value = _serializer.Deserialize<T>(result);
                 return new CacheValue<T>(value, true);
             }
 
@@ -227,7 +231,8 @@ namespace Bing.Caching.Redis
             var result = await _database.StringGetAsync(tempCacheKey);
             if (!result.IsNull)
             {
-                var value =ToObj<T>(result);
+                //var value =ToObj<T>(result);
+                var value = _serializer.Deserialize<T>(result);
                 return new CacheValue<T>(value, true);
             }
 
@@ -255,32 +260,33 @@ namespace Bing.Caching.Redis
             var result = _database.StringGet(cacheKey);
             if (!result.IsNull)
             {
-                var value = ToObj<T>(result);
+                //var value = ToObj<T>(result);
+                var value = _serializer.Deserialize<T>(result);
                 return new CacheValue<T>(value,true);
             }
             return CacheValue<T>.NoValue;
         }
 
-        /// <summary>
-        /// 获取缓存
-        /// </summary>
-        /// <param name="cacheKey">缓存键</param>
-        /// <param name="type">实体类型</param>
-        /// <returns></returns>
-        public CacheValue<object> Get(string cacheKey, Type type)
-        {
-            cacheKey.CheckNotNullOrEmpty(nameof(cacheKey));
+        ///// <summary>
+        ///// 获取缓存
+        ///// </summary>
+        ///// <param name="cacheKey">缓存键</param>
+        ///// <param name="type">实体类型</param>
+        ///// <returns></returns>
+        //public CacheValue<object> Get(string cacheKey, Type type)
+        //{
+        //    cacheKey.CheckNotNullOrEmpty(nameof(cacheKey));
 
-            cacheKey = AddSysCustomKey(cacheKey);
+        //    cacheKey = AddSysCustomKey(cacheKey);
 
-            var result = _database.StringGet(cacheKey);
-            if (!result.IsNull)
-            {
-                var value = ToObj(result,type);
-                return new CacheValue<object>(value, true);
-            }
-            return CacheValue<object>.NoValue;
-        }
+        //    var result = _database.StringGet(cacheKey);
+        //    if (!result.IsNull)
+        //    {
+        //        var value = ToObj(result,type);
+        //        return new CacheValue<object>(value, true);
+        //    }
+        //    return CacheValue<object>.NoValue;
+        //}
 
         /// <summary>
         /// 获取缓存
@@ -297,7 +303,8 @@ namespace Bing.Caching.Redis
             var result = await _database.StringGetAsync(cacheKey);
             if (!result.IsNull)
             {
-                var value = ToObj<T>(result);
+                //var value = ToObj<T>(result);
+                var value = _serializer.Deserialize<T>(result);
                 return new CacheValue<T>(value, true);
             }
             return CacheValue<T>.NoValue;
@@ -373,7 +380,7 @@ namespace Bing.Caching.Redis
             cacheKey = AddSysCustomKey(cacheKey);
 
             this.Remove(cacheKey);
-            this.Set(cacheKey,cacheValue,expiration);
+            this.Set(cacheKey, cacheValue, expiration);
         }
 
         /// <summary>
@@ -395,70 +402,288 @@ namespace Bing.Caching.Redis
             await this.SetAsync(cacheKey, cacheValue, expiration);
         }
 
+        /// <summary>
+        /// 移除缓存，根据缓存键的前缀
+        /// </summary>
+        /// <param name="prefix">缓存键前缀</param>
+        /// <returns></returns>
         public void RemoveByPrefix(string prefix)
         {
-            throw new NotImplementedException();
+            prefix.CheckNotNullOrEmpty(nameof(prefix));
+
+            prefix = AddSysCustomKey(prefix);
+            prefix = this.HandlePrefix(prefix);
+
+            var redisKeys = this.SearchRedisKeys(prefix);
+
+            _database.KeyDelete(redisKeys);
         }
 
-        public Task RemoveByPrefixAsync(string prefix)
+        /// <summary>
+        /// 移除缓存，根据缓存键的前缀
+        /// </summary>
+        /// <param name="prefix">缓存键前缀</param>
+        /// <returns></returns>
+        public async Task RemoveByPrefixAsync(string prefix)
         {
-            throw new NotImplementedException();
+            prefix.CheckNotNullOrEmpty(nameof(prefix));
+
+            prefix = this.HandlePrefix(prefix);
+            prefix = AddSysCustomKey(prefix);
+
+            var redisKeys = this.SearchRedisKeys(prefix);
+
+            await _database.KeyDeleteAsync(redisKeys);
         }
 
+        /// <summary>
+        /// 设置全部缓存，根据字典
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="value">值</param>
+        /// <param name="expiration">过期时间</param>
+        /// <returns></returns>
         public void SetAll<T>(IDictionary<string, T> value, TimeSpan expiration) where T : class
         {
-            throw new NotImplementedException();
+            value.CheckNotNull(nameof(value));
+            expiration.CheckGreaterThan(nameof(expiration), TimeSpan.Zero);
+
+            var batch = _database.CreateBatch();
+            foreach (var item in value)
+            {
+                batch.StringSetAsync(AddSysCustomKey(item.Key), _serializer.Serialize(item.Value), expiration);
+            }
+            batch.Execute();
         }
 
-        public Task SetAllAsync<T>(IDictionary<string, T> value, TimeSpan expiration) where T : class
+        /// <summary>
+        /// 设置全部缓存，根据字典
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="value">值</param>
+        /// <param name="expiration">过期时间</param>
+        /// <returns></returns>
+        public async Task SetAllAsync<T>(IDictionary<string, T> value, TimeSpan expiration) where T : class
         {
-            throw new NotImplementedException();
+            value.CheckNotNull(nameof(value));
+            expiration.CheckGreaterThan(nameof(expiration), TimeSpan.Zero);
+
+            var tasks=new List<Task>();            
+            foreach (var item in value)
+            {
+                tasks.Add(SetAsync(item.Key, item.Value, expiration));
+            }
+
+            await Task.WhenAll(tasks);
         }
 
+        /// <summary>
+        /// 获取全部缓存，根据缓存键列表
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="cacheKeys">缓存键列表</param>
+        /// <returns></returns>
         public IDictionary<string, CacheValue<T>> GetAll<T>(IEnumerable<string> cacheKeys) where T : class
         {
-            throw new NotImplementedException();
+            cacheKeys.CheckNotNullOrEmpty(nameof(cacheKeys));
+
+            var keyArray = cacheKeys.ToArray();
+            var values = _database.StringGet(keyArray.Select(k => (RedisKey) AddSysCustomKey(k)).ToArray());
+            var result=new Dictionary<string,CacheValue<T>>();
+            for (int i = 0; i < keyArray.Length; i++)
+            {
+                var cacheValue = values[i];
+                if (!cacheValue.IsNull)
+                {
+                    result.Add(keyArray[i], new CacheValue<T>(_serializer.Deserialize<T>(cacheValue), true));
+                }
+                else
+                {
+                    result.Add(keyArray[i],CacheValue<T>.NoValue);
+                }
+            }
+
+            return result;
         }
 
-        public Task<IDictionary<string, CacheValue<T>>> GetAllAsync<T>(IEnumerable<string> cacheKeys) where T : class
+        /// <summary>
+        /// 获取全部缓存，根据缓存键列表
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="cacheKeys">缓存键列表</param>
+        /// <returns></returns>
+        public async Task<IDictionary<string, CacheValue<T>>> GetAllAsync<T>(IEnumerable<string> cacheKeys) where T : class
         {
-            throw new NotImplementedException();
+            cacheKeys.CheckNotNullOrEmpty(nameof(cacheKeys));
+
+            var keyArray = cacheKeys.ToArray();
+            var values = await _database.StringGetAsync(keyArray.Select(k => (RedisKey)AddSysCustomKey(k)).ToArray());
+            var result = new Dictionary<string, CacheValue<T>>();
+            for (int i = 0; i < keyArray.Length; i++)
+            {
+                var cacheValue = values[i];
+                if (!cacheValue.IsNull)
+                {
+                    result.Add(keyArray[i], new CacheValue<T>(_serializer.Deserialize<T>(cacheValue), true));
+                }
+                else
+                {
+                    result.Add(keyArray[i], CacheValue<T>.NoValue);
+                }
+            }
+
+            return result;
         }
 
+        /// <summary>
+        /// 获取缓存，根据缓存键前缀
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="prefix">缓存键前缀</param>
+        /// <returns></returns>
         public IDictionary<string, CacheValue<T>> GetByPrefix<T>(string prefix) where T : class
         {
-            throw new NotImplementedException();
+            prefix.CheckNotNullOrEmpty(nameof(prefix));
+
+            prefix = this.HandlePrefix(prefix);
+            prefix = AddSysCustomKey(prefix);
+
+            var redisKeys = this.SearchRedisKeys(prefix);
+
+            var values = _database.StringGet(redisKeys).ToArray();
+
+            var result = new Dictionary<string, CacheValue<T>>();
+            for (int i = 0; i < redisKeys.Length; i++)
+            {
+                var cacheValue = values[i];
+                if (!cacheValue.IsNull)
+                {
+                    result.Add(redisKeys[i], new CacheValue<T>(_serializer.Deserialize<T>(cacheValue), true));
+                }
+                else
+                {
+                    result.Add(redisKeys[i], CacheValue<T>.NoValue);
+                }
+            }
+
+            return result;
         }
 
-        public Task<IDictionary<string, CacheValue<T>>> GetByPrefixAsync<T>(string prefix) where T : class
+        /// <summary>
+        /// 获取缓存，根据缓存键前缀
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="prefix">缓存键前缀</param>
+        /// <returns></returns>
+        public async Task<IDictionary<string, CacheValue<T>>> GetByPrefixAsync<T>(string prefix) where T : class
         {
-            throw new NotImplementedException();
+            prefix.CheckNotNullOrEmpty(nameof(prefix));
+
+            prefix = this.HandlePrefix(prefix);
+            prefix = AddSysCustomKey(prefix);
+
+            var redisKeys = this.SearchRedisKeys(prefix);
+
+            var values = (await _database.StringGetAsync(redisKeys)).ToArray();
+
+            var result = new Dictionary<string, CacheValue<T>>();
+            for (int i = 0; i < redisKeys.Length; i++)
+            {
+                var cacheValue = values[i];
+                if (!cacheValue.IsNull)
+                {
+                    result.Add(redisKeys[i], new CacheValue<T>(_serializer.Deserialize<T>(cacheValue), true));
+                }
+                else
+                {
+                    result.Add(redisKeys[i], CacheValue<T>.NoValue);
+                }
+            }
+
+            return result;
         }
 
+        /// <summary>
+        /// 移除缓存，根据缓存键列表
+        /// </summary>
+        /// <param name="cacheKeys">缓存键列表</param>
         public void RemoveAll(IEnumerable<string> cacheKeys)
         {
-            throw new NotImplementedException();
+            cacheKeys.CheckNotNullOrEmpty(nameof(cacheKeys));
+
+            var redisKeys = cacheKeys.Where(k => !string.IsNullOrWhiteSpace(k))
+                .Select(k => (RedisKey) AddSysCustomKey(k)).ToArray();
+
+            if (redisKeys.Length > 0)
+            {
+                _database.KeyDelete(redisKeys);
+            }
         }
 
-        public Task RemoveAllAsync(IEnumerable<string> cacheKeys)
+        /// <summary>
+        /// 移除缓存，根据缓存键列表
+        /// </summary>
+        /// <param name="cacheKeys">缓存键列表</param>
+        /// <returns></returns>
+        public async Task RemoveAllAsync(IEnumerable<string> cacheKeys)
         {
-            throw new NotImplementedException();
+            cacheKeys.CheckNotNullOrEmpty(nameof(cacheKeys));
+
+            var redisKeys = cacheKeys.Where(k => !string.IsNullOrWhiteSpace(k))
+                .Select(k => (RedisKey)AddSysCustomKey(k)).ToArray();
+
+            if (redisKeys.Length > 0)
+            {
+                await _database.KeyDeleteAsync(redisKeys);
+            }
         }
 
+        /// <summary>
+        /// 获取缓存项总数
+        /// </summary>
+        /// <param name="prefix">前缀</param>
+        /// <returns></returns>
         public int GetCount(string prefix = "")
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(prefix))
+            {
+                var allCount = 0;
+                foreach (var server in _servers)
+                {
+                    allCount += (int) server.DatabaseSize(_database.Database);
+                }
+
+                return allCount;
+            }
+
+            return this.SearchRedisKeys(AddSysCustomKey(this.HandlePrefix(prefix))).Length;
         }
 
+        /// <summary>
+        /// 刷新所有缓存项
+        /// </summary>
         public void Flush()
         {
-            throw new NotImplementedException();
+            foreach (var server in _servers)
+            {
+                server.FlushDatabase(_database.Database);
+            }
         }
 
-        public Task FlushAsync()
+        /// <summary>
+        /// 刷新所有缓存项
+        /// </summary>
+        /// <returns></returns>
+        public async Task FlushAsync()
         {
-            throw new NotImplementedException();
-        }
+            var tasks=new List<Task>();
+            foreach (var server in _servers)
+            {
+                tasks.Add(server.FlushDatabaseAsync(_database.Database));
+            }
+
+            await Task.WhenAll(tasks);
+        }        
 
         /// <summary>
         /// 获取Redis客户端
@@ -467,6 +692,52 @@ namespace Bing.Caching.Redis
         public IRedisClient GetClient()
         {
             return this.Client;
+        }
+
+        /// <summary>
+        /// 查询Redis缓存键
+        /// </summary>
+        /// <param name="pattern">查询方式</param>
+        /// <remarks>
+        /// If your Redis Servers support command SCAN , 
+        /// IServer.Keys will use command SCAN to find out the keys.
+        /// Following 
+        /// https://github.com/StackExchange/StackExchange.Redis/blob/master/StackExchange.Redis/StackExchange/Redis/RedisServer.cs#L289
+        /// </remarks>
+        /// <returns></returns>
+        private RedisKey[] SearchRedisKeys(string pattern)
+        {
+            var keys=new List<RedisKey>();
+            foreach (var server in _servers)
+            {
+                keys.AddRange(server.Keys(pattern:pattern));
+            }
+
+            return keys.Distinct().ToArray();
+        }
+
+        /// <summary>
+        /// 处理缓存键前缀
+        /// </summary>
+        /// <param name="prefix">缓存键前缀</param>
+        /// <returns></returns>
+        private string HandlePrefix(string prefix)
+        {
+            // 禁止
+            if (prefix.Equals("*"))
+            {
+                throw new ArgumentException("缓存键前缀不能等于'*'");
+            }
+            // 不能从*开始
+            prefix = new Regex("^\\*+").Replace(prefix, "");
+
+            // 以*结尾
+            if (!prefix.EndsWith("*", StringComparison.OrdinalIgnoreCase))
+            {
+                prefix=string.Concat(prefix,"*");
+            }
+
+            return prefix;
         }
     }
 }
