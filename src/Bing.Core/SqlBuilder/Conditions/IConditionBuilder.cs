@@ -69,7 +69,15 @@ namespace Bing.SqlBuilder.Conditions
         /// </summary>
         /// <param name="sql">Sql语句</param>
         /// <returns></returns>
-        IConditionBuilder AppendRaw(string sql, params object[] param);
+        IConditionBuilder AppendRaw(string sql);
+
+        /// <summary>
+        /// 添加Sql语句条件，默认And连接，允许你写任何不支持上面的方法，所有它会给你最大的灵活性
+        /// </summary>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="param">参数</param>
+        /// <returns></returns>
+        IConditionBuilder AppendRawParam(string sql, params object[] param);
 
         /// <summary>
         /// 添加含有括号的条件

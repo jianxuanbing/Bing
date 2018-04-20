@@ -43,7 +43,7 @@ namespace Bing.SqlBuilder.Logics
             sb.AppendFormat(" from {0} ", tableName);
 
             ConditionBuilder builder=new ConditionBuilder();
-            builder.AppendRaw("(LEFT({0}, LEN({1})) = {1}) ", builder.AddParameter(fieldName, fieldValue), fieldName);
+            builder.AppendRawParam("(LEFT({0}, LEN({1})) = {1}) ", builder.AddParameter(fieldName, fieldValue), fieldName);
             conditionBuilder?.Invoke(builder);
 
             sb.Append(builder.ToString());

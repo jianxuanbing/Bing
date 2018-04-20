@@ -233,7 +233,26 @@ namespace Bing.SqlBuilder.Conditions
         /// </summary>
         /// <param name="sql">Sql语句</param>
         /// <returns></returns>
-        public virtual IConditionBuilder AppendRaw(string sql,params object[] param)
+        public virtual IConditionBuilder AppendRaw(string sql)
+        {
+            if (string.IsNullOrWhiteSpace(sql))
+            {
+                return this;
+            }
+            if (sql.Trim().StartsWith("WHERE", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return this;
+            }
+            return AppendRaw(RelationType.And, sql);
+        }
+
+        /// <summary>
+        /// 添加Sql语句条件，允许你写任何不支持上面的方法，所有它会给你最大的灵活性
+        /// </summary>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="param">参数</param>
+        /// <returns></returns>
+        public virtual IConditionBuilder AppendRawParam(string sql,params object[] param)
         {
             if (string.IsNullOrWhiteSpace(sql))
             {
@@ -244,7 +263,7 @@ namespace Bing.SqlBuilder.Conditions
                 return this;
             }
             return AppendRaw(RelationType.And, string.Format(sql,param));
-        }        
+        }
         #endregion
 
         #region Block(添加含有括号的条件)

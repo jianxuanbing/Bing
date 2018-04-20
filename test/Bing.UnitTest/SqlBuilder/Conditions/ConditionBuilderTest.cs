@@ -125,9 +125,10 @@ namespace Bing.UnitTest.SqlBuilder.Conditions
         public void Test_CustomParam()
         {
             ConditionBuilder builder=new ConditionBuilder();
-            builder.AppendRaw("(LEFT({0}, LEN({1})) = {1}",
+            builder.AppendRawParam("(LEFT({0}, LEN({1})) = {1}",
                     builder.AddParameter("ParentID", "BB2A1B4A-5E9E-33D5-697B-39E37974ACC4"), "ParentID")
                 .Equal("IsDeleted", 1).Equal("Status", 1);
+            builder.AppendRaw("orders.flag=90", 1 == 0);
             var result = builder.ToString();
             var param = builder.GetParamDict().ToJson();
 
