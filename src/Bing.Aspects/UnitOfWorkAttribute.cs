@@ -21,7 +21,7 @@ namespace Bing.Aspects
     public class UnitOfWorkAttribute: InterceptorBase,IScopeDependency
     {
         /// <summary>
-        /// 超时时间
+        /// 超时时间，单位：秒
         /// </summary>
         public int Timeout { get; set; }
 
