@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Aspects;
 using Bing.Caching;
 using Bing.Caching.Aspects;
 using Bing.Events;
@@ -74,6 +75,7 @@ namespace Bing.Samples.Services.Impl
             });
         }
 
+        
         public void WriteCustomerLog(string content)
         {
             Logger.Caption("输出自定义日志").Content(content).Debug();

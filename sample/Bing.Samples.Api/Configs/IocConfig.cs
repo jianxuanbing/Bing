@@ -51,9 +51,8 @@ namespace Bing.Samples.Api.Configs
             //});
             builder.AddDefaultRedisCache(config =>
             {
-                config.EndPoints.Add(new ServerEndPoint("192.168.3.115", 9494));
-                config.Password = "";
-                //config.Password = "wolfRedis";
+                config.EndPoints.Add(new ServerEndPoint("192.168.3.115", 9494));                
+                config.Password = "wolfRedis";
                 config.SystemPrefix = "BingSamples:";
             });
 

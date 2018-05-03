@@ -28,6 +28,7 @@ namespace Bing.Samples.Services
 
         void PublishMessageEvent(string name);
 
+        [UnitOfWork]
         void WriteCustomerLog(string content);
     }
 }
