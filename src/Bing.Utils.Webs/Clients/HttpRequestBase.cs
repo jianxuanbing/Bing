@@ -456,8 +456,12 @@ namespace Bing.Utils.Webs.Clients
             {
                 Method = _httpMethod,
                 RequestUri = new Uri(_url),
-                Content = CreateContent()
+                //Content = CreateContent()
             };
+            if (_httpMethod != HttpMethod.Get)
+            {
+                message.Content = CreateContent();
+            }
             foreach (var header in _headers)
             {
                 message.Headers.TryAddWithoutValidation(header.Key, header.Value);
