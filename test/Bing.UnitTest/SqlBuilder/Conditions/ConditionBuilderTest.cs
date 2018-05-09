@@ -134,6 +134,33 @@ namespace Bing.UnitTest.SqlBuilder.Conditions
 
             Console.WriteLine(result);
             Console.WriteLine(param);
-        }        
+        }
+
+        [TestMethod]
+        public void Test_InternalOr()
+        {
+            ConditionBuilder builder = new ConditionBuilder();
+            builder.And(x =>
+            {
+                x.Or(y =>
+                    {
+                        y.Equal("C.MemberId", "007")
+                            .In("C.CheckFlag", new[] {3, 4})
+                            .In("C.Flag", new[] {1, 2});
+                    })
+                    .Or(y =>
+                    {
+                        y.NotEqual("C.MemberId", "007")
+                            .Equal("C.CheckFlag", 4)
+                            .Equal("C.Flag", 2);
+                    });
+            });
+
+            var result = builder.ToString();
+            var param = builder.GetParamDict().ToJson();
+
+            Console.WriteLine(result);
+            Console.WriteLine(param);
+        }
     }
 }
