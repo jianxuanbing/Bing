@@ -68,6 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\Dtos\ApiResult.cs" />
+    <Compile Include="Applications\Dtos\ResultCode.cs" />
+    <Compile Include="Applications\IServiceBase.cs" />
+    <Compile Include="Applications\ServiceBase.cs" />
     <Compile Include="Aspects\Base\InterceptorBase.cs" />
     <Compile Include="Aspects\Base\ParameterInterceptorBase.cs" />
     <Compile Include="Aspects\IgnoreAttribute.cs" />
