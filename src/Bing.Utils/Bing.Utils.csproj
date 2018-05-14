@@ -41,6 +41,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -99,6 +100,9 @@
     <Compile Include="Json\JsonUtil.cs" />
     <Compile Include="Maths\HexConv.cs" />
     <Compile Include="Maths\UnitConv.cs" />
+    <Compile Include="Medias\ImageLocationMode.cs" />
+    <Compile Include="Medias\ImageUtil.cs" />
+    <Compile Include="Medias\ThumbnailMode.cs" />
     <Compile Include="Modes\BankCards\BankCardRuleBuilder.cs" />
     <Compile Include="Modes\BankCards\BankInfo.cs" />
     <Compile Include="Modes\BankCards\CardRule.cs" />
