@@ -9,6 +9,8 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Bing.Utils.Helpers;
+using Enum = System.Enum;
 
 namespace Bing.Utils.Medias
 {
@@ -525,6 +527,44 @@ namespace Bing.Utils.Medias
         /// 设置文字水印
         /// </summary>
         /// <param name="path">图片路径（绝对路径）</param>
+        /// <param name="outPath">输出路径</param>
+        /// <param name="fileName">文件名</param>
+        /// <param name="letter">水印文字</param>
+        /// <param name="size">字体大小</param>
+        /// <param name="color">颜色</param>
+        /// <param name="location">水印位置</param>
+        /// <returns></returns>
+        public static void LetterWatermark(string path, string outPath, string fileName, string letter, int size,
+            Color color, ImageLocationMode location)
+        {
+            string extName = Path.GetExtension(path);
+            if (extName == ".jpg" || extName == ".bmp" || extName == ".jpeg")
+            {
+                Image img = Bitmap.FromFile(path);
+                SizeF sizeF = GetFontSize(letter, img.Width, img.Height, size, "宋体");
+                if (location == ImageLocationMode.Bottom)
+                {
+                    img = ResizeImage(img, img.Width, img.Height + (int)sizeF.Height, Brushes.White);
+                }
+
+                Graphics g = Graphics.FromImage(img);
+                Font font = new Font("宋体", size);
+                ArrayList coors = GetLocation(location, img, (int)sizeF.Width, (int)sizeF.Height);
+
+                Brush br = new SolidBrush(color);
+                g.DrawString(letter, font, br, float.Parse(coors[0].ToString()), float.Parse(coors[1].ToString()));
+                g.Dispose();
+
+                string newPath = Sys.GetPhysicalPath(outPath) + fileName + extName;
+                img.Save(newPath);
+                img.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// 设置文字水印
+        /// </summary>
+        /// <param name="path">图片路径（绝对路径）</param>
         /// <param name="size">字体大小</param>
         /// <param name="letter">水印文字</param>
         /// <param name="color">颜色</param>
@@ -541,9 +581,16 @@ namespace Bing.Utils.Medias
                                   time.Hour.ToString() + time.Minute.ToString() + time.Second.ToString() +
                                   time.Millisecond.ToString();
                 Image img = Bitmap.FromFile(path);
+                SizeF sizeF = GetFontSize(letter, img.Width, img.Height, size, "宋体");
+                if (location == ImageLocationMode.Bottom)
+                {
+                    img = ResizeImage(img, img.Width, img.Height + (int) sizeF.Height, Brushes.White);
+                }
+
                 Graphics g = Graphics.FromImage(img);
-                ArrayList coors = GetLocation(location, img, size, letter.Length);
                 Font font = new Font("宋体", size);
+                ArrayList coors = GetLocation(location, img, (int)sizeF.Width,(int)sizeF.Height);
+                
                 Brush br = new SolidBrush(color);
                 g.DrawString(letter, font, br, float.Parse(coors[0].ToString()), float.Parse(coors[1].ToString()));
                 g.Dispose();
@@ -557,6 +604,28 @@ namespace Bing.Utils.Medias
                 }
             }
             return path;
+        }
+
+        /// <summary>
+        /// 获取字体尺寸
+        /// </summary>
+        /// <param name="letter">文本内容</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="size">字号大小</param>
+        /// <param name="fontName">字体名称</param>
+        /// <returns></returns>
+        private static SizeF GetFontSize(string letter,int width,int height, int size, string fontName)
+        {
+            using (Bitmap bitmap = new Bitmap(width, height))
+            {
+                using (Graphics g=Graphics.FromImage(bitmap))
+                {
+                    Font font=new Font(fontName,size);
+                    SizeF sizeF = g.MeasureString(letter, font);
+                    return sizeF;
+                }
+            }
         }
 
         /// <summary>
@@ -579,7 +648,7 @@ namespace Bing.Utils.Medias
                     y = 10;
                     break;
                 case ImageLocationMode.Top:
-                    x = img.Width / 2 - (width * height) / 2;
+                    x = img.Width / 2 - width * height / 2;
                     break;
                 case ImageLocationMode.RightTop:
                     x = img.Width - width * height;
@@ -588,7 +657,7 @@ namespace Bing.Utils.Medias
                     y = img.Height / 2;
                     break;
                 case ImageLocationMode.Center:
-                    x = img.Width / 2 - (width * height) / 2;
+                    x = img.Width / 2 - width * height / 2;
                     y = img.Height / 2;
                     break;
                 case ImageLocationMode.RightCenter:
@@ -599,8 +668,9 @@ namespace Bing.Utils.Medias
                     y = img.Height - width - 5;
                     break;
                 case ImageLocationMode.Bottom:
-                    x = img.Width / 2 - (width * height) / 2;
-                    y = img.Height - width - 5;
+                    //x = img.Width / 2 - (width * height) / 2;
+                    x = img.Width / 2 - width/2;
+                    y = img.Height -height- 5;
                     break;
                 case ImageLocationMode.RightBottom:
                     x = img.Width - width * height;
@@ -825,7 +895,7 @@ namespace Bing.Utils.Medias
                 for (int j = 0; j < destBmp.Height; j++)
                 {
                     double dx = 0;
-                    dx = isTwist ? (2 * Math.PI * (double)j) / dBaseAxisLen : (2 * Math.PI * (double)i) / dBaseAxisLen;
+                    dx = isTwist ? 2 * Math.PI * (double)j / dBaseAxisLen : 2 * Math.PI * (double)i / dBaseAxisLen;
                     dx += shapePhase;
                     double dy = Math.Sin(dx);
                     //取当前点的颜色
@@ -1109,15 +1179,15 @@ namespace Bing.Utils.Medias
             Size temSize = new Size(iSource.Width, iSource.Height);
             if (temSize.Width > dHeight || temSize.Width > dWidth)
             {
-                if ((temSize.Width * dHeight) > (temSize.Width * dWidth))
+                if (temSize.Width * dHeight > temSize.Width * dWidth)
                 {
                     sW = dWidth;
-                    sH = (dWidth * temSize.Height) / temSize.Width;
+                    sH = dWidth * temSize.Height / temSize.Width;
                 }
                 else
                 {
                     sH = dHeight;
-                    sW = (temSize.Width * dHeight) / temSize.Height;
+                    sW = temSize.Width * dHeight / temSize.Height;
                 }
             }
             else
@@ -1181,6 +1251,37 @@ namespace Bing.Utils.Medias
                 ob.Dispose();
             }
         }
+        #endregion
+
+        #region ResizeImage(重置图片大小)
+
+        /// <summary>
+        /// 重置图片大小
+        /// </summary>
+        /// <param name="image">图片</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <param name="fillBgColor">填充画笔颜色</param>
+        /// <returns></returns>
+        public static Bitmap ResizeImage(Image image, int width, int height,Brush fillBgColor=null)
+        {
+            Bitmap result=new Bitmap(width,height);
+            using (Graphics graphics=Graphics.FromImage(result))
+            {
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                if (fillBgColor != null)
+                {
+                    graphics.FillRectangle(fillBgColor, new Rectangle(0, 0, result.Width, result.Height));
+                }                
+                graphics.DrawImage(image,0,0, image.Width, image.Height);
+                image.Dispose();
+            }
+
+            return result;
+        }
+
         #endregion
     }
 }
