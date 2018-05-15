@@ -126,8 +126,9 @@ namespace Bing.Utils.UnitTest.Medias
         [TestMethod]
         public void Test_DownloadRemoteImage()
         {
-            var imgUrl = "http://cdn.loonxierp.com//yuema_uploadfiles/img/20185/1526367137646_4524.jpg";
-            var savePath = "D:\\0001.jpg";
+            //var imgUrl = "http://cdn.loonxierp.com//yuema_uploadfiles/img/20185/1526367137646_4524.jpg";
+            var imgUrl = "http://cdn.loonxierp.com//yuema_uploadfiles/img/20185/1525771627401_0768.jpg";
+            var savePath = "D:\\0002.jpg";
             var result=ImageUtil.DownloadRemoteImage(imgUrl, savePath);
             Console.WriteLine(result);
         }
