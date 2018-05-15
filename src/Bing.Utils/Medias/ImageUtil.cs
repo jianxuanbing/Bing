@@ -1065,6 +1065,7 @@ namespace Bing.Utils.Medias
             }
             return strArray;
         }
+
         /// <summary>
         /// 获取图片Url地址
         /// </summary>
@@ -1080,6 +1081,7 @@ namespace Bing.Utils.Medias
             }
             return str;
         }
+
         /// <summary>
         /// 下载图片到本地
         /// </summary>
@@ -1114,6 +1116,87 @@ namespace Bing.Utils.Medias
                 return ex.Message;
             }
             return html;
+        }
+
+        /// <summary>
+        /// 下载远程图片
+        /// </summary>
+        /// <param name="imgUrl">远程图片地址</param>
+        /// <param name="path">保存图片路径</param>
+        /// <param name="timeout">请求超时时间</param>
+        public static bool DownloadRemoteImage(string imgUrl, string path,int timeout=-1)
+        {
+            bool value = false;
+            WebResponse response = null;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest) WebRequest.Create(imgUrl);
+                request.Method = "GET";
+                if (timeout != -1)
+                {
+                    request.Timeout = timeout;
+                }
+
+                response = request.GetResponse();
+
+                if (!response.ContentType.ToLower().StartsWith("text/"))
+                {
+                    value = SaveBinaryFile(response, Sys.GetPhysicalPath(path));
+                }
+            }
+            catch (Exception e)
+            {
+                value = false;
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                response?.Close();
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// 保存二进制文件
+        /// </summary>
+        /// <param name="response">响应流</param>
+        /// <param name="savePath">保存路径</param>
+        /// <returns></returns>
+        private static bool SaveBinaryFile(WebResponse response, string savePath)
+        {
+            bool value = false;
+            byte[] buffer=new byte[1024];
+            Stream outStream = null;
+            Stream inStream = null;
+            try
+            {
+                if (File.Exists(savePath))
+                {
+                    File.Delete(savePath);
+                }
+
+                outStream = File.Create(savePath);
+                inStream = response.GetResponseStream();
+                int l;
+                do
+                {
+                    l = inStream.Read(buffer, 0, buffer.Length);
+                    if (l > 0)
+                    {
+                        outStream.Write(buffer, 0, l);
+                    }
+                } while (l > 0);
+
+                value = true;
+            }
+            finally
+            {
+                outStream?.Close();
+                inStream?.Close();
+            }
+
+            return value;
         }
         #endregion
 
