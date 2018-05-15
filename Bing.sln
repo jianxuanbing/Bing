@@ -140,6 +140,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Caching.Serialization.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils.Webs.UnitTest", "test\Bing.Utils.Webs.UnitTest\Bing.Utils.Webs.UnitTest.csproj", "{94B47F06-5CC7-4551-88B5-32C9B7230316}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Compression.ShareZip", "src\Bing.Compression.ShareZip\Bing.Compression.ShareZip.csproj", "{277FC02C-48CD-4881-BE31-6844444927D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -350,6 +352,10 @@ Global
 		{94B47F06-5CC7-4551-88B5-32C9B7230316}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94B47F06-5CC7-4551-88B5-32C9B7230316}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94B47F06-5CC7-4551-88B5-32C9B7230316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{277FC02C-48CD-4881-BE31-6844444927D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{277FC02C-48CD-4881-BE31-6844444927D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{277FC02C-48CD-4881-BE31-6844444927D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{277FC02C-48CD-4881-BE31-6844444927D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -414,6 +420,7 @@ Global
 		{E97FFC05-2007-4AD0-88CF-4914BA6F93BC} = {41A99352-5E70-4215-918C-8EDF76196E60}
 		{1BED7664-A922-4523-BA7F-7AB45F4F092A} = {41A99352-5E70-4215-918C-8EDF76196E60}
 		{94B47F06-5CC7-4551-88B5-32C9B7230316} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
+		{277FC02C-48CD-4881-BE31-6844444927D7} = {09F0B568-FD1F-4407-B525-4DCC13107011}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8467E72B-4FFE-4CE1-8650-86DBABEA5548}

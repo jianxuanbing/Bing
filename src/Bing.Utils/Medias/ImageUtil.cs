@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Bing.Utils.Extensions;
 using Bing.Utils.Helpers;
 using Enum = System.Enum;
 
@@ -648,33 +649,32 @@ namespace Bing.Utils.Medias
                     y = 10;
                     break;
                 case ImageLocationMode.Top:
-                    x = img.Width / 2 - width * height / 2;
+                    x = img.Width / 2 - width / 2;
                     break;
                 case ImageLocationMode.RightTop:
-                    x = img.Width - width * height;
+                    x = img.Width - width;
                     break;
                 case ImageLocationMode.LeftCenter:
                     y = img.Height / 2;
                     break;
                 case ImageLocationMode.Center:
-                    x = img.Width / 2 - width * height / 2;
+                    x = img.Width / 2 - width / 2;
                     y = img.Height / 2;
                     break;
                 case ImageLocationMode.RightCenter:
-                    x = img.Width - height;
+                    x = img.Width - width;
                     y = img.Height / 2;
                     break;
                 case ImageLocationMode.LeftBottom:
-                    y = img.Height - width - 5;
+                    y = img.Height - height - 5;
                     break;
                 case ImageLocationMode.Bottom:
-                    //x = img.Width / 2 - (width * height) / 2;
                     x = img.Width / 2 - width/2;
-                    y = img.Height -height- 5;
+                    y = img.Height - height - 5;
                     break;
                 case ImageLocationMode.RightBottom:
-                    x = img.Width - width * height;
-                    y = img.Height - width - 5;
+                    x = img.Width - width;
+                    y = img.Height - height - 5;
                     break;
                 default:
                     break;
@@ -1263,23 +1263,88 @@ namespace Bing.Utils.Medias
         /// <param name="height">高度</param>
         /// <param name="fillBgColor">填充画笔颜色</param>
         /// <returns></returns>
-        public static Bitmap ResizeImage(Image image, int width, int height,Brush fillBgColor=null)
+        public static Image ResizeImage(Image image, int width, int height,Brush fillBgColor)
         {
-            Bitmap result=new Bitmap(width,height);
-            using (Graphics graphics=Graphics.FromImage(result))
+            try
             {
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                if (fillBgColor != null)
+                Image result = new Bitmap(width, height);
+                using (Graphics graphics = Graphics.FromImage(result))
                 {
-                    graphics.FillRectangle(fillBgColor, new Rectangle(0, 0, result.Width, result.Height));
-                }                
-                graphics.DrawImage(image,0,0, image.Width, image.Height);
-                image.Dispose();
+                    graphics.CompositingQuality = CompositingQuality.HighQuality;
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.SmoothingMode = SmoothingMode.HighQuality;
+                    if (fillBgColor != null)
+                    {
+                        graphics.FillRectangle(fillBgColor, new Rectangle(0, 0, result.Width, result.Height));
+                    }
+                    graphics.DrawImage(image, 0, 0, image.Width, image.Height);
+                    image.Dispose();
+                }
+                return result;
             }
+            catch
+            {
+                return null;
+            }
+        }
 
-            return result;
+        #endregion
+
+        #region MergeImage(合并图片)
+
+        /// <summary>
+        /// 合并图片
+        /// </summary>
+        /// <param name="bgImg">背景图片</param>
+        /// <param name="img">前景图片</param>
+        /// <param name="xDeviation">x轴偏移量</param>
+        /// <param name="yDeviation">y轴偏移量</param>
+        /// <returns></returns>
+        public static Bitmap MergeImage(Image bgImg, Image img, int xDeviation, int yDeviation)
+        {
+            Bitmap bmp = new Bitmap(bgImg.Width, bgImg.Height);
+
+            Graphics g=Graphics.FromImage(bmp);
+            g.Clear(Color.Transparent);
+            g.CompositingQuality = CompositingQuality.HighQuality;
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+            g.DrawImage(bgImg, 0, 0, bgImg.Width, bgImg.Height);
+
+            g.DrawImage(img, xDeviation, yDeviation, img.Width, img.Height);
+
+            GC.Collect();
+            return bmp;
+        }
+
+        /// <summary>
+        /// 合并图片
+        /// </summary>
+        /// <param name="bgImgPath">背景图片路径，绝对路径</param>
+        /// <param name="imgPath">前景图片路径，绝对路径</param>
+        /// <param name="outputPath">输出文件路径，相对路径</param>
+        /// <param name="xDeviation">x轴偏移量</param>
+        /// <param name="yDeviation">y轴偏移量</param>
+        /// <returns></returns>
+        public static string MergeImage(string bgImgPath, string imgPath,string outputPath, int xDeviation, int yDeviation)
+        {
+            var bgImage = FromFile(Sys.GetPhysicalPath(bgImgPath));
+            var fgImage = FromFile(Sys.GetPhysicalPath(imgPath));
+            var bitmap = MergeImage(bgImage, fgImage, xDeviation, yDeviation);
+            string physicalPath = Sys.GetPhysicalPath(outputPath);
+            string extName = Path.GetExtension(physicalPath);
+            if (extName.IsEmpty())
+            {
+                string fileName= DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg";
+                outputPath += fileName;
+                physicalPath += fileName;
+            }
+            
+            bitmap.Save(physicalPath, ImageFormat.Jpeg);
+            bitmap.Dispose();
+            bgImage.Dispose();
+            fgImage.Dispose();
+            return outputPath;
         }
 
         #endregion
