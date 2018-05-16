@@ -124,6 +124,14 @@ namespace Bing.Utils.UnitTest.Medias
         }
 
         [TestMethod]
+        public void Test_MergeImage_2()
+        {
+            var result = ImageUtil.MergeImage(Sys.GetPhysicalPath("D:\\分享0001.png"),
+                Sys.GetPhysicalPath("D:\\15259416500530001.jpg"), "D:\\MergeImage_004.jpg", 30, 520);
+            Console.WriteLine(result);
+        }
+
+        [TestMethod]
         public void Test_DownloadRemoteImage()
         {
             //var imgUrl = "http://cdn.loonxierp.com//yuema_uploadfiles/img/20185/1526367137646_4524.jpg";
