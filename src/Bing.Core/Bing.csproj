@@ -69,7 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Applications\Dtos\ApiResult.cs" />
+    <Compile Include="Applications\Dtos\ILoginInfo.cs" />
+    <Compile Include="Applications\Dtos\IRange.cs" />
     <Compile Include="Applications\Dtos\ResultCode.cs" />
+    <Compile Include="Applications\Dtos\DateTimeRange.cs" />
     <Compile Include="Applications\IServiceBase.cs" />
     <Compile Include="Applications\ServiceBase.cs" />
     <Compile Include="Aspects\Base\InterceptorBase.cs" />
