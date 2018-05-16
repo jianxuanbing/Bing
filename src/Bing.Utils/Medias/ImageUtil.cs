@@ -195,7 +195,8 @@ namespace Bing.Utils.Medias
             finally
             {
                 originalImage.Dispose();
-                bitmap.Dispose();
+                // TODO:由于要返回Bitmap对象，因此不释放资源
+                //bitmap.Dispose();
                 g.Dispose();
             }
         }

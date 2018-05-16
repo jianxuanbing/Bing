@@ -140,5 +140,25 @@ namespace Bing.Utils.UnitTest.Medias
             var result=ImageUtil.DownloadRemoteImage(imgUrl, savePath);
             Console.WriteLine(result);
         }
+
+        [TestMethod]
+        public void Test_ResizeImage()
+        {
+            var sourceImage = ImageUtil.FromFile("D:\\B0001.jpg");
+            var image = ImageUtil.ResizeImage(sourceImage, 230, 230, null);
+            image.Save("D:\\T0001.jpg",ImageFormat.Jpeg);
+            sourceImage.Dispose();
+            image.Dispose();
+        }
+
+        [TestMethod]
+        public void Test_MakeThumbnail_FixedBoth()
+        {
+            var sourceImage = ImageUtil.FromFile("D:\\B0001.jpg");
+            var image = ImageUtil.MakeThumbnail(sourceImage, 230, 230, ThumbnailMode.FixedBoth);
+            image.Save("D:\\T0001.jpg");
+            sourceImage.Dispose();
+            image.Dispose();
+        }
     }
 }
