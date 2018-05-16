@@ -133,7 +133,8 @@ namespace Bing.SqlBuilder.Conditions
         public virtual IConditionBuilder Append<T>(RelationType relationType, string fieldName, SqlOperator @operator,
             params T[] fieldValue)
         {
-            if (IsContinue(fieldValue))
+            
+            if (IsContinue(fieldValue)&&!IsNotValueOperator(@operator))
             {
                 return this;
             }
@@ -142,7 +143,7 @@ namespace Bing.SqlBuilder.Conditions
             {
                 this.ConditionAppendBuilder.Append(GetRelation(relationType));
             }
-            if (IsContinue(fieldValue))
+            if (IsContinue(fieldValue) && !IsNotValueOperator(@operator))
             {
                 return this;
             }
@@ -307,6 +308,16 @@ namespace Bing.SqlBuilder.Conditions
         /// </summary>
         /// <returns></returns>
         public abstract IConditionBuilder Clone();
+
+        /// <summary>
+        /// 是否无值操作
+        /// </summary>
+        /// <param name="operator">Sql操作符</param>
+        /// <returns></returns>
+        protected bool IsNotValueOperator(SqlOperator @operator)
+        {
+            return @operator == SqlOperator.IsNull || @operator == SqlOperator.IsNotNull;
+        }
 
         /// <summary>
         /// 是否跳过此拼接条件

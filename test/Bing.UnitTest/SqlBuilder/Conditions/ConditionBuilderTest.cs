@@ -162,5 +162,18 @@ namespace Bing.UnitTest.SqlBuilder.Conditions
             Console.WriteLine(result);
             Console.WriteLine(param);
         }
+
+        [TestMethod]
+        public void Test_IsNotNull()
+        {
+            ConditionBuilder builder = new ConditionBuilder();
+            builder.IsNotNull("A.ClerkId").Equal("C.ClerkId",1);
+
+            var result = builder.ToString();
+            var param = builder.GetParamDict().ToJson();
+
+            Console.WriteLine(result);
+            Console.WriteLine(param);
+        }
     }
 }
