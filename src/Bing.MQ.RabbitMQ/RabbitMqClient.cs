@@ -95,8 +95,9 @@ namespace Bing.MQ.RabbitMQ
                     var messageSerializer = MessageSerializerFactory.CreateMessageSerializerInstance();
                     var properties = channel.CreateBasicProperties();
                     properties.DeliveryMode = deliveryMode;
-                    channel.BasicPublish(exChange, queue, properties,
-                        messageSerializer.SerializerBytes(eventMessage));
+                    channel.BasicPublish(exChange,queue,true,properties,messageSerializer.SerializerBytes(eventMessage));
+                    //channel.BasicPublish(exChange, queue, properties,
+                    //    messageSerializer.SerializerBytes(eventMessage));
                 }
             }
         }
@@ -125,7 +126,7 @@ namespace Bing.MQ.RabbitMQ
             consumer.Received += Consumer_Received;
 
             Context.ListenChannel.BasicQos(0,1,false);//一次只获取一个消息进行消费
-            Context.ListenChannel.BasicConsume(Context.ListenQueueName, false, consumer);
+            //Context.ListenChannel.BasicConsume(Context.ListenQueueName, false, consumer);
         }
 
         /// <summary>
