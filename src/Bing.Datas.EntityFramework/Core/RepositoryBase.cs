@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -561,6 +562,19 @@ namespace Bing.Datas.EntityFramework.Core
         public IUnitOfWork GetUnitOfWork()
         {
             return UnitOfWork;
+        }
+
+        #endregion
+
+        #region GetDbConnection(获取数据库连接)
+
+        /// <summary>
+        /// 获取数据库连接
+        /// </summary>
+        /// <returns></returns>
+        public IDbConnection GetDbConnection()
+        {
+            return UnitOfWork.Database.Connection;
         }
 
         #endregion

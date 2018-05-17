@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,16 @@ namespace Bing.Domains.Repositories
         /// </summary>
         /// <returns></returns>
         IUnitOfWork GetUnitOfWork();
+
+        #endregion
+
+        #region GetDbConnection(获取数据库连接)
+
+        /// <summary>
+        /// 获取数据库连接
+        /// </summary>
+        /// <returns></returns>
+        IDbConnection GetDbConnection();
 
         #endregion
     }

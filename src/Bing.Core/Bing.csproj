@@ -109,6 +109,8 @@
     <Compile Include="Contexts\WebContext.cs" />
     <Compile Include="Datas\Attributes\DateTimePrecisionAttribute.cs" />
     <Compile Include="Datas\Attributes\DecimalPrecisionAttribute.cs" />
+    <Compile Include="Datas\Configs\OrmConfig.cs" />
+    <Compile Include="Datas\Configs\OrmLogLevel.cs" />
     <Compile Include="Datas\Persistence\IPersistentObject.cs" />
     <Compile Include="Datas\Persistence\IPersistentStore.cs" />
     <Compile Include="Datas\Persistence\PersistentObjectBase.cs" />
