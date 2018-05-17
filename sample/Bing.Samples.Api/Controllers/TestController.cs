@@ -103,21 +103,21 @@ namespace Bing.Samples.Api.Controllers
                 .SqlParams($"@a={1},@b={2}")
                 .SqlParams($"@userId={ Guid.NewGuid().ToString()}")
                 .Info();
-            var tempLog = Log.GetLog(this, "nlog");
-            tempLog.BussinessId(Guid.NewGuid().ToString())
-                .Module("订单-NLog")
-                .Method("PlaceOrder")
-                .Caption("有人下单了")
-                .Params("int", "a", "1")
-                .Params("string", "b", "c")
-                .Content($"购买商品数量：{100}")
-                .Content($"购买商品总额：{200}")
-                .Content($"自定义内容：{content}")
-                .Sql("select * from Users")
-                .Sql("select * from Orders")
-                .SqlParams($"@a={1},@b={2}")
-                .SqlParams($"@userId={ Guid.NewGuid().ToString()}")
-                .Info();
+            //var tempLog = Log.GetLog(this, "nlog");
+            //tempLog.BussinessId(Guid.NewGuid().ToString())
+            //    .Module("订单-NLog")
+            //    .Method("PlaceOrder")
+            //    .Caption("有人下单了")
+            //    .Params("int", "a", "1")
+            //    .Params("string", "b", "c")
+            //    .Content($"购买商品数量：{100}")
+            //    .Content($"购买商品总额：{200}")
+            //    .Content($"自定义内容：{content}")
+            //    .Sql("select * from Users")
+            //    .Sql("select * from Orders")
+            //    .SqlParams($"@a={1},@b={2}")
+            //    .SqlParams($"@userId={ Guid.NewGuid().ToString()}")
+            //    .Info();
         }
 
         /// <summary>

@@ -82,6 +82,7 @@
     <Content Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="nlog.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
