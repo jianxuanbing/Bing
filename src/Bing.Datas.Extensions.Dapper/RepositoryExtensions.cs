@@ -34,6 +34,10 @@ namespace Bing.Datas.Extensions.Dapper
             return connection.Execute(sql, param, transaction, commandTimeout);
         }
 
+        #endregion
+
+        #region ExecuteSqlAsync(通过Sql执行数据更新操作)
+
         /// <summary>
         /// 通过Sql执行数据更新操作
         /// </summary>
@@ -71,6 +75,10 @@ namespace Bing.Datas.Extensions.Dapper
             OrmConfig.AdoLogInterceptor?.Invoke("ExecuteProc",procName,param);
             return connection.Execute(procName, param, transaction, commandTimeout, CommandType.StoredProcedure);
         }
+
+        #endregion
+
+        #region ExecuteProcAsync(通过存储过程执行数据更新操作)
 
         /// <summary>
         /// 通过存储过程执行数据更新操作
