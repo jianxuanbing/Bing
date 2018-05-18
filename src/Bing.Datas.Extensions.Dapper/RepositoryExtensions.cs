@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bing.Applications.Dtos;
 using Bing.Datas.Configs;
 using Bing.Domains.Repositories;
 using Bing.SqlBuilder.Conditions;
@@ -340,6 +341,127 @@ namespace Bing.Datas.Extensions.Dapper
             ConditionBuilder condition, IDbTransaction transaction = null, int? commandTimeout = null)
         {
             return await repository.SqlSingleAsync<TResult>($"{sql}{condition.ToString()}", condition.GetParamDict());
+        }
+
+        #endregion
+
+        #region SqlPage(通过Sql执行数据分页查询操作，返回分页列表)
+
+        /// <summary>
+        /// 通过Sql执行数据分页查询操作，返回分页列表
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="condition">Where条件</param>
+        /// <param name="search">查询对象</param>
+        /// <param name="order">排序方式，例如：name desc, nickname desc</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static PagerList<TResult> SqlPage<TResult>(this IRepository repository, string sql,
+            ConditionBuilder condition, PagedSearch search, string order, IDbTransaction transaction = null,
+            int? commandTimeout = null)
+        {
+            return repository.SqlPage<TResult>(sql, condition.ToString(), search.Page, search.PageSize, order,
+                condition.GetParamDict(), transaction, commandTimeout);
+        }
+
+        /// <summary>
+        /// 通过Sql执行数据分页查询操作，返回分页列表
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="condition">Where条件</param>
+        /// <param name="page">当前页</param>
+        /// <param name="pageSize">每页显示记录数</param>
+        /// <param name="order">排序方式，例如：name desc, nickname desc</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static PagerList<TResult> SqlPage<TResult>(this IRepository repository, string sql,
+            ConditionBuilder condition, int page, int pageSize, string order, IDbTransaction transaction = null,
+            int? commandTimeout = null)
+        {
+            return repository.SqlPage<TResult>(sql, condition.ToString(), page, pageSize, order,
+                condition.GetParamDict(), transaction, commandTimeout);
+        }
+
+        /// <summary>
+        /// 通过Sql执行数据分页查询操作，返回分页列表
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="condition">Where条件</param>
+        /// <param name="search">查询对象</param>
+        /// <param name="order">排序方式，例如：name desc, nickname desc</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static PagerList<TResult> SqlPage<TResult>(this IRepository repository, string sql, string condition,
+            PagedSearch search, string order, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            return repository.SqlPage<TResult>(sql, condition, search.Page, search.PageSize, order,
+                transaction: transaction,
+                commandTimeout: commandTimeout);
+        }
+
+        /// <summary>
+        /// 通过Sql执行数据分页查询操作，返回分页列表
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="where">Where条件</param>
+        /// <param name="page">当前页</param>
+        /// <param name="pageSize">每页显示记录数</param>
+        /// <param name="order">排序方式，例如：name desc, nickname desc</param>
+        /// <param name="param">参数字典</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static PagerList<TResult> SqlPage<TResult>(this IRepository repository, string sql, string where,
+            int page, int pageSize, string order, IDictionary<string, object> param = null,
+            IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            var connection = repository.GetDbConnection();
+
+            var whereSql = string.Empty;
+            if (string.IsNullOrWhiteSpace(where.Trim()) ||
+                !where.TrimStart().StartsWith("where", StringComparison.CurrentCultureIgnoreCase))
+            {
+                whereSql += " where ";
+            }
+
+            whereSql += where;
+            var pageSql = OrmConfig.PageBuilder.GeneratePagingWithRowNumberSql(sql, whereSql, page, pageSize, order);
+            var countSql = OrmConfig.PageBuilder.GenerateRecordCount(sql, whereSql);
+
+            PagerList<TResult> result = new PagerList<TResult>
+            {
+                Page = page,
+                PageSize = pageSize
+            };
+
+            OrmConfig.AdoLogInterceptor?.Invoke("SqlPage.Count", countSql, param);
+            OrmConfig.AdoLogInterceptor?.Invoke("SqlPage.Data", pageSql, param);
+
+            if (param == null || param.Count == 0)
+            {
+                result.Data = connection.Query<TResult>(pageSql).ToList();
+                result.TotalCount = connection.QuerySingle<int>(countSql);
+            }
+            else
+            {
+                result.Data = connection.Query<TResult>(pageSql, param).ToList();
+                result.TotalCount = connection.QuerySingle<int>(countSql, param);
+            }
+
+            IPager pager = new Pager(page, pageSize, result.TotalCount);
+            result.PageCount = pager.GetPageCount();
+            return result;
         }
 
         #endregion

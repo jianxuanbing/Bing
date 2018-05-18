@@ -72,6 +72,7 @@
     <Compile Include="Applications\Dtos\ApiResult.cs" />
     <Compile Include="Applications\Dtos\ILoginInfo.cs" />
     <Compile Include="Applications\Dtos\IRange.cs" />
+    <Compile Include="Applications\Dtos\PagedSearch.cs" />
     <Compile Include="Applications\Dtos\ResultCode.cs" />
     <Compile Include="Applications\Dtos\DateTimeRange.cs" />
     <Compile Include="Applications\IServiceBase.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Contexts\WebContext.cs" />
     <Compile Include="Datas\Attributes\DateTimePrecisionAttribute.cs" />
     <Compile Include="Datas\Attributes\DecimalPrecisionAttribute.cs" />
+    <Compile Include="Datas\Configs\DbType.cs" />
     <Compile Include="Datas\Configs\OrmConfig.cs" />
     <Compile Include="Datas\Configs\OrmLogLevel.cs" />
     <Compile Include="Datas\Persistence\IPersistentObject.cs" />
@@ -243,6 +245,10 @@
     <Compile Include="SqlBuilder\Conditions\SqlOperator.cs" />
     <Compile Include="SqlBuilder\Logics\ILogicSqlBuilder.cs" />
     <Compile Include="SqlBuilder\Logics\LogicSqlBuilder.cs" />
+    <Compile Include="SqlBuilder\Page\IPageBuilder.cs" />
+    <Compile Include="SqlBuilder\Page\MySqlPageBuilder.cs" />
+    <Compile Include="SqlBuilder\Page\PageBuilderBase.cs" />
+    <Compile Include="SqlBuilder\Page\SqlServerPageBuilder.cs" />
     <Compile Include="SqlBuilder\SqlBuilderException.cs" />
     <Compile Include="SqlBuilder\SqlBusinessLogicOptions.cs" />
     <Compile Include="Validations\Aspects\ValidAttribute.cs" />
