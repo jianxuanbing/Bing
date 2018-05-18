@@ -540,18 +540,18 @@ namespace Bing.Utils.Medias
             Color color, ImageLocationMode location)
         {
             string extName = Path.GetExtension(path);
-            if (extName == ".jpg" || extName == ".bmp" || extName == ".jpeg")
+            if (extName == ".jpg" || extName == ".bmp" || extName == ".jpeg" || extName == ".png")
             {
                 Image img = Bitmap.FromFile(path);
                 SizeF sizeF = GetFontSize(letter, img.Width, img.Height, size, "宋体");
                 if (location == ImageLocationMode.Bottom)
                 {
-                    img = ResizeImage(img, img.Width, img.Height + (int)sizeF.Height, Brushes.White);
+                    img = ResizeImage(img, img.Width, img.Height + (int) sizeF.Height, Brushes.White);
                 }
 
                 Graphics g = Graphics.FromImage(img);
                 Font font = new Font("宋体", size);
-                ArrayList coors = GetLocation(location, img, (int)sizeF.Width, (int)sizeF.Height);
+                ArrayList coors = GetLocation(location, img, (int) sizeF.Width, (int) sizeF.Height);
 
                 Brush br = new SolidBrush(color);
                 g.DrawString(letter, font, br, float.Parse(coors[0].ToString()), float.Parse(coors[1].ToString()));
@@ -576,7 +576,7 @@ namespace Bing.Utils.Medias
             ImageLocationMode location)
         {
             string extName = Path.GetExtension(path);
-            if (extName == ".jpg" || extName == ".bmp" || extName == ".jpeg")
+            if (extName == ".jpg" || extName == ".bmp" || extName == ".jpeg" || extName == ".png")
             {
                 DateTime time = DateTime.Now;
                 string fileName = "" + time.Year.ToString() + time.Month.ToString() + time.Day.ToString() +
