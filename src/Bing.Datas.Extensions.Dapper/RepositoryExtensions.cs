@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bing.Datas.Configs;
 using Bing.Domains.Repositories;
+using Bing.SqlBuilder.Conditions;
 using Dapper;
 
 namespace Bing.Datas.Extensions.Dapper
@@ -164,6 +165,181 @@ namespace Bing.Datas.Extensions.Dapper
             OrmConfig.AdoLogInterceptor?.Invoke("ProcSingle", procName, param);
             return connection.QueryFirstOrDefault<TResult>(procName, param, transaction, commandTimeout: commandTimeout,
                 commandType: CommandType.StoredProcedure);
+        }
+
+        #endregion
+
+        #region ProcSingleAsync(通过存储过程执行数据查询操作，返回对象)
+
+        /// <summary>
+        /// 通过存储过程执行数据查询操作，返回对象
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="procName">存储过程名</param>
+        /// <param name="param">存储过程参数，使用匿名对象传入，范例：new { Name = "A" }</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static async Task<TResult> ProcSingleAsync<TResult>(this IRepository repository, string procName,
+            object param = null, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            var connection = repository.GetDbConnection();
+            OrmConfig.AdoLogInterceptor?.Invoke("ProcSingleAsync", procName, param);
+            return await connection.QueryFirstOrDefaultAsync<TResult>(procName, param, transaction, commandTimeout: commandTimeout,
+                commandType: CommandType.StoredProcedure);
+        }
+
+        #endregion
+
+        #region SqlQuery(通过Sql执行数据查询操作，返回集合)
+
+        /// <summary>
+        /// 通过Sql执行数据查询操作，返回集合
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="param">Sql参数，使用匿名对象传入，范例：new { Name = "A" }</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static IEnumerable<TResult> SqlQuery<TResult>(this IRepository repository, string sql,
+            object param = null, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            var connection = repository.GetDbConnection();
+            OrmConfig.AdoLogInterceptor?.Invoke("SqlQuery", sql, param);
+            return connection.Query<TResult>(sql, param, transaction, commandTimeout: commandTimeout);
+        }
+
+        /// <summary>
+        /// 通过Sql执行数据查询操作，返回集合
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="condition">Where条件</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static IEnumerable<TResult> SqlQuery<TResult>(this IRepository repository, string sql,
+            ConditionBuilder condition, IDbTransaction transaction = null, int? commandTimeout = null)
+        {            
+            return repository.SqlQuery<TResult>($"{sql}{condition.ToString()}", condition.GetParamDict());
+        }
+
+        #endregion
+
+        #region SqlQueryAsync(通过Sql执行数据查询操作，返回集合)
+
+        /// <summary>
+        /// 通过Sql执行数据查询操作，返回集合
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="param">Sql参数，使用匿名对象传入，范例：new { Name = "A" }</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static async Task<IEnumerable<TResult>> SqlQueryAsync<TResult>(this IRepository repository, string sql,
+            object param = null, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            var connection = repository.GetDbConnection();
+            OrmConfig.AdoLogInterceptor?.Invoke("SqlQueryAsync", sql, param);
+            return await connection.QueryAsync<TResult>(sql, param, transaction, commandTimeout: commandTimeout);
+        }
+
+        /// <summary>
+        /// 通过Sql执行数据查询操作，返回集合
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="condition">Where条件</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static async Task<IEnumerable<TResult>> SqlQueryAsync<TResult>(this IRepository repository, string sql,
+            ConditionBuilder condition, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            return await repository.SqlQueryAsync<TResult>($"{sql}{condition.ToString()}", condition.GetParamDict());
+        }
+
+        #endregion
+
+        #region SqlSingle(通过Sql执行数据查询操作，返回对象)
+
+        /// <summary>
+        /// 通过Sql执行数据查询操作，返回对象
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="param">Sql参数，使用匿名对象传入，范例：new { Name = "A" }</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static TResult SqlSingle<TResult>(this IRepository repository, string sql,
+            object param = null, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            var connection = repository.GetDbConnection();
+            OrmConfig.AdoLogInterceptor?.Invoke("SqlSingle", sql, param);
+            return connection.QueryFirstOrDefault<TResult>(sql, param, transaction, commandTimeout: commandTimeout);
+        }
+
+        /// <summary>
+        /// 通过Sql执行数据查询操作，返回对象
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="condition">Where条件</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static TResult SqlSingle<TResult>(this IRepository repository, string sql,
+            ConditionBuilder condition, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            return repository.SqlSingle<TResult>($"{sql}{condition.ToString()}", condition.GetParamDict());
+        }
+
+        #endregion
+
+        #region SqlSingleAsync(通过Sql执行数据查询操作，返回对象)
+
+        /// <summary>
+        /// 通过Sql执行数据查询操作，返回对象
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="param">Sql参数，使用匿名对象传入，范例：new { Name = "A" }</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static async Task<TResult> SqlSingleAsync<TResult>(this IRepository repository, string sql,
+            object param = null, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            var connection = repository.GetDbConnection();
+            OrmConfig.AdoLogInterceptor?.Invoke("SqlSingleAsync", sql, param);
+            return await connection.QueryFirstOrDefaultAsync<TResult>(sql, param, transaction, commandTimeout: commandTimeout);
+        }
+
+        /// <summary>
+        /// 通过Sql执行数据查询操作，返回对象
+        /// </summary>
+        /// <typeparam name="TResult">对象类型</typeparam>
+        /// <param name="repository">仓储</param>
+        /// <param name="sql">Sql语句</param>
+        /// <param name="condition">Where条件</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="commandTimeout">命令超时时间</param>
+        /// <returns></returns>
+        public static async Task<TResult> SqlSingleAsync<TResult>(this IRepository repository, string sql,
+            ConditionBuilder condition, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            return await repository.SqlSingleAsync<TResult>($"{sql}{condition.ToString()}", condition.GetParamDict());
         }
 
         #endregion
