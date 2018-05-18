@@ -66,6 +66,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Applications\Dtos\ApiResult.cs" />
     <Compile Include="Applications\Dtos\ILoginInfo.cs" />
     <Compile Include="Applications\Dtos\IRange.cs" />

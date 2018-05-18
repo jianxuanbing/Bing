@@ -60,6 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Default\EventBus.cs" />
     <Compile Include="Default\EventHandlerFactory.cs" />
     <Compile Include="Default\ServiceExtensions.cs" />

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing", "src\Bing.Core\Bing.csproj", "{39F3E099-6B64-4AD5-884E-2A0628D9D74C}"
 EndProject
@@ -98,6 +98,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00-document", "00-document"
 	ProjectSection(SolutionItems) = preProject
 		Publish.Packages.bat = Publish.Packages.bat
 		README.md = README.md
+		SolutionInfo.cs = SolutionInfo.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils.AutoMapper.UnitTest", "test\Bing.Utils.AutoMapper.UnitTest\Bing.Utils.AutoMapper.UnitTest.csproj", "{77DFE992-9EA1-4285-9D33-982C6BF17675}"
