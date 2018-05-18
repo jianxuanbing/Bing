@@ -17,7 +17,10 @@ namespace Bing.SqlBuilder.Page
         /// <param name="sql">sql语句</param>
         /// <param name="where">where条件语句</param>
         /// <returns></returns>
-        public abstract string GenerateRecordCount(string sql, string @where);
+        public virtual string GenerateRecordCount(string sql, string @where)
+        {
+            return $"select COUNT(1) from ({sql} {where}) CountTable";
+        }
 
         /// <summary>
         /// 获取分页查询Sql语句

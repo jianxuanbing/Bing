@@ -12,17 +12,6 @@ namespace Bing.SqlBuilder.Page
     public class SqlServerPageBuilder:PageBuilderBase,IPageBuilder
     {
         /// <summary>
-        /// 生成查询总记录数Sql语句
-        /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="where">where条件语句</param>
-        /// <returns></returns>
-        public override string GenerateRecordCount(string sql, string @where)
-        {
-            return $"select COUNT(1) from ({sql} {where}) CountTable";
-        }
-
-        /// <summary>
         /// 获取分页查询Sql语句
         /// </summary>
         /// <param name="sql">sql语句</param>

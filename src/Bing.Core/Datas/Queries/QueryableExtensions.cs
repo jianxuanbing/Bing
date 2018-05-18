@@ -220,5 +220,18 @@ namespace Bing.Datas.Queries
             result.AddRange(source.ToList());
             return result;
         }
+
+        /// <summary>
+        /// 转换为分页列表
+        /// </summary>
+        /// <typeparam name="TEntity">实体类型</typeparam>
+        /// <param name="source">数据源</param>
+        /// <param name="page">当前页</param>
+        /// <param name="pageSize">每页显示记录数</param>
+        /// <returns></returns>
+        public static PagerList<TEntity> ToPagerList<TEntity>(this IQueryable<TEntity> source, int page, int pageSize)
+        {
+            return ToPagerList(source, new Pager(page, pageSize));
+        }
     }
 }

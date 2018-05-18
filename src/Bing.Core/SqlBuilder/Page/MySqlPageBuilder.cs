@@ -11,16 +11,6 @@ namespace Bing.SqlBuilder.Page
     /// </summary>
     public class MySqlPageBuilder:PageBuilderBase,IPageBuilder
     {
-        /// <summary>
-        /// 生成查询总记录数Sql语句
-        /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="where">where条件语句</param>
-        /// <returns></returns>
-        public override string GenerateRecordCount(string sql, string @where)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// 获取分页查询Sql语句
@@ -33,7 +23,9 @@ namespace Bing.SqlBuilder.Page
         /// <returns></returns>
         public override string GeneratePagingWithRowNumberSql(string sql, string @where, int page, int pageSize, string order)
         {
-            throw new NotImplementedException();
+            page = page < 1 ? 1 : page;
+            int pageStart = pageSize * (page - 1) + 1;
+            return $"select {FetchPageBody(sql)} {where} order by {order} limit {pageStart},{pageSize}";
         }
     }
 }
