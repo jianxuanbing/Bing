@@ -145,6 +145,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Datas.Extensions.Dappe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Samples.Consoles.JsonConfig", "sample\Bing.Samples.Consoles.JsonConfig\Bing.Samples.Consoles.JsonConfig.csproj", "{3D74FEA5-694B-434E-910A-8DBB887F62D7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07-Extensions", "07-Extensions", "{FCD8E1C4-31FB-412E-AF3E-2E02D9A79224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Extensions.Swagger", "src\Bing.Extensions.Swagger\Bing.Extensions.Swagger.csproj", "{29F02DF7-B9C5-4345-834D-DEC8A1BF1A33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -363,6 +367,10 @@ Global
 		{3D74FEA5-694B-434E-910A-8DBB887F62D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D74FEA5-694B-434E-910A-8DBB887F62D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D74FEA5-694B-434E-910A-8DBB887F62D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29F02DF7-B9C5-4345-834D-DEC8A1BF1A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F02DF7-B9C5-4345-834D-DEC8A1BF1A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F02DF7-B9C5-4345-834D-DEC8A1BF1A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F02DF7-B9C5-4345-834D-DEC8A1BF1A33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -429,6 +437,8 @@ Global
 		{94B47F06-5CC7-4551-88B5-32C9B7230316} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
 		{F830E279-F678-4CD6-B83B-97A47359D86F} = {F2F07158-DFC9-4A39-8740-611605A6A504}
 		{3D74FEA5-694B-434E-910A-8DBB887F62D7} = {E493FC78-16DB-40DA-8463-B2CA97DF3B2B}
+		{FCD8E1C4-31FB-412E-AF3E-2E02D9A79224} = {EFB7FB57-63B8-4E5D-9748-E97B10990BFE}
+		{29F02DF7-B9C5-4345-834D-DEC8A1BF1A33} = {FCD8E1C4-31FB-412E-AF3E-2E02D9A79224}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8467E72B-4FFE-4CE1-8650-86DBABEA5548}
