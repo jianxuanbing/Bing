@@ -47,8 +47,12 @@
     <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -105,6 +109,17 @@
     <Compile Include="Caching\IHybridCacheProvider.cs" />
     <Compile Include="Caching\NotifyType.cs" />
     <Compile Include="Caching\Options\RedisOptionsBase.cs" />
+    <Compile Include="Configuration\Abstractions\IConfigFileLocator.cs" />
+    <Compile Include="Configuration\Abstractions\IConfigFileReader.cs" />
+    <Compile Include="Configuration\Abstractions\IConfigFileWriter.cs" />
+    <Compile Include="Configuration\Abstractions\IConfigProvider.cs" />
+    <Compile Include="Configuration\Core\ConfigFileLocator.cs" />
+    <Compile Include="Configuration\Core\ConfigFileMetadata.cs" />
+    <Compile Include="Configuration\Core\ConfigFileReader.cs" />
+    <Compile Include="Configuration\Core\ConfigFileWriter.cs" />
+    <Compile Include="Configuration\Core\ConfigProvider.cs" />
+    <Compile Include="Configuration\Core\ConfigSections.cs" />
+    <Compile Include="Configuration\Extensions\FileInfoExtensions.cs" />
     <Compile Include="Contexts\IContext.cs" />
     <Compile Include="Contexts\IUserContext.cs" />
     <Compile Include="Contexts\NullUserContext.cs" />

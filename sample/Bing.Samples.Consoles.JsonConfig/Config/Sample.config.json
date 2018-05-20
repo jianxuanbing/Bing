@@ -1,0 +1,7 @@
+﻿{
+  "stringProp": "test",
+  "intProp": 1,
+  "decimalProp": 0.7,
+  "dateTimeProp": "2018-05-20 18:00:00",
+  "longProp": 9
+}

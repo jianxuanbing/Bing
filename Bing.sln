@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing", "src\Bing.Core\Bing.csproj", "{39F3E099-6B64-4AD5-884E-2A0628D9D74C}"
 EndProject
@@ -142,6 +142,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Utils.Webs.UnitTest", "test\Bing.Utils.Webs.UnitTest\Bing.Utils.Webs.UnitTest.csproj", "{94B47F06-5CC7-4551-88B5-32C9B7230316}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Datas.Extensions.Dapper", "src\Bing.Datas.Extensions.Dapper\Bing.Datas.Extensions.Dapper.csproj", "{F830E279-F678-4CD6-B83B-97A47359D86F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bing.Samples.Consoles.JsonConfig", "sample\Bing.Samples.Consoles.JsonConfig\Bing.Samples.Consoles.JsonConfig.csproj", "{3D74FEA5-694B-434E-910A-8DBB887F62D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -357,6 +359,10 @@ Global
 		{F830E279-F678-4CD6-B83B-97A47359D86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F830E279-F678-4CD6-B83B-97A47359D86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F830E279-F678-4CD6-B83B-97A47359D86F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D74FEA5-694B-434E-910A-8DBB887F62D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D74FEA5-694B-434E-910A-8DBB887F62D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D74FEA5-694B-434E-910A-8DBB887F62D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D74FEA5-694B-434E-910A-8DBB887F62D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -422,6 +428,7 @@ Global
 		{1BED7664-A922-4523-BA7F-7AB45F4F092A} = {41A99352-5E70-4215-918C-8EDF76196E60}
 		{94B47F06-5CC7-4551-88B5-32C9B7230316} = {35C1EAD9-9812-4B2E-ADD8-AC5B19BC142E}
 		{F830E279-F678-4CD6-B83B-97A47359D86F} = {F2F07158-DFC9-4A39-8740-611605A6A504}
+		{3D74FEA5-694B-434E-910A-8DBB887F62D7} = {E493FC78-16DB-40DA-8463-B2CA97DF3B2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8467E72B-4FFE-4CE1-8650-86DBABEA5548}
